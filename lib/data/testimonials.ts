@@ -6,7 +6,7 @@ export const testimonials: Testimonial[] = [
     name: "דני ורותי כהן",
     role: "זוג צעיר מתל אביב",
     content: "עדיאל ליווה אותנו לאורך כל הדרך בתהליך לקיחת המשכנתא הראשונה שלנו. הוא הצליח להשיג לנו תנאים מעולים ועזר לנו לחסוך המון כסף.",
-    image: "/about.jpg",
+    image: "/about.webp",
     rating: 5
   },
   {
@@ -14,7 +14,7 @@ export const testimonials: Testimonial[] = [
     name: "משה לוי",
     role: "משקיע נדל״ן",
     content: "כמשקיע נדל״ן ותיק, אני יכול להעיד שעדיאל הוא אחד היועצים המקצועיים ביותר שיצא לי לעבוד איתם. הידע והניסיון שלו בתחום המשכנתאות להשקעה הוא יוצא דופן.",
-    image: "/about.jpg",
+    image: "/about.webp",
     rating: 5
   },
   {
@@ -22,7 +22,7 @@ export const testimonials: Testimonial[] = [
     name: "מיכל ברק",
     role: "רוכשת דירה ראשונה",
     content: "הליווי המקצועי של עדיאל עזר לי להבין את כל התהליך המורכב של לקיחת משכנתא. הוא היה זמין לכל שאלה ודאג להשיג לי את התנאים הטובים ביותר.",
-    image: "/about.jpg",
+    image: "/about.webp",
     rating: 5
   }
 ];

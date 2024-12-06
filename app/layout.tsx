@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     images: [
       {
         // TODO- change
-        url: '/1.png', 
+        url: '/1.webp', 
         width: 1200,
         height: 630,
         alt: 'עדיאל כהן - יועץ משכנתאות',

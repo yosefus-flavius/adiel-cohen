@@ -12,7 +12,7 @@ export default function manifest(): MetadataRoute.Manifest {
     icons: [
       {
         // TODO- change
-        src: '/1.png',
+        src: '/1.webp',
         sizes: '512x512',
         type: 'image/png',
       }
