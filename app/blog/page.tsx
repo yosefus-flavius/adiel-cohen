@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function BlogPage({ searchParams }: { searchParams: Promise<{search?: string}> }) {
-  let query = await searchParams
+  const query = await searchParams
 
   // for testing await 20 seconds
   // await new Promise((resolve) => setTimeout(resolve, 20000));
