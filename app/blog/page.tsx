@@ -3,14 +3,14 @@ import { blogs } from "@/lib/data/blogs";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function BlogPage({ searchParams }: { searchParams: Promise<any> }) {
+export default async function BlogPage({ searchParams }: { searchParams: Promise<{search?: string}> }) {
   let query = await searchParams
 
   // for testing await 20 seconds
   // await new Promise((resolve) => setTimeout(resolve, 20000));
 
   const filteredBlogs = query?.search ? blogs.filter((blog) => {
-    return blog.title.toLowerCase().includes(query?.search?.toLowerCase?.());
+    return blog.title.toLowerCase().includes(query?.search?.toLowerCase?.() || '');
   }) : blogs;
 
   return (
