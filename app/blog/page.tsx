@@ -1,10 +1,9 @@
-import { Input } from "@/components/ui/input";
 import { SearchPosts } from "@/components/ui/search-posts";
 import { blogs } from "@/lib/data/blogs";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function BlogPage({searchParams}: {searchParams: Promise<any>}) {
+export default async function BlogPage({ searchParams }: { searchParams: Promise<any> }) {
   let query = await searchParams
 
   // for testing await 20 seconds
@@ -13,7 +12,7 @@ export default async function BlogPage({searchParams}: {searchParams: Promise<an
   const filteredBlogs = query?.search ? blogs.filter((blog) => {
     return blog.title.toLowerCase().includes(query?.search?.toLowerCase?.());
   }) : blogs;
-  
+
   return (
     <main className="min-h-screen py-24">
       <div className="container mx-auto px-4">
@@ -21,7 +20,7 @@ export default async function BlogPage({searchParams}: {searchParams: Promise<an
           <h1 className="text-4xl font-bold tracking-tight text-center mb-8">
             הבלוג שלי
           </h1>
-        <SearchPosts/>
+          <SearchPosts />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useTransition } from "react";
+import { useTransition } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 export function SearchPosts() {
@@ -33,9 +33,8 @@ export function SearchPosts() {
         onChange={(e) => handleSearch(e.target.value)}
       />
       <svg
-        className={`absolute right-4 top-2 h-5 w-5 ${
-          isPending ? "text-blue-600" : "text-gray-400"
-        }`}
+        className={`absolute right-4 top-2 h-5 w-5 ${isPending ? "text-blue-600" : "text-gray-400"
+          }`}
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
