@@ -3,15 +3,23 @@ import { aboutInfo } from "@/lib/data/about";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 bg-gray-50">
+    <section id="about" className="py-24 ">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="relative h-[600px] rounded-2xl overflow-hidden">
+          <div className="relative h-[600px] rounded-2xl ">
             <Image
               src={aboutInfo.image}
               alt={aboutInfo.title}
-              fill
-              className="object-cover"
+              width={600}
+              height={600}
+              className="object-cover relative z-10"
+            />
+            <Image
+              src={aboutInfo.backImage}
+              alt={aboutInfo.title}
+              width={600}
+              height={600}
+              className=" inset-0 -bottom-10 top-10 object-contain absolute z-3 -rotate-90"
             />
           </div>
           <div className="space-y-8">

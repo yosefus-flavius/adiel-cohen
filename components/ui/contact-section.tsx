@@ -4,7 +4,7 @@ import { Card, CardContent } from "./card";
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-24 w-full bg-gray-50">
+    <section id="contact" className="py-24 w-full ">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-4xl font-bold tracking-tight mb-4">צור קשר</h2>

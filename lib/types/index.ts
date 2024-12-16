@@ -38,4 +38,5 @@ export interface AboutSection {
   vision: string;
   experience: string;
   image: string;
+  backImage: string;
 }

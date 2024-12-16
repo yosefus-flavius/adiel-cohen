@@ -7,11 +7,18 @@ export function Hero() {
         src="/hero-bg.webp"
         alt="עדיאל כהן - יועץ משכנתאות"
         fill
-        className="object-cover opacity-70"
+        className="object-cover opacity-70 z-[1]"
         priority
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+      <Image
+        src='/hero-house.webp'
+        alt={'house'}
+        className="absolute md:bottom-3 z-[2] left-3 -bottom-20"
+        width={600}
+        height={600}
+      />
+      <div className="absolute inset-0 z-[2]  bg-gradient-to-b from-black/60 to-black/30" />
+      <div className="absolute inset-0 z-[3] flex flex-col items-center justify-center text-center">
         <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-6xl">
           המומחה שלך לייעוץ משכנתאות
         </h1>
@@ -21,13 +28,13 @@ export function Hero() {
         <div className="mt-10 flex gap-x-6">
           <a
             href="#contact"
-            className="rounded-md bg-white px-6 py-3 text-lg font-semibold text-gray-900 shadow-sm hover:bg-gray-100"
+            className="rounded-md  px-6 py-3 text-lg font-semibold text-[var(--primary-color)] shadow-sm hover:bg-[var(--primary-color)] hover:text-black"
           >
             דבר איתי
           </a>
           <a
             href="#about"
-            className="rounded-md border border-white px-6 py-3 text-lg font-semibold text-white hover:bg-white/10"
+            className="rounded-md border border-white px-6 py-3 text-lg font-semibold text-white hover:/10"
           >
             קרא עוד
           </a>

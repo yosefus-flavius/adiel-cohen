@@ -8,7 +8,8 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --primary-color: rgb(224, 185, 101);
+    --background: 46 100% 96%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -35,6 +36,8 @@ body {
     --radius: 0.5rem;
   }
   .dark {
+    --primary-color: rgb(224, 185, 101);
+
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
@@ -67,6 +70,11 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[hsl(var(--background))] text-foreground;
+    background-color: hsl(var(--background));
+  }
+
+  h1, h2, h3 {
+color: var(--primary-color);
   }
 }
