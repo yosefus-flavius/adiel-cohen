@@ -1,3 +1,4 @@
+import { Card } from "@/components/ui/card";
 import { blogs } from "@/lib/data/blogs";
 import Image from "next/image";
 import Link from "next/link";
@@ -71,20 +72,23 @@ export default async function BlogPostPage({ params, }: { params: Promise<{ slug
                 <Link
                   key={post._id}
                   href={`/blog/${post.slug}`}
-                  className="group"
+                  className="group h-full"
                 >
-                  <div className="relative h-48 mb-6 rounded-xl overflow-hidden">
+                  <Card className="h-full flex flex-col">
+
+                  <div className="relative h-48 mb-6 rounded-t-xl overflow-hidden">
                     <Image
                       src={post.coverImage}
                       alt={post.title}
                       fill
                       className="object-cover transition-transform group-hover:scale-105"
-                    />
+                      />
                   </div>
-                  <h3 className="text-xl font-semibold group-hover:text-blue-600 mb-3">
+                  <h3 className="text-xl px-4 font-semibold flex-1 group-hover:text-blue-600 mb-3">
                     {post.title}
                   </h3>
-                  <p className="text-gray-600 line-clamp-2">{post.excerpt}</p>
+                  <p className="text-gray-600 px-4 mb-6  line-clamp-2">{post.excerpt}</p>
+                      </Card>
                 </Link>
               ))}
             </div>
