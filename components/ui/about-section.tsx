@@ -3,10 +3,10 @@ import { aboutInfo } from "@/lib/data/about";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 ">
+    <section id="about" className="py-12 md:py-24 ">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="relative h-[600px] rounded-2xl ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-12 items-center">
+          <div className="relative h-[450px] md:h-[600px] rounded-2xl">
             <Image
               src={aboutInfo.image}
               alt={aboutInfo.title}
@@ -22,8 +22,8 @@ export function AboutSection() {
               className=" inset-0 -bottom-10 top-10 object-contain absolute z-3 -rotate-90"
             />
           </div>
-          <div className="space-y-8">
-            <h2 className="text-4xl font-bold tracking-tight">{aboutInfo.title}</h2>
+          <div className="space-y-8 ">
+            <h2 className="text-4xl font-bold tracking-tight ">{aboutInfo.title}</h2>
             <div className="space-y-6 text-lg text-gray-600">
               <p>{aboutInfo.content}</p>
               <div>

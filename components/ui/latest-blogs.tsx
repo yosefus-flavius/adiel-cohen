@@ -10,13 +10,13 @@ export function LatestBlogs() {
     .slice(0, 3);
 
   return (
-    <section className="py-24 ">
+    <section className="py-12 md:py-24 ">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-16">
           <h2 className="text-4xl font-bold tracking-tight">כתבות אחרונות</h2>
           <Link
             href="/blog"
-            className="text-lg font-semibold text-blue-600 hover:text-blue-500"
+            className="text-lg font-semibold text-gray-600 hover:text-gray-500"
           >
             לכל הכתבות
           </Link>
@@ -47,7 +47,7 @@ export function LatestBlogs() {
                     day: "numeric",
                   })}
                 </span>
-                <h3 className="mt-2 text-xl font-semibold group-hover:text-blue-600">
+                <h3 className="mt-2 text-xl font-semibold group-hover:text-gray-600">
                   {blog.title}
                 </h3>
                 <p className="mt-3 text-gray-600 line-clamp-2">{blog.excerpt}</p>

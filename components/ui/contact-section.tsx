@@ -4,7 +4,7 @@ import { Card, CardContent } from "./card";
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-24 w-full ">
+    <section id="contact" className="py-12 md:py-24 w-full ">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-4xl font-bold tracking-tight mb-4">צור קשר</h2>
@@ -17,10 +17,10 @@ export function ContactSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 mx-auto">
           <Card>
             <CardContent className="flex flex-col items-center gap-4 p-6">
-              <Phone className="h-8 w-8 text-blue-600" />
+              <Phone className="h-8 w-8 text-[var(--primary-color)]" />
               <div className="text-center">
                 <h3 className="font-medium mb-1">טלפון</h3>
-                <a href={`tel:${contactInfo.phone}`} className="text-gray-600 hover:text-blue-600">
+                <a href={`tel:${contactInfo.phone}`} className="text-gray-600 hover:text-[var(--primary-color)]">
                   {contactInfo.phone}
                 </a>
               </div>
@@ -29,10 +29,10 @@ export function ContactSection() {
 
           <Card>
             <CardContent className="flex flex-col items-center gap-4 p-6">
-              <Mail className="h-8 w-8 text-blue-600" />
+              <Mail className="h-8 w-8 text-[var(--primary-color)]" />
               <div className="text-center">
                 <h3 className="font-medium mb-1">אימייל</h3>
-                <a href={`mailto:${contactInfo.email}`} className="text-gray-600 hover:text-blue-600">
+                <a href={`mailto:${contactInfo.email}`} className="text-gray-600 hover:text-[var(--primary-color)]">
                   {contactInfo.email}
                 </a>
               </div>
@@ -42,7 +42,7 @@ export function ContactSection() {
 
         <Card>
           <CardContent className="flex flex-col items-center gap-4 p-6">
-            <MapPin className="h-8 w-8 text-blue-600" />
+            <MapPin className="h-8 w-8 text-[var(--primary-color)]" />
             <div className="text-center">
               <h3 className="font-medium mb-1">כתובת</h3>
               <p className="text-gray-600">{contactInfo.address}</p>

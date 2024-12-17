@@ -28,7 +28,7 @@ export function Hero() {
         <div className="mt-10 flex gap-x-6">
           <a
             href="#contact"
-            className="rounded-md  px-6 py-3 text-lg font-semibold text-[var(--primary-color)] shadow-sm hover:bg-[var(--primary-color)] hover:text-black"
+            className="rounded-md  px-6 py-3 text-lg font-semibold text-white shadow-sm bg-[var(--primary-color)] hover:bg-black"
           >
             דבר איתי
           </a>

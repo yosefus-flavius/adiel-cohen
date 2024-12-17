@@ -11,13 +11,13 @@ export function Navbar() {
         </Link>
         
         <div className="hidden lg:flex items-center gap-8">
-          <Link href="/" className="hover:text-blue-600">
+          <Link href="/" className="hover:text-gray-600">
             ראשי
           </Link>
-          <Link href="/#about" className="hover:text-blue-600">
+          <Link href="/#about" className="hover:text-gray-600">
             אודות
           </Link>
-          <Link href="/blog" className="hover:text-blue-600">
+          <Link href="/blog" className="hover:text-gray-600">
             בלוג
           </Link>
           <Link href="/#contact">

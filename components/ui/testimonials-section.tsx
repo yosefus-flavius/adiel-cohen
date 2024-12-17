@@ -5,7 +5,7 @@ import { Card } from "./card";
 
 export function TestimonialsSection() {
   return (
-    <section className="py-24 ">
+    <section className="py-12 md:py-24 ">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold tracking-tight text-center mb-16">
           לקוחות מספרים

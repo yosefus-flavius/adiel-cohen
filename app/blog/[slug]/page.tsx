@@ -34,7 +34,7 @@ export default async function BlogPostPage({ params, }: { params: Promise<{ slug
                   day: "numeric",
                 })}
               </time>
-              <span className="text-blue-600 font-medium">{blog.category}</span>
+              <span className="text-gray-600 font-medium">{blog.category}</span>
             </div>
             <h1 className="text-4xl font-bold tracking-tight mb-8">{blog.title}</h1>
             <div className="relative h-[60vh] rounded-2xl overflow-hidden">
@@ -84,7 +84,7 @@ export default async function BlogPostPage({ params, }: { params: Promise<{ slug
                       className="object-cover transition-transform group-hover:scale-105"
                       />
                   </div>
-                  <h3 className="text-xl px-4 font-semibold flex-1 group-hover:text-blue-600 mb-3">
+                  <h3 className="text-xl px-4 font-semibold flex-1 group-hover:text-gray-600 mb-3">
                     {post.title}
                   </h3>
                   <p className="text-gray-600 px-4 mb-6  line-clamp-2">{post.excerpt}</p>

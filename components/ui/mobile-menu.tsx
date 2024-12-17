@@ -22,28 +22,28 @@ const [isOpen, setIsOpen] = useState(false);
           <Link
             onClick={() => setIsOpen(false)}
             href="/"
-            className="block py-2 text-lg font-semibold hover:text-blue-600"
+            className="block py-2 text-lg font-semibold hover:text-gray-600"
           >
             דף הבית
           </Link>
           <Link
             onClick={() => setIsOpen(false)}
             href="/#about"
-            className="block py-2 text-lg font-semibold hover:text-blue-600"
+            className="block py-2 text-lg font-semibold hover:text-gray-600"
           >
             אודות
           </Link>
           <Link
             onClick={() => setIsOpen(false)}
             href="/blog"
-            className="block py-2 text-lg font-semibold hover:text-blue-600"
+            className="block py-2 text-lg font-semibold hover:text-gray-600"
           >
             בלוג
           </Link>
           <Link
             onClick={() => setIsOpen(false)}
             href="/#contact"
-            className="block py-2 text-lg font-semibold hover:text-blue-600"
+            className="block py-2 text-lg font-semibold hover:text-gray-600"
           >
             צור קשר
           </Link>

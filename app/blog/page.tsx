@@ -50,11 +50,11 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
                         day: "numeric",
                       })}
                     </span>
-                    <span className="text-sm font-medium text-blue-600">
+                    <span className="text-sm font-medium text-gray-600">
                       {blog.category}
                     </span>
                   </div>
-                  <h2 className="text-xl font-semibold group-hover:text-blue-600 mb-3">
+                  <h2 className="text-xl font-semibold group-hover:text-gray-600 mb-3">
                     {blog.title}
                   </h2>
                   <p className="text-gray-600 line-clamp-2">{blog.excerpt}</p>
