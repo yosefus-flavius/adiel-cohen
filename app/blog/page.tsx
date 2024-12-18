@@ -14,6 +14,12 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
     return blog.title.toLowerCase().includes(query?.search?.toLowerCase?.() || '');
   }) : blogs;
 
+  // sort by date
+
+  filteredBlogs.sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
+
   return (
     <main className="min-h-screen py-24">
       <div className="container mx-auto px-4">
