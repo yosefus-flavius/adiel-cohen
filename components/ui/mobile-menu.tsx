@@ -5,7 +5,7 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-export function MobileMenu() {
+export function MobileMenu({links = []}: {links: {name: string, href: string}[]}) {
 const [isOpen, setIsOpen] = useState(false);
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -19,34 +19,16 @@ const [isOpen, setIsOpen] = useState(false);
         <SheetTitle  className="sr-only ">תפריט ניווט</SheetTitle>
         <SheetDescription className="sr-only">תפריט ניווט</SheetDescription>
         <nav className="flex flex-col gap-4 mt-6">
-          <Link
-            onClick={() => setIsOpen(false)}
-            href="/"
-            className="block py-2 text-lg font-semibold hover:text-gray-600"
-          >
-            דף הבית
-          </Link>
-          <Link
-            onClick={() => setIsOpen(false)}
-            href="/#about"
-            className="block py-2 text-lg font-semibold hover:text-gray-600"
-          >
-            אודות
-          </Link>
-          <Link
-            onClick={() => setIsOpen(false)}
-            href="/blog"
-            className="block py-2 text-lg font-semibold hover:text-gray-600"
-          >
-            בלוג
-          </Link>
-          <Link
-            onClick={() => setIsOpen(false)}
-            href="/#contact"
-            className="block py-2 text-lg font-semibold hover:text-gray-600"
-          >
-            צור קשר
-          </Link>
+          {links.map((link) => (
+            <Link
+              key={link.name}
+              onClick={() => setIsOpen(false)}
+              href={link.href}
+              className="block py-2 text-lg font-semibold hover:text-gray-600"
+            >
+              {link.name}
+            </Link>
+          ))}
         </nav>
       </SheetContent>
     </Sheet>

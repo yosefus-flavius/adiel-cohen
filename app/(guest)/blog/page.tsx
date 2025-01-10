@@ -1,24 +1,28 @@
 import { Card } from "@/components/ui/card";
 import { SearchPosts } from "@/components/ui/search-posts";
 import { blogs } from "@/lib/data/blogs";
+import BlogModel, { IBlog } from "@/server/blog/model";
+import { connectToDatabase } from "@/server/connect";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function BlogPage({ searchParams }: { searchParams: Promise<{ search?: string }> }) {
   const query = await searchParams
+  const term = query.search || ''
 
-  // for testing await 20 seconds
-  // await new Promise((resolve) => setTimeout(resolve, 20000));
+  await connectToDatabase();
+  
+  const filteredBlogs = term ? await BlogModel.find({
+    $or: [
+      { name: { $regex: term, $options: 'i' } },
+      { content: { $regex: term, $options: 'i' } }
+    ],
+    isActive: true
+  }).sort({ createdAt: -1 }) : await BlogModel.find({ isActive: true }).sort({ createdAt: -1 });
+  // if (!filteredBlogs.length) {
 
-  const filteredBlogs = query?.search ? blogs.filter((blog) => {
-    return blog.title.toLowerCase().includes(query?.search?.toLowerCase?.() || '');
-  }) : blogs;
-
-  // sort by date
-
-  filteredBlogs.sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
-  });
+  //   await BlogModel.create(blogs.map(b=> ({...b, author: 'עדיאל כהן', date: new Date()})))
+  // }
 
   return (
     <main className="min-h-screen py-24">
@@ -31,9 +35,9 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredBlogs.map((blog) => (
+          {filteredBlogs.map((blog: IBlog) => (
             <Link
-              key={blog._id}
+              key={blog._id?.toString()}
               href={`/blog/${blog.slug}`}
               className="group h-full"
             >

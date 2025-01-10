@@ -13,7 +13,7 @@ export function Footer() {
               יועץ משכנתאות מוסמך המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא
             </p>
           </div>
-          
+
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">קישורים מהירים</h3>
             <ul className="space-y-2">
@@ -39,7 +39,7 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">פרטי התקשרות</h3>
             <ul className="space-y-2 text-sm">
@@ -81,9 +81,12 @@ export function Footer() {
             </div>
           </div>
         </div>
-        
+
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm">
-          <p>© {new Date().getFullYear()} עדיאל כהן. כל הזכויות שמורות.</p>
+          <p>
+            <Link href="/admin" >©</Link>
+            <Link href='/login'>  {new Date().getFullYear()} </Link>
+            עדיאל כהן. כל הזכויות שמורות.</p>
         </div>
       </div>
     </footer>

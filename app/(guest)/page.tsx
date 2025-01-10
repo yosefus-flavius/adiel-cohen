@@ -6,12 +6,12 @@ import { TestimonialsSection } from "@/components/ui/testimonials-section";
 
 export default function Home() {
   return (
-      <main className="flex flex-col">
-        <Hero />
-        <AboutSection />
-        <LatestBlogs />
-        <TestimonialsSection />
-        <ContactSection />
-      </main>
+    <main className="flex flex-col">
+      <Hero />
+      <AboutSection />
+      <LatestBlogs />
+      <TestimonialsSection />
+      <ContactSection />
+    </main>
   );
 }

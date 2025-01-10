@@ -71,7 +71,6 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl">
       <body className={`${heebo.className} bg-[hsl(var(--background))]`}>
-        <Navbar />
         <div className="h-16" />
         {children}
         <Footer />
