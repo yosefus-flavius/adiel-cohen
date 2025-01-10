@@ -4,6 +4,7 @@ import { connectToDatabase } from "@/server/connect";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import RelatedPosts from "./related-posts";
+import { Metadata } from "next";
 
 
 export default async function BlogPostPage({ params, }: { params: Promise<{ slug: string }> }) {
@@ -69,39 +70,40 @@ export default async function BlogPostPage({ params, }: { params: Promise<{ slug
 }
 
 export async function generateStaticParams() {
+  await connectToDatabase();
+  const blogs = await BlogModel.find({ isActive: true }).select('slug');
+  
   return blogs.map((blog) => ({
     slug: blog.slug,
   }));
 }
 
-
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const slug = (await params).slug;
-  const blog = blogs.find((b) => b.slug === slug);
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  await connectToDatabase();
+  const blog = await BlogModel.findOne({ slug: params.slug, isActive: true });
 
   if (!blog) {
     return {
       title: "Blog Post Not Found",
-    };
+    } as Metadata;
   }
-  else {
-    return {
+
+  return {
+    title: blog.title,
+    description: blog.excerpt,
+    openGraph: {
       title: blog.title,
       description: blog.excerpt,
-      openGraph: {
-        title: blog.title,
-        description: blog.excerpt,
-        type: "article",
-        url: `https://example.com/blog/${slug}`,
-        images: [
-          {
-            url: blog.coverImage,
-            width: 800,
-            height: 600,
-            alt: blog.title,
-          },
-        ],
-      },
-    };
-  }
+      type: "article",
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${blog.slug}`,
+      images: [
+        {
+          url: blog.coverImage,
+          width: 800,
+          height: 600,
+          alt: blog.title,
+        },
+      ],
+    },
+  } as Metadata;
 }
