@@ -1,13 +1,12 @@
-import { blogs } from "@/lib/data/blogs";
 import BlogModel from "@/server/blog/model";
 import { connectToDatabase } from "@/server/connect";
+import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import RelatedPosts from "./related-posts";
-import { Metadata } from "next";
 
 
-export default async function BlogPostPage({ params, }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug
   await connectToDatabase();
   const blog = await BlogModel.findOne({ slug });
@@ -72,15 +71,16 @@ export default async function BlogPostPage({ params, }: { params: Promise<{ slug
 export async function generateStaticParams() {
   await connectToDatabase();
   const blogs = await BlogModel.find({ isActive: true }).select('slug');
-  
+
   return blogs.map((blog) => ({
     slug: blog.slug,
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   await connectToDatabase();
-  const blog = await BlogModel.findOne({ slug: params.slug, isActive: true });
+  const slug = (await params).slug
+  const blog = await BlogModel.findOne({ slug, isActive: true });
 
   if (!blog) {
     return {
