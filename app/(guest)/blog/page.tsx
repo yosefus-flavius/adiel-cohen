@@ -20,7 +20,6 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
     isActive: true
   }).sort({ createdAt: -1 }) : await BlogModel.find({ isActive: true }).sort({ createdAt: -1 });
   // if (!filteredBlogs.length) {
-
   //   await BlogModel.create(blogs.map(b=> ({...b, author: 'עדיאל כהן', date: new Date()})))
   // }
 
