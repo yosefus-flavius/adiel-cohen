@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { signOut } from "next-auth/react";
 
 export function MobileMenu({links = []}: {links: {name: string, href: string}[]}) {
 const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +30,13 @@ const [isOpen, setIsOpen] = useState(false);
               {link.name}
             </Link>
           ))}
+             <form action={async () => {
+                        return signOut();
+                    }}>
+                        <Button >
+                            התנתק
+                        </Button>
+                    </form>
         </nav>
       </SheetContent>
     </Sheet>
