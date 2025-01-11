@@ -1,10 +1,25 @@
+import { signOut } from "@/auth";
 import { MobileMenu } from "@/components/ui/mobile-menu";
+import { FileText, Home, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
-const adminLinks = [
-    { href: "/admin", name: "בית אדמין" },
-    { href: "/admin/blogs", name: "בלוגים" },
-    { href: "/", name: "בית לקוחות" },
+export const adminLinks = [
+    {
+        href: "/admin",
+        name: "בית אדמין",
+        icon: <LayoutDashboard/>
+    },
+    {
+        href: "/admin/blogs",
+        name: "בלוגים",
+        icon: <FileText/>
+    },
+    {
+        href: "/",
+        name: "בית לקוחות",
+        icon: <Home/>
+    },
 ]
 
 export default function AdminNavbar() {
@@ -25,8 +40,16 @@ export default function AdminNavbar() {
                             {link.name}
                         </Link>
                     ))}
+                    <form action={async () => {
+                        "use server";
+                        return signOut();
+                    }}>
+                        <Button >
+                            התנתק
+                        </Button>
+                    </form>
                 </div>
-                <MobileMenu links={adminLinks} />
+                <MobileMenu links={adminLinks.map(a=> ({ href: a.href, name: a.name}))} />
             </nav>
         </header>
     );

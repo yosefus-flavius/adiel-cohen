@@ -1,17 +1,17 @@
 import { Card } from "@/components/ui/card";
 import { SearchPosts } from "@/components/ui/search-posts";
-import { blogs } from "@/lib/data/blogs";
 import BlogModel, { IBlog } from "@/server/blog/model";
 import { connectToDatabase } from "@/server/connect";
 import Image from "next/image";
 import Link from "next/link";
+
 
 export default async function BlogPage({ searchParams }: { searchParams: Promise<{ search?: string }> }) {
   const query = await searchParams
   const term = query.search || ''
 
   await connectToDatabase();
-  
+
   const filteredBlogs = term ? await BlogModel.find({
     $or: [
       { name: { $regex: term, $options: 'i' } },
