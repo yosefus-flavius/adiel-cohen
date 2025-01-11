@@ -23,7 +23,7 @@ const BlogSchema = new mongoose.Schema<IBlog>({
   category: { type: String, required: true },
   tags: [{ type: String }],
   isActive: { type: Boolean, default: true },
-  author: { type: String, required: true }
+  author: { type: String, required: true , default: 'עדיאל כהן'}
 }, { timestamps: true });
 
 const BlogModel = mongoose.models.Blog || mongoose.model<IBlog>('Blog', BlogSchema);
