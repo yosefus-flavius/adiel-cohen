@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 
-export const adminEmails = ['yosalsoni@gmail.com', 'adielcohenproj@gmail.com', 'ac37278461@gmail.com'];
+export const adminEmails = ['yosalsoni@gmail.com', 'adielcohenproj@gmail.com', 'ac37278461@gmail.com', 'adil7278461@gmail.com'];
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
     ...authConfig,
