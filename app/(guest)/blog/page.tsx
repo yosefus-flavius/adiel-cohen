@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { SearchPosts } from "@/components/ui/search-posts";
-import { blogs } from "@/lib/data/blogs";
+// import { blogs } from "@/lib/data/blogs";
 import BlogModel, { IBlog } from "@/server/blog/model";
 import { connectToDatabase } from "@/server/connect";
 import Image from "next/image";
