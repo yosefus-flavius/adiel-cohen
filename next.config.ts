@@ -6,6 +6,11 @@ const nextConfig: NextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  images: {
+    remotePatterns: [{
+      hostname: 'res.cloudinary.com',
+    }]
+  },
 };
 
 export default nextConfig;

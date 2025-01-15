@@ -2,23 +2,36 @@ import Image from "next/image";
 import Link from "next/link";
 import { blogs } from "@/lib/data/blogs";
 import { Card } from "./card";
+import { Button } from "./button";
+import { ArrowLeft } from "lucide-react";
+import BlogModel from "@/server/blog/model";
+import { unstable_cache } from "next/cache";
 
-export function LatestBlogs() {
-  // Get the 3 most recent blogs
-  const latestBlogs = [...blogs]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
+const getBlogs = unstable_cache(
+  async () => {
+    return  await BlogModel.find({ isActive: true }).sort({ createdAt: -1 }).limit(3)
+  },
+  ['posts'],
+  { revalidate: 3600, tags: ['posts'] }
+)
+
+export async function LatestBlogs() {
+  const latestBlogs = await getBlogs(); ;
+  // await new Promise((resolve) => setTimeout(resolve, 12000));
 
   return (
     <section className="py-12 md:py-24 ">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-16">
-          <h2 className="text-4xl font-bold tracking-tight">כתבות אחרונות</h2>
+        <div className="flex justify-between items-center mb-16 gap-4 flex-wrap flex-cols sm:flex-row">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">כתבות אחרונות</h2>
           <Link
             href="/blog"
-            className="text-lg font-semibold text-gray-600 hover:text-gray-500"
+            className=""
           >
+          <Button className="text-sm flex gap-4" variant="link" >
             לכל הכתבות
+            <ArrowLeft />
+          </Button>
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-8">
