@@ -5,6 +5,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
 
 const heebo = Heebo({ subsets: ["hebrew", "latin"] });
 
@@ -74,7 +75,8 @@ export default function RootLayout({
         <div className="h-16" />
         {children}
         <Footer />
-        <ScrollToTop />
+        {/* <ScrollToTop /> */}
+        <WhatsAppFloat phoneNumber="+972537278461" />
       </body>
     </html>
   );
