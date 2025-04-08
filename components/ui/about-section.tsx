@@ -12,14 +12,14 @@ export function AboutSection() {
               alt={aboutInfo.title}
               width={600}
               height={600}
-              className="object-cover relative z-10"
+              className="sm:object-cover sm:max-h-fit max-h-96 object-contain relative z-10"
             />
             <Image
               src={aboutInfo.backImage}
               alt={aboutInfo.title}
               width={600}
               height={600}
-              className=" inset-0 -bottom-10 top-10 object-contain absolute z-3 -rotate-90"
+              className=" inset-0  -bottom-10 top-10 object-contain absolute z-3 -rotate-90"
             />
           </div>
           <div className="space-y-8 ">
