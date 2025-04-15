@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Heebo } from "next/font/google";
 import "./globals.css";
 // import "./animations.css";
-import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 
@@ -35,7 +34,7 @@ export const metadata: Metadata = {
     images: [
       {
         // TODO- change
-        url: '/1.webp', 
+        url: '/1.webp',
         width: 1200,
         height: 630,
         alt: 'עדיאל כהן - יועץ משכנתאות',

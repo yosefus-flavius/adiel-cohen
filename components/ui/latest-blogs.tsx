@@ -4,6 +4,7 @@ import { blogs } from "@/lib/data/blogs";
 import { Card } from "./card";
 
 export function LatestBlogs() {
+  // TODO - get from real db
   // Get the 3 most recent blogs
   const latestBlogs = [...blogs]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
