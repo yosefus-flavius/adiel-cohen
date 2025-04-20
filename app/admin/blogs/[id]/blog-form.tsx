@@ -87,7 +87,7 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
                                 folder: 'blog_pre'
                             }}
                         >
-                            {({ open }) => (
+                            {({ open }: { open: () => void }) => (
                                 <Button 
                                     type="button" 
                                     variant="outline" 

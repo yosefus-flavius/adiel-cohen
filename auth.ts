@@ -10,7 +10,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             // Add your admin email addresses here
             return adminEmails.includes(user.email ?? '');
         },
-        async session({ session, token }) {
+        async session({ session }) {
             return session;
         },
         // async jwt({ token }) {

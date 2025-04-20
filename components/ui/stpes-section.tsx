@@ -42,15 +42,15 @@ const steps: MortgageStep[] = [
     {
         id: "success",
         number: "06",
-        title: "מזל טוב!!!",
+        title: "מזל טוב!!! 🥳",
         description: "יש לכם משכנתא."
       }
 ];
 
 const StepsSections = () => {
   return (
-    <div className="w-full max-w-6xl mx-auto p-4 bg-amber-50 min-h-screen">
-      <div className="text-center mb-8 space-y-4">
+    <section id="steps" className="w-full py-12 md:py-24  max-w-6xl mx-auto p-4 bg-amber-50 min-h-screen">
+      <div className="text-center mb-12 space-y-4">
         <h2 className="text-4xl md:text-5xl font-bold">
           השלבים ללקיחת משכנתא
         </h2>
@@ -81,7 +81,7 @@ const StepsSections = () => {
           </Card>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

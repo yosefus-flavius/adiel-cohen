@@ -6,8 +6,10 @@ import { LatestBlogsSkeleton } from "@/components/ui/latest-blogs-skeleton";
 import StepsSections from "@/components/ui/stpes-section";
 import { TestimonialsSection } from "@/components/ui/testimonials-section";
 import { Suspense } from "react";
+import Calc from "@/components/ui/calc";
 
 export default function Home() {
+  
   return (
     <main className="flex flex-col">
       <Hero />
@@ -16,6 +18,7 @@ export default function Home() {
         <LatestBlogs />
       </Suspense>
       <StepsSections/>
+      <Calc/>
       <TestimonialsSection />
       <ContactSection />
     </main>

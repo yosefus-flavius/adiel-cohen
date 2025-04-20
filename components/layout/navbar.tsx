@@ -6,7 +6,7 @@ const links = [
   { href: "/#about", name: "אודות" },
   { href: "/blog", name: "בלוג" },
   { href: "/#contact", name: "צור קשר", isButton: true },
-
+  { href: "/#steps", name: "השלבים" },
 ]
 export function Navbar() {
   return (
