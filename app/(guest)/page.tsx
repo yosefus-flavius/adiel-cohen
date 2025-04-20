@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import Calc from "@/components/ui/calc";
 
 export default function Home() {
+  
   return (
     <main className="flex flex-col">
       <Hero />
