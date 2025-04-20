@@ -8,6 +8,9 @@ import { Textarea } from '@/components/ui/textarea'
 import { IBlog } from '@/server/blog/model'
 import { useState } from 'react'
 import { toast, Toaster } from 'sonner'
+import { CldUploadWidget, CldImage } from 'next-cloudinary'
+import Image from 'next/image'
+
 
 export const BLOG_CATEGORIES: string[] = [
     "מדריכים", 
@@ -22,6 +25,16 @@ export const BLOG_CATEGORIES: string[] = [
 
 export default function BlogForm({ blog }: { blog: IBlog | null }) {
     const [selectedTags, setSelectedTags] = useState<string[]>(blog?.tags || [])
+    const [coverImage, setCoverImage] = useState<string>(blog?.coverImage || '/1.webp')
+    const [isUploading, setIsUploading] = useState<boolean>(false)
+
+    const handleCloudinaryUpload = (result: any) => {
+        if (result.event === 'success') {
+            const uploadedImageUrl = result.info.secure_url
+            setCoverImage(uploadedImageUrl)
+            setIsUploading(false)
+        }
+    }
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -29,6 +42,7 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
         
         // Ensure tags are comma-separated
         fd.set('tags', selectedTags.join(','))
+        fd.set('coverImage', coverImage)
         
         const res = await createOrUpdateBlog(fd)
         if (res.error) {
@@ -56,6 +70,52 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
                             defaultValue={blog._id?.toString()}
                         />
                     )}
+
+                       {/* Cloudinary Image Upload with Preview */}
+                       <div className="space-y-4">
+                        <label className="block mb-2">תמונת כריכה</label>
+                        <CldUploadWidget 
+                            uploadPreset="blog_pre" 
+                            // @ts-ignore
+                            onUploadStart={(event: { type: string }) => {
+                                setIsUploading(true)
+                            }}
+                            onSuccess={handleCloudinaryUpload}
+                            options={{
+                                maxFiles: 1,
+                                resourceType: 'image',
+                                folder: 'blog_pre'
+                            }}
+                        >
+                            {({ open }: { open: () => void }) => (
+                                <Button 
+                                    type="button" 
+                                    variant="outline" 
+                                    disabled={isUploading}
+                                    onClick={() => open()}
+                                >
+                                    {isUploading ? 'מעלה...' : 'העלה תמונה'}
+                                </Button>
+                            )}
+                        </CldUploadWidget>
+                        
+                        {coverImage && (
+                            <div className="mt-4 relative w-64 h-40">
+                                <Image 
+                                    src={coverImage} 
+                                    alt="תצוגה מקדימה של תמונת כריכה" 
+                                    fill 
+                                    className="object-cover rounded-md"
+                                />
+                            </div>
+                        )}
+                        
+                        <input 
+                            type="hidden" 
+                            name="coverImage" 
+                            value={coverImage} 
+                        />
+                    </div>
 
                     <div className="space-y-4">
                         {/* Title Input */}
@@ -122,6 +182,7 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
                             <Select
                                 name="category"
                                 defaultValue={blog?.category || ''}
+                                dir="rtl"
                             >
                                 <SelectTrigger>
                                     <SelectValue placeholder="בחר קטגוריה" />

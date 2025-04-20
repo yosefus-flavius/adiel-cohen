@@ -17,11 +17,12 @@ export function TestimonialsSection() {
               className=" rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="relative h-16 w-16 rounded-full overflow-hidden">
+                <div className="relative rounded-full overflow-hidden">
                   <Image
                     src={testimonial.image}
                     alt={testimonial.name}
-                    fill
+                    width={64}
+                    height={64}
                     className="object-cover"
                   />
                 </div>
