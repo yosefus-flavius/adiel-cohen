@@ -39,4 +39,5 @@ export interface AboutSection {
   experience: string;
   image: string;
   backImage: string;
+  unionImage: string;
 }

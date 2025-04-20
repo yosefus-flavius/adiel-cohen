@@ -9,5 +9,6 @@ export const aboutInfo: AboutSection = {
   experience: `מומחה בתכנון וליווי משכנתאות לדירה ראשונה, משכנתא להשקעה, ומחזור משכנתאות קיימות. 
   בעל רישיון ייעוץ משכנתאות מטעם משרד האוצר ובוגר לימודי כלכלה ומימון.`,
   image: "/about.webp",
-  backImage : "/back-about.webp"
+  backImage: "/back-about.webp",
+  unionImage: "/union.png"
 };
