@@ -53,7 +53,8 @@ export default function MortgageCalculator() {
 
   const handleJQueryLoad = () => {
     window.dispatchEvent(new Event('jquery-loaded'));
-  };
+   };
+   
 
   return (
     <section id="calc" className="container mx-auto px-4 py-12 md:py-24">
