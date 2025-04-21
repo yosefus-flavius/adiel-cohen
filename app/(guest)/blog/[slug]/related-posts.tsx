@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import BlogModel, { IBlog } from '@/server/blog/model';
+import BlogModel, { IBlog } from '@/server/blog/blog.model';
 import Image from "next/image";
 import Link from "next/link";
 

@@ -1,6 +1,7 @@
 import { contactInfo } from "@/lib/data/contact";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { Card, CardContent } from "./card";
+import Lead from "./lead";
 
 export function ContactSection() {
   return (
@@ -14,43 +15,52 @@ export function ContactSection() {
         </div>
 
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 mx-auto">
+        <div className="grid grid-cols-3 md:grid-cols-3 gap-6 mb-8 mx-auto">
           <Card>
-            <CardContent className="flex flex-col items-center gap-4 p-6">
-              <Phone className="h-8 w-8 text-[var(--primary-color)]" />
-              <div className="text-center">
-                <h3 className="font-medium mb-1">טלפון</h3>
-                <a dir="ltr" href={`tel:${contactInfo.phone}`} className="text-gray-600 font-semibold hover:text-[var(--primary-color)]">
+            <a dir="ltr" href={`tel:${contactInfo.phone}`} className="text-gray-600 font-semibold hover:text-[var(--primary-color)]">
+              <CardContent className="flex flex-col items-center gap-4 p-6">
+                <Phone className="h-8 w-8 text-[var(--primary-color)]" />
+                <div className="text-center">
+                  <h3 className="font-medium mb-1">טלפון</h3>
+                  <span className="hidden md:block">
                   {contactInfo.phone}
-                </a>
-              </div>
-            </CardContent>
+                  </span>
+                </div>
+              </CardContent>
+            </a>
           </Card>
 
           <Card>
-            <CardContent className="flex flex-col items-center gap-4 p-6">
-              <Mail className="h-8 w-8 text-[var(--primary-color)]" />
-              <div className="text-center">
-                <h3 className="font-medium mb-1">אימייל</h3>
-                <a href={`mailto:${contactInfo.email}`} className="text-gray-600 font-semibold hover:text-[var(--primary-color)]">
+            <a  href={`mailto:${contactInfo.email}`} className="text-gray-600 font-semibold hover:text-[var(--primary-color)]">
+              <CardContent className="flex flex-col items-center gap-4 p-6">
+                <Mail className="h-8 w-8 text-[var(--primary-color)]" />
+                <div className="text-center">
+                  <h3 className="font-medium mb-1">אימייל</h3>
+                  <span className="hidden md:block">
                   {contactInfo.email}
-                </a>
+                  </span>
+                </div>
+              </CardContent>
+            </a>
+          </Card>
+  
+          <Card>
+              <a href={"https://waze.com/ul?ll=31.89236134%2C34.81322765&navigate=yes"} target="_blank" rel="noopener noreferrer">
+            <CardContent className="flex flex-col items-center gap-4 p-6">
+              <MapPin className="h-8 w-8 text-[var(--primary-color)]" />
+                <div className="text-center">
+                  <h3 className="font-medium mb-1">לניווט</h3>
+                  <span className="hidden md:block">
+                  {contactInfo.address}
+                </span>
               </div>
             </CardContent>
+              </a>
           </Card>
         </div>
+        <Lead />
 
-        <Card>
-          <CardContent className="flex flex-col items-center gap-4 p-6">
-            <MapPin className="h-8 w-8 text-[var(--primary-color)]" />
-            <div className="text-center">
-              <h3 className="font-medium mb-1">כתובת</h3>
-              <p className="text-gray-600 font-semibold">{contactInfo.address}</p>
-            </div>
-          </CardContent>
-        </Card>
-
-        <div className="flex justify-center gap-6 mt-8">
+        {/* <div className="flex justify-center gap-6 mt-8">
           {contactInfo.socialMedia.facebook && (
             <a
               href={contactInfo.socialMedia.facebook}
@@ -81,7 +91,7 @@ export function ContactSection() {
               <Instagram className="h-6 w-6" />
             </a>
           )}
-        </div>
+        </div> */}
 
       </div>
     </section>
