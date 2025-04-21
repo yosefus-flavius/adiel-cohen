@@ -4,7 +4,7 @@ import { blogs } from "@/lib/data/blogs";
 import { Card } from "./card";
 import { Button } from "./button";
 import { ArrowLeft } from "lucide-react";
-import BlogModel from "@/server/blog/model";
+import BlogModel from "@/server/blog/blog.model";
 import { unstable_cache } from "next/cache";
 import { connectToDatabase } from "@/server/connect";
 

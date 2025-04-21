@@ -1,5 +1,5 @@
 import { auth } from '@/auth'
-import BlogModel, { IBlog } from '@/server/blog/model'
+import BlogModel, { IBlog } from '@/server/blog/blog.model'
 import { connectToDatabase } from '@/server/connect'
 import { redirect } from 'next/navigation'
 import BlogForm from './blog-form'

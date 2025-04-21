@@ -5,6 +5,7 @@ import "./globals.css";
 import { Footer } from "@/components/layout/footer";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const heebo = Heebo({ subsets: ["hebrew", "latin"] });
 
@@ -76,6 +77,8 @@ export default function RootLayout({
         <Footer />
         {/* <ScrollToTop /> */}
         <WhatsAppFloat phoneNumber="+972537278461" />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || ''} />
+
       </body>
     </html>
   );

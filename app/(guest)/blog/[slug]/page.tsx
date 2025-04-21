@@ -1,4 +1,4 @@
-import BlogModel from "@/server/blog/model";
+import BlogModel from "@/server/blog/blog.model";
 import { connectToDatabase } from "@/server/connect";
 import { Metadata } from "next";
 import Image from "next/image";

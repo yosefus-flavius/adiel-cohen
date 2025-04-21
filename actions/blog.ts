@@ -1,7 +1,7 @@
 'use server'
 
 import { auth } from '@/auth'
-import BlogModel from '@/server/blog/model'
+import BlogModel from '@/server/blog/blog.model'
 import { connectToDatabase } from '@/server/connect'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'

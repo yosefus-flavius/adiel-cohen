@@ -2,7 +2,7 @@ import { auth } from '@/auth';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import BlogModel, { IBlog } from '@/server/blog/model';
+import BlogModel, { IBlog } from '@/server/blog/blog.model';
 import { connectToDatabase } from '@/server/connect';
 import { Edit, PlusCircle, Trash2 } from 'lucide-react';
 import Link from 'next/link';
