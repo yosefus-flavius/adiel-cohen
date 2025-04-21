@@ -1,13 +1,16 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MobileMenu } from "@/components/ui/mobile-menu";
+
 const links = [
   { href: "/", name: "ראשי" },
   { href: "/#about", name: "אודות" },
   { href: "/blog", name: "בלוג" },
   { href: "/#contact", name: "צור קשר", isButton: true },
   { href: "/#steps", name: "השלבים" },
+  { href: "/#services", name: "שירותים" },
 ]
+
 export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 /80 backdrop-blur-md border-b">
