@@ -7,6 +7,7 @@ import StepsSections from "@/components/ui/stpes-section";
 import { TestimonialsSection } from "@/components/ui/testimonials-section";
 import { Suspense } from "react";
 import Calc from "@/components/ui/calc";
+import Services from "@/components/ui/services";
 
 export default function Home() {
   
@@ -20,6 +21,7 @@ export default function Home() {
       <StepsSections/>
       <Calc/>
       <TestimonialsSection />
+      <Services />
       <ContactSection />
     </main>
   );

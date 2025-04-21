@@ -40,7 +40,7 @@ export default function Lead() {
 
 
    return (
-      <Card className='h-[550px] max-w-[600px] p-4'>
+      <Card className='h-[550px] max-w-[600px] p-4 mx-auto'>
          {isSubmitted ? (
             <div className="p-4 h-full flex items-center justify-center bg-green-50 border border-green-200 rounded-lg">
                <p className="text-green-700 text-center">
@@ -99,7 +99,8 @@ export default function Lead() {
                </div>
                <Button
                   type="submit"
-                  disabled={isLoading}
+                     disabled={isLoading}
+                     className='w-full'
                >
                   {isLoading ? 'שולח...' : 'התחל עכשיו'}
                </Button>
