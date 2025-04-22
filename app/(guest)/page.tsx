@@ -6,7 +6,6 @@ import { LatestBlogsSkeleton } from "@/components/ui/latest-blogs-skeleton";
 import StepsSections from "@/components/ui/stpes-section";
 import { TestimonialsSection } from "@/components/ui/testimonials-section";
 import { Suspense } from "react";
-import Calc from "@/components/ui/calc";
 
 export default function Home() {
   
