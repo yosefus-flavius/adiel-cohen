@@ -57,10 +57,8 @@ export default function MortgageCalculator() {
   
 
   return (
-    <section id="calc" className="container mx-auto px-4 py-12 md:py-24">
-      <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-6 rtl">חישוב משכנתא</h2>
-      <p className="text-center text-gray-600 mb-12">השתמשו במחשבון כדי לחשב את המשכנתא שלכם</p>
-      
+
+        <>
       {/* Load jQuery with next/script */}
       <Script
         src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -96,6 +94,6 @@ export default function MortgageCalculator() {
           </div>
         )}
       </div>
-    </section>
+        </>
   );
 }

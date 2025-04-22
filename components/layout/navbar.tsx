@@ -1,6 +1,5 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { MobileMenu } from "@/components/ui/mobile-menu";
+import Link from "next/link";
 
 const links = [
   { href: "/", name: "ראשי" },
@@ -8,7 +7,8 @@ const links = [
   { href: "/blog", name: "בלוג" },
   { href: "/#contact", name: "צור קשר", isButton: true },
   { href: "/#steps", name: "השלבים" },
-  { href: "/#services", name: "שירותים" },
+  { href: "/services", name: "שירותים" },
+  { href: "/calc", name: "מחשבון" },
 ]
 
 export function Navbar() {
