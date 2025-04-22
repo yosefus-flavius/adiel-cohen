@@ -9,6 +9,58 @@ import { Input } from './input';
 import { Label } from './label';
 import { Textarea } from './textarea';
 
+const formFields = [
+   {
+      id: 'email',
+      name: 'email',
+      label: 'אימייל',
+      type: 'email',
+      placeholder: 'אימייל...',
+      required: true,
+      component: Input
+   },
+   {
+      id: 'name',
+      name: 'name',
+      label: 'שם',
+      type: 'text',
+      placeholder: 'שם...',
+      minLength: 2,
+      required: true,
+      component: Input
+   },
+   {
+      id: 'phone',
+      name: 'phone',
+      label: 'טלפון',
+      type: 'text',
+      placeholder: 'טלפון...',
+      pattern: '^[0-9]{9,10}$',
+      required: true,
+      component: Input
+   },
+   {
+      id: 'subject',
+      name: 'subject',
+      label: 'נושא',
+      type: 'text',
+      placeholder: 'נושא...',
+      minLength: 3,
+      required: true,
+      component: Input
+   },
+   {
+      id: 'message',
+      name: 'message',
+      label: 'הודעה',
+      placeholder: 'הודעה...',
+      rows: 4,
+      minLength: 10,
+      required: true,
+      component: Textarea
+   }
+];
+
 export default function Lead() {
    const [isSubmitted, setIsSubmitted] = useState(false);
    const [isLoading, setIsLoading] = useState(false);
@@ -17,14 +69,10 @@ export default function Lead() {
       e.preventDefault();
       setIsLoading(true);
       const formData = new FormData(e.target as HTMLFormElement);
-      const email = formData.get('email') as string;
-      const name = formData.get('name') as string;
-      const phone = formData.get('phone') as string;
-      const subject = formData.get('subject') as string;
-      const message = formData.get('message') as string;
+      const data = Object.fromEntries(formData.entries());
 
       try {
-         const response = await sendEmail({ email, name, phone, subject, message });
+         const response = await sendEmail(data as any);
          if (response.success) {
             setIsSubmitted(true);
          } else {
@@ -37,70 +85,43 @@ export default function Lead() {
       }
    };
 
-
-
    return (
-      <Card className='h-[550px] max-w-[600px] p-4 mx-auto'>
+      <Card className="max-w-[600px] mx-auto p-6 h-[610px]">
          {isSubmitted ? (
-            <div className="p-4 h-full flex items-center justify-center bg-green-50 border border-green-200 rounded-lg">
-               <p className="text-green-700 text-center">
+            <div className="flex h-full items-center justify-center bg-green-50 border border-green-200 rounded-lg">
+               <p className="text-green-700 text-lg font-medium text-center">
                   תודה! ניצור קשר בקרוב.
                </p>
             </div>
          ) : (
-            <form
-               onSubmit={handleSubmit}
-               className="space-y-4"
-            >
-               <h3 className='text-center text-2xl mt-4 font-bold'>שלח עכשיו</h3>
-               <div>
-                  <Label htmlFor="email">אימייל</Label>
-                  <Input
-                     type="email"
-                     name="email"
-                     placeholder=" אימייל... "
-                     required
-                  />
+            <form onSubmit={handleSubmit} className="space-y-5 h-full flex flex-col justify-between">
+               <div className="space-y-5">
+                  <h3 className="text-2xl font-bold text-center">שלח עכשיו</h3>
+
+                  {formFields.map((field) => {
+                     const Component = field.component;
+                     return (
+                        <div key={field.id}>
+                           <Label htmlFor={field.id}>{field.label}</Label>
+                           <Component
+                              id={field.id}
+                              name={field.name}
+                              type={field.type}
+                              placeholder={field.placeholder}
+                              required={field.required}
+                              pattern={field.pattern}
+                              minLength={field.minLength}
+                              rows={field.rows}
+                           />
+                        </div>
+                     );
+                  })}
                </div>
-               <div>
-                  <Label htmlFor="name">שם</Label>
-                  <Input
-                     type="text"
-                     name="name"
-                     placeholder="שם... "
-                     required
-                  />
-               </div>
-               <div>
-                  <Label htmlFor="phone">טלפון</Label>
-                  <Input
-                     type="text"
-                     name="phone"
-                     placeholder="טלפון... "
-                     required
-                  />
-               </div>
-               <div>
-                  <Label htmlFor="subject">נושא</Label>
-                  <Input
-                     type="text"
-                     name="subject"
-                     placeholder="נושא... "
-                     required
-                  />
-               </div>
-               <div>
-                  <Label htmlFor="message">הודעה</Label>
-                  <Textarea
-                     name="message"
-                     placeholder="הודעה... "
-                     required
-                  />
-               </div>
+
                <Button
                   type="submit"
-                     disabled={isLoading}
-                     className='w-full'
+                  disabled={isLoading}
+                  className="w-full text-white font-semibold"
                >
                   {isLoading ? 'שולח...' : 'התחל עכשיו'}
                </Button>
