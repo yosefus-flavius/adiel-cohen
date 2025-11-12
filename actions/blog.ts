@@ -84,16 +84,23 @@ export async function createOrUpdateBlog(formData: FormData) {
             const res = await BlogModel.findByIdAndUpdate(rawFormData.id, validatedData, { new: true })
             revalidatePath(`/blog/${rawFormData.slug}`)
             revalidatePath(`/blog`)
+            if (process.env.NODE_ENV === 'development') {
+                await revalidateNetlify(rawFormData.slug as string)
+            }
             return { message: 'הבלוג עודכן בהצלחה' }
         } else {
             await BlogModel.create(validatedData)
             revalidatePath(`/blog/${rawFormData.slug}`)
             revalidatePath(`/blog`)
+            if (process.env.NODE_ENV === 'development') {
+                await revalidateNetlify(rawFormData.slug as string)
+            }
+            await fetch(`https://www.google.com/ping?sitemap=${process.env.NEXT_PUBLIC_SITE_URL}/sitemap.xml`)
             return { message: 'הבלוג נוצר בהצלחה' }
         }
     } catch (error) {
         if (error instanceof ZodError) {
-            return { 
+            return {
                 error: formatZodErrors(error),
                 details: error.errors  // Optional: for debugging
             }
@@ -101,4 +108,19 @@ export async function createOrUpdateBlog(formData: FormData) {
         console.error(error)
         return { error: 'אירעה שגיאה בשמירת הבלוג' }
     }
+}
+const revalidateNetlify = async (slug: string) => {
+    await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?path=/blog/${slug}`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${process.env.REVALIDATE_TOKEN}`
+        }
+    })
+    await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?path=/blog`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${process.env.REVALIDATE_TOKEN}`
+        }
+    })
+    return true
 }

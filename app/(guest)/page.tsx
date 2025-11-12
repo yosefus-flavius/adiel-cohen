@@ -13,12 +13,12 @@ export default function Home() {
     <main className="flex flex-col">
       <Hero />
       <AboutSection />
-      <Suspense fallback={<LatestBlogsSkeleton />}>
-        <LatestBlogs />
-      </Suspense>
       <StepsSections/>
       <TestimonialsSection />
       <ContactSection />
+      <Suspense fallback={<LatestBlogsSkeleton />}>
+        <LatestBlogs />
+      </Suspense>
     </main>
   );
 }

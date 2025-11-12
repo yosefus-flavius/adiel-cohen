@@ -1,7 +1,7 @@
 import { MobileMenu } from "@/components/ui/mobile-menu";
 import Link from "next/link";
 
-const links = [
+export const guestLinks = [
   { href: "/", name: "ראשי" },
   { href: "/#about", name: "אודות" },
   { href: "/blog", name: "בלוג" },
@@ -15,12 +15,12 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 /80 backdrop-blur-md border-b">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold text-[var(--primary-color)]">
+        <Link href="/" className="text-xl font-bold text-(--primary-color)">
           עדיאל כהן
         </Link>
 
         <div className="hidden lg:flex items-center gap-8">
-          {links.map((link) => (
+          {guestLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
@@ -31,7 +31,7 @@ export function Navbar() {
           ))}
         </div>
 
-        <MobileMenu links={links} />
+        <MobileMenu links={guestLinks} />
       </nav>
     </header>
   );

@@ -20,7 +20,7 @@ export default async function Admin() {
                         <Link
                             key={link.name}
                             href={link.href}
-                            className="focus:outline-none focus:ring-2 focus:ring-primary rounded-lg"
+                            className="focus:outline-hidden focus:ring-2 focus:ring-primary rounded-lg"
                         >
                             <Card className="flex w-28 aspect-square justify-center flex-col items-center gap-3 
                   font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg

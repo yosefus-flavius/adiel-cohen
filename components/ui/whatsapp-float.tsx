@@ -13,6 +13,7 @@ export function WhatsAppFloat({ phoneNumber, className }: WhatsAppFloatProps) {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="שלח הודעת וואטסאפ לעדיאל כהן"
             className={`fixed bottom-6 text-white  right-6 text-lg z-50 bg-[#25D366] p-4 rounded-full shadow-lg hover:bg-[#128C7E] transition-colors ${className}`}
         >
             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">

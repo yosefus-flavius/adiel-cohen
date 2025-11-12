@@ -13,7 +13,7 @@ export function LatestBlogsSkeleton() {
           {[1, 2, 3].map((item) => (
             <Card 
               key={item} 
-              className="rounded-2xl p-8 shadow-sm h-full"
+              className="rounded-2xl p-8 shadow-xs h-full"
             >
               <Skeleton className="h-64 mb-6 rounded-xl" />
               <div>

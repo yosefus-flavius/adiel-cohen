@@ -1,0 +1,18 @@
+[[redirects]]
+  from = "https://adiel-cohen.netlify.app/*"
+  to = "https://adiel-cohen.co.il/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.adiel-cohen.co.il/*"
+  to = "https://adiel-cohen.co.il/:splat"
+  status = 301
+  force = true
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build]
+  command = "npm run build"
+  publish = ".next"

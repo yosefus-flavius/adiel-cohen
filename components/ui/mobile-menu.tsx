@@ -6,8 +6,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { signOut } from "next-auth/react";
 
-export function MobileMenu({links = []}: {links: {name: string, href: string}[]}) {
-const [isOpen, setIsOpen] = useState(false);
+export function MobileMenu({ links = []}: { links: { name: string, href: string }[] }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
@@ -16,8 +17,8 @@ const [isOpen, setIsOpen] = useState(false);
           <span className="sr-only">תפריט</span>
         </Button>
       </SheetTrigger>
-      <SheetContent  side="right" className="w-[300px] sm:w-[400px]">
-        <SheetTitle  className="sr-only ">תפריט ניווט</SheetTitle>
+      <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+        <SheetTitle className="sr-only ">תפריט ניווט</SheetTitle>
         <SheetDescription className="sr-only">תפריט ניווט</SheetDescription>
         <nav className="flex flex-col gap-4 mt-6">
           {links.map((link) => (
@@ -30,13 +31,7 @@ const [isOpen, setIsOpen] = useState(false);
               {link.name}
             </Link>
           ))}
-             <form action={async () => {
-                        return signOut();
-                    }}>
-                        <Button >
-                            התנתק
-                        </Button>
-                    </form>
+      
         </nav>
       </SheetContent>
     </Sheet>

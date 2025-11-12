@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Heebo } from "next/font/google";
+// @ts-ignore
 import "./globals.css";
 // import "./animations.css";
 import { Footer } from "@/components/layout/footer";
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://adielcohen.co.il'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://adiel-cohen.co.il'),
   alternates: {
     canonical: '/',
   },

@@ -49,7 +49,7 @@ const steps: MortgageStep[] = [
 
 const StepsSections = () => {
   return (
-    <section id="steps" className="w-full py-12 md:py-24  max-w-6xl mx-auto p-4 bg-amber-50 min-h-screen">
+    <section id="steps" className="w-full py-12 md:py-24  container md:rounded-3xl mx-auto p-4 bg-(--foreground) min-h-screen">
       <div className="text-center mb-12 space-y-4">
         <h2 className="text-4xl md:text-5xl font-bold">
           השלבים ללקיחת משכנתא
@@ -64,7 +64,7 @@ const StepsSections = () => {
         {steps.map((step) => (
           <Card key={step.id} className="relative">
             <div className="absolute md:-top-2 -top-10 right-1/2 translate-x-1/2 md:translate-x-0 md:-right-10 bg-white shadow-md border rounded-full w-20 h-20 flex items-center justify-center">
-              <span className="text-4xl md:text-4xl font-bold  text-amber-400">
+              <span className="text-4xl md:text-4xl font-bold text-(--primary-color)">
                 {step.number}
               </span>
             </div>
