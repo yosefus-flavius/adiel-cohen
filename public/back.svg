@@ -1,0 +1,14 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path 
+    d="M 120 50 
+       C 20 120, 
+         50 300, 
+         180 380, /* Bottom Center */
+         350 340, 
+         380 150, 
+         250 80, 
+         120 50 
+       Z" 
+    fill="#B5944B" 
+  />
+</svg>

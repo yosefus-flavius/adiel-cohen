@@ -4,16 +4,13 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import RelatedPosts from "./related-posts";
-
+import Link from "next/link";
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug
   await connectToDatabase();
   const blog = await BlogModel.findOne({ slug });
   blog._id = blog._id.toString();
-
-  //  for testing await 20 seconds
-  // await new Promise((resolve) => setTimeout(resolve, 20000));
 
   if (!blog) {
     notFound();
@@ -52,12 +49,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           <div className="flex flex-wrap gap-2 mt-8">
             {blog.tags.map((tag: string) => (
-              <span
-                key={tag}
-                className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full"
-              >
-                {tag}
-              </span>
+              <Link key={tag} href={`/blog?search=${tag}`}>
+                <span
+                  className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full"
+                >
+                  {tag}
+                </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -107,3 +105,5 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
   } as Metadata;
 }
+//  for testing await 20 seconds
+// await new Promise((resolve) => setTimeout(resolve, 20000));

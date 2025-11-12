@@ -3,8 +3,14 @@ import { SearchPosts } from "@/components/ui/search-posts";
 // import { blogs } from "@/lib/data/blogs";
 import BlogModel, { IBlog } from "@/server/blog/blog.model";
 import { connectToDatabase } from "@/server/connect";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata : Metadata = {
+  title: "כתבות משכנתאות",
+  description: "כתבות ותחקירים בנושא חדשות פיננסים ומשכנתאות "
+}
 
 
 export default async function BlogPage({ searchParams }: { searchParams: Promise<{ search?: string }> }) {
@@ -28,9 +34,12 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
     <main className="min-h-screen py-24">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto mb-16">
-          <h1 className="text-4xl font-bold tracking-tight text-center mb-8">
-            הבלוג שלי
+          <h1 className="text-4xl font-bold tracking-tight text-center ">
+            כתבות משכנתאות
           </h1>
+          <p className="mb-8 text-center opacity-80" >
+            כתבות ומדריכים בנושא חדשות פיננסים ומשכנתאות
+          </p>
           <SearchPosts />
         </div>
 
@@ -82,6 +91,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
               </Card>
             </Link>
           ))}
+          {!filteredBlogs.length && <p className="text-center">לא נמצאו כתבות</p>}
         </div>
       </div>
     </main>

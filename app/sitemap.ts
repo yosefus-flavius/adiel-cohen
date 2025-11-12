@@ -1,7 +1,7 @@
 import { blogs } from "@/lib/data/blogs";
 import { MetadataRoute } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://adielcohen.co.il';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://adiel-cohen.co.il';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Get all blog posts URLs
@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: siteUrl,
       lastModified: new Date(),
-      changeFrequency: "yearly" as const,
+      changeFrequency: "monthly" as const,
       priority: 1,
     },
     {

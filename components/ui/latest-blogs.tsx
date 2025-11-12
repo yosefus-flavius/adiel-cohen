@@ -42,7 +42,7 @@ export async function LatestBlogs() {
               className="group "
             >
               <Card
-                className=" rounded-2xl p-8 shadow-sm hover:shadow-md h-full transition-shadow"
+                className=" rounded-2xl p-8 shadow-xs hover:shadow-md h-full transition-shadow"
               >
                 <div className="relative h-64 mb-6 rounded-xl overflow-hidden">
                   <Image

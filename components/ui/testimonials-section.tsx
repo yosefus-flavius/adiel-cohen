@@ -14,7 +14,7 @@ export function TestimonialsSection() {
           {testimonials.map((testimonial) => (
             <Card
               key={testimonial._id}
-              className=" rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow"
+              className=" rounded-2xl p-8 shadow-xs hover:shadow-md transition-shadow"
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="relative rounded-full overflow-hidden">

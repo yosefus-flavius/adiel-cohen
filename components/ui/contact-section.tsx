@@ -17,9 +17,9 @@ export function ContactSection() {
 
         <div className="grid grid-cols-3 md:grid-cols-3 gap-6 mb-8 mx-auto">
           <Card>
-            <a dir="ltr" href={`tel:${contactInfo.phone}`} className="text-gray-600 font-semibold hover:text-[var(--primary-color)]">
+            <a dir="ltr" href={`tel:${contactInfo.phone}`} className="text-gray-600 font-semibold hover:text-(--primary-color)">
               <CardContent className="flex flex-col items-center gap-4 p-6">
-                <Phone className="h-8 w-8 text-[var(--primary-color)]" />
+                <Phone className="h-8 w-8 text-(--primary-color)" />
                 <div className="text-center">
                   <h3 className="font-medium mb-1">טלפון</h3>
                   <span className="hidden md:block">
@@ -31,9 +31,9 @@ export function ContactSection() {
           </Card>
 
           <Card>
-            <a  href={`mailto:${contactInfo.email}`} className="text-gray-600 font-semibold hover:text-[var(--primary-color)]">
+            <a  href={`mailto:${contactInfo.email}`} className="text-gray-600 font-semibold hover:text-(--primary-color)">
               <CardContent className="flex flex-col items-center gap-4 p-6">
-                <Mail className="h-8 w-8 text-[var(--primary-color)]" />
+                <Mail className="h-8 w-8 text-(--primary-color)" />
                 <div className="text-center">
                   <h3 className="font-medium mb-1">אימייל</h3>
                   <span className="hidden md:block">
@@ -45,9 +45,9 @@ export function ContactSection() {
           </Card>
   
           <Card>
-              <a href={"https://waze.com/ul?ll=31.89236134%2C34.81322765&navigate=yes"} target="_blank" rel="noopener noreferrer">
+              <a href={"https://waze.com/ul?ll=31.89236134%2C34.81322765&navigate=yes"} target="_blank" rel="noopener noreferrer" className="text-gray-600 font-semibold hover:text-(--primary-color)">
             <CardContent className="flex flex-col items-center gap-4 p-6">
-              <MapPin className="h-8 w-8 text-[var(--primary-color)]" />
+              <MapPin className="h-8 w-8 text-(--primary-color)" />
                 <div className="text-center">
                   <h3 className="font-medium mb-1">לניווט</h3>
                   <span className="hidden md:block">
