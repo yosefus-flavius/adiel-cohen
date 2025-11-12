@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { contactInfo } from "@/lib/data/contact";
 import { Instagram, Linkedin } from "lucide-react";
+import { guestLinks } from "./navbar";
 
 export function Footer() {
   return (
@@ -17,26 +18,14 @@ export function Footer() {
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">קישורים מהירים</h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/" className="hover:text-white">
-                  דף הבית
-                </Link>
-              </li>
-              <li>
-                <Link href="/#about" className="hover:text-white">
-                  אודות
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="hover:text-white">
-                  בלוג
-                </Link>
-              </li>
-              <li>
-                <Link href="/#contact" className="hover:text-white">
-                  צור קשר
-                </Link>
-              </li>
+              {guestLinks.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="hover:text-white">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+             
             </ul>
           </div>
 
