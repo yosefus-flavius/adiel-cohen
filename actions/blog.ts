@@ -84,7 +84,7 @@ export async function createOrUpdateBlog(formData: FormData) {
             const res = await BlogModel.findByIdAndUpdate(rawFormData.id, validatedData, { new: true })
             revalidatePath(`/blog/${rawFormData.slug}`)
             revalidatePath(`/blog`)
-            if (process.env.NODE_ENV === 'development') {
+            if (process.env.NODE_ENV === 'production') {
                 await revalidateNetlify(rawFormData.slug as string)
             }
             return { message: 'הבלוג עודכן בהצלחה' }
@@ -92,7 +92,7 @@ export async function createOrUpdateBlog(formData: FormData) {
             await BlogModel.create(validatedData)
             revalidatePath(`/blog/${rawFormData.slug}`)
             revalidatePath(`/blog`)
-            if (process.env.NODE_ENV === 'development') {
+            if (process.env.NODE_ENV === 'production') {
                 await revalidateNetlify(rawFormData.slug as string)
             }
             await fetch(`https://www.google.com/ping?sitemap=${process.env.NEXT_PUBLIC_SITE_URL}/sitemap.xml`)
