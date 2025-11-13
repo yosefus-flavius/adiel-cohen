@@ -17,7 +17,7 @@ const getBlogs = unstable_cache(
 )
 
 export async function LatestBlogs() {
-  const latestBlogs = await getBlogs();;
+  const latestBlogs = await getBlogs();
 
   return (
     <section className="py-12 md:py-24 ">
