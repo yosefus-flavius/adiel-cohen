@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 
 export const adminEmails = ['yosalsoni@gmail.com', 'adielcohenproj@gmail.com', 'ac37278461@gmail.com', 'adil7278461@gmail.com', 'a0548477385@gmail.com'];
+const secret = process.env.AUTH_SECRET || 'secret';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
     ...authConfig,
@@ -16,6 +17,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         // async jwt({ token }) {
         //     return token;
         // }
-    }
+    },
+    secret
 })
 
