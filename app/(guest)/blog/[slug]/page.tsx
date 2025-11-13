@@ -9,7 +9,7 @@ import Link from "next/link";
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug
   await connectToDatabase();
-  const blog = await BlogModel.findOne({ slug : decodeURIComponent(slug), isActive: true });
+  const blog = await BlogModel.findOne({ slug: decodeURIComponent(slug), isActive: true });
   blog._id = blog._id.toString();
 
   if (!blog) {
@@ -78,7 +78,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   await connectToDatabase();
   const slug = (await params).slug
-  const blog = await BlogModel.findOne({ slug : decodeURIComponent(slug), isActive: true });
+  const blog = await BlogModel.findOne({ slug: decodeURIComponent(slug), isActive: true });
 
   if (!blog) {
     return {
