@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import BlogModel, { IBlog } from '@/server/blog/blog.model';
 import { connectToDatabase } from '@/server/connect';
-import { Edit, PlusCircle, Trash2 } from 'lucide-react';
+import { Edit, Eye, PlusCircle, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
@@ -62,6 +62,15 @@ export default async function AdminBlogList() {
                                             >
                                                 <Edit className="w-4 h-4" />
                                                 <span className='hidden sm:inline'> ערוך
+                                                </span>
+                                            </Link>
+                                            <Link
+                                                href={`/blog/${blog.slug}`}
+                                                target='_blank'
+                                                className="flex items-center gap-1 text-green-600 hover:text-green-800"
+                                            >
+                                                <Eye className="w-4 h-4" />
+                                                <span className='hidden sm:inline'> צפה
                                                 </span>
                                             </Link>
                                             {/* <Button

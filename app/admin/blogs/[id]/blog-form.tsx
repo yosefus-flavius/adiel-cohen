@@ -10,6 +10,7 @@ import { useState } from 'react'
 import { toast, Toaster } from 'sonner'
 import { CldUploadWidget, CldImage } from 'next-cloudinary'
 import Image from 'next/image'
+import Link from 'next/link'
 
 
 export const BLOG_CATEGORIES: string[] = [
@@ -223,6 +224,12 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
                         <Button type="submit" className="w-full mt-4">
                             שמור בלוג
                         </Button>
+                        {/* see the real page  */}
+                      {blog?.slug &&  <Link href={`/blog/${blog?.slug}`} target="_blank" className="w-full mt-4">
+                            <Button variant="outline" className="w-full mt-4">
+                                תצוגה מקדימה
+                            </Button>
+                        </Link>}
                     </div>
                 </form>
             </CardContent>
