@@ -4,7 +4,7 @@ import { Heebo } from "next/font/google";
 import "./globals.css";
 // import "./animations.css";
 import { Footer } from "@/components/layout/footer";
-import { ScrollToTop } from "@/components/ui/scroll-to-top";
+// import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
 import { GoogleAnalytics } from '@next/third-parties/google'
 
@@ -57,9 +57,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
-  },
+  // verification: {
+  //   google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
+  // },
   icons: {
     icon: '/favicon.ico',
   },
