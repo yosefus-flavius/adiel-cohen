@@ -226,7 +226,7 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
                         </Button>
                         {/* see the real page  */}
                       {blog?.slug &&  <Link href={`/blog/${blog?.slug}`} target="_blank" className="w-full mt-4">
-                            <Button variant="outline" className="w-full mt-4">
+                            <Button type="button" variant="outline" className="w-full mt-4">
                                 תצוגה מקדימה
                             </Button>
                         </Link>}
