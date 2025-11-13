@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { SearchPosts } from "@/components/ui/search-posts";
+import { blogsGemini } from "@/lib/data/blogs-gemini";
 // import { blogs } from "@/lib/data/blogs";
 import BlogModel, { IBlog } from "@/server/blog/blog.model";
 import { connectToDatabase } from "@/server/connect";
@@ -7,7 +8,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata : Metadata = {
+export const metadata: Metadata = {
   title: "כתבות משכנתאות",
   description: "כתבות ותחקירים בנושא חדשות פיננסים ומשכנתאות "
 }
@@ -19,6 +20,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
 
   await connectToDatabase();
 
+
   const filteredBlogs = term ? await BlogModel.find({
     $or: [
       { name: { $regex: term, $options: 'i' } },
@@ -28,6 +30,10 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
   }).sort({ createdAt: -1 }) : await BlogModel.find({ isActive: true }).sort({ createdAt: -1 });
   // if (!filteredBlogs.length) {
   //   await BlogModel.create(blogs.map(b=> ({...b, author: 'עדיאל כהן', date: new Date()})))
+  // }
+
+  // if (!filteredBlogs.length) {
+  //   await BlogModel.create(blogsGemini)
   // }
 
   return (
