@@ -17,7 +17,7 @@ export function MobileMenu({ links = []}: { links: { name: string, href: string 
           <span className="sr-only">תפריט</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+      <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-(--background)">
         <SheetTitle className="sr-only ">תפריט ניווט</SheetTitle>
         <SheetDescription className="sr-only">תפריט ניווט</SheetDescription>
         <nav className="flex flex-col gap-4 mt-6">
