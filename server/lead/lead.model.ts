@@ -6,7 +6,8 @@ const LeadSchema = new mongoose.Schema({
    phone: { type: String, required: true },
    subject: { type: String, required: true },
    message: { type: String, required: true },
-});
+   isActive: { type: Boolean, default: true },
+}, { timestamps: true });
 
 const LeadModel = mongoose.models.Lead || mongoose.model('Lead', LeadSchema);
 
