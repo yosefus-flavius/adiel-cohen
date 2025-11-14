@@ -16,7 +16,7 @@ export default function NotFound() {
             href="/blog"
             className="rounded-md bg-gray-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-gray-500 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
           >
-            חזרה לבלוג
+            חזרה למאמר
           </Link>
           <Link href="/" className="text-sm font-semibold text-gray-900 hover:text-gray-600">
             דף הבית <span aria-hidden="true">&larr;</span>

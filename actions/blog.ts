@@ -87,7 +87,7 @@ export async function createOrUpdateBlog(formData: FormData) {
             if (process.env.NODE_ENV === 'production') {
                 await revalidateNetlify(rawFormData.slug as string)
             }
-            return { message: 'הבלוג עודכן בהצלחה' }
+            return { message: 'המאמר עודכן בהצלחה' }
         } else {
             await BlogModel.create(validatedData)
             revalidatePath(`/blog/${rawFormData.slug}`)
@@ -96,7 +96,7 @@ export async function createOrUpdateBlog(formData: FormData) {
                 await revalidateNetlify(rawFormData.slug as string)
             }
             await fetch(`https://www.google.com/ping?sitemap=${process.env.NEXT_PUBLIC_SITE_URL}/sitemap.xml`)
-            return { message: 'הבלוג נוצר בהצלחה' }
+            return { message: 'המאמר נוצר בהצלחה' }
         }
     } catch (error) {
         if (error instanceof ZodError) {
@@ -106,7 +106,7 @@ export async function createOrUpdateBlog(formData: FormData) {
             }
         }
         console.error(error)
-        return { error: 'אירעה שגיאה בשמירת הבלוג' }
+        return { error: 'אירעה שגיאה בשמירת המאמר' }
     }
 }
 const revalidateNetlify = async (slug: string) => {

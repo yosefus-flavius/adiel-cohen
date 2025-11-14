@@ -12,7 +12,7 @@ export const adminLinks = [
     },
     {
         href: "/admin/blogs",
-        name: "בלוגים",
+        name: "מאמרים",
         icon: <FileText/>
     },
     {

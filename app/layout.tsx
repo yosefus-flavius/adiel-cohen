@@ -36,8 +36,7 @@ export const metadata: Metadata = {
     siteName: "עדיאל כהן - יועץ משכנתאות",
     images: [
       {
-        // TODO- change
-        url: '/1.webp',
+        url: '/front.webp',
         width: 1200,
         height: 630,
         alt: 'עדיאל כהן - יועץ משכנתאות',
