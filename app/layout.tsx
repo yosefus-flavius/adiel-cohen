@@ -12,7 +12,7 @@ const heebo = Heebo({ subsets: ["hebrew", "latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "עדיאל כהן - יועץ משכנתאות ",
+    default: "עדיאל כהן - הדרך הפשוטה למשכנתא שלך ",
     template: "%s | עדיאל כהן"
   },
   description: "יועץ משכנתאות  המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא. מספק ייעוץ מקצועי, אמין ומותאם אישית לצרכי הלקוח",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "עדיאל כהן - יועץ משכנתאות",
+    title: "עדיאל כהן - הדרך הפשוטה למשכנתא שלך",
     description: "יועץ משכנתאות המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא",
     url: '/',
     siteName: "עדיאל כהן - יועץ משכנתאות",
