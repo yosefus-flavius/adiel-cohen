@@ -4,7 +4,7 @@ import Link from "next/link";
 export const guestLinks = [
   { href: "/", name: "ראשי" },
   { href: "/#about", name: "אודות" },
-  { href: "/blog", name: "בלוג" },
+  { href: "/blog", name: "מאמרים" },
   { href: "/#contact", name: "צור קשר", isButton: true },
   { href: "/#steps", name: "השלבים" },
   { href: "/services", name: "שירותים" },

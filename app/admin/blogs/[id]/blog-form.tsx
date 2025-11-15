@@ -58,7 +58,7 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
             <Toaster/>
             <CardHeader>
                 <CardTitle>
-                    {blog ? 'ערוך בלוג' : 'צור בלוג חדש'}
+                    {blog ? 'ערוך מאמר' : 'צור מאמר חדש'}
                 </CardTitle>
             </CardHeader>
             <CardContent>
@@ -121,7 +121,7 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
                     <div className="space-y-4">
                         {/* Title Input */}
                         <div>
-                            <label htmlFor="title" className="block mb-2">כותרת הבלוג</label>
+                            <label htmlFor="title" className="block mb-2">כותרת המאמר</label>
                             <Input
                                 id="title"
                                 name="title"
@@ -143,7 +143,7 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
 
                         {/* Excerpt Input */}
                         <div>
-                            <label htmlFor="excerpt" className="block mb-2">תקציר הבלוג</label>
+                            <label htmlFor="excerpt" className="block mb-2">תקציר המאמר</label>
                             <Textarea
                                 id="excerpt"
                                 name="excerpt"
@@ -155,7 +155,7 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
 
                         {/* Content Textarea */}
                         <div>
-                            <label htmlFor="content" className="block mb-2">תוכן הבלוג</label>
+                            <label htmlFor="content" className="block mb-2">תוכן המאמר</label>
                             <Textarea
                                 id="content"
                                 name="content"
@@ -222,7 +222,7 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
 
                         {/* Submit Button */}
                         <Button type="submit" className="w-full mt-4">
-                            שמור בלוג
+                            שמור מאמר
                         </Button>
                         {/* see the real page  */}
                       {blog?.slug &&  <Link href={`/blog/${blog?.slug}`} target="_blank" className="w-full mt-4">

@@ -11,7 +11,7 @@ export function Footer() {
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">עדיאל כהן</h3>
             <p className="text-sm">
-              יועץ משכנתאות מוסמך המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא
+              יועץ משכנתאות  המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא
             </p>
           </div>
 
