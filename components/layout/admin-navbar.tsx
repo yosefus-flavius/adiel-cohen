@@ -21,7 +21,7 @@ export const adminLinks = [
         icon: <Home/>
     },
     {
-        href: "/admin/leads",
+        href: "/admin/leads?isActive=active",
         name: "לידים",
         icon: <Calculator/>
     },
