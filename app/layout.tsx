@@ -6,7 +6,8 @@ import "./globals.css";
 import { Footer } from "@/components/layout/footer";
 // import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from "next/script";
 
 const heebo = Heebo({ subsets: ["hebrew", "latin"] });
 
@@ -74,6 +75,22 @@ export default function RootLayout({
     <html lang="he" dir="rtl">
       <body className={`${heebo.className} bg-[hsl(var(--background))]`}>
         <div className="h-16" />
+        <Script id="nagishli-config" strategy="beforeInteractive">
+          {`
+            var nl_dir = "/nagishli_v3_beta/nagishli-files/";
+            var nl_contact = "p:0537278461|u:adil7278461+d:gmail.com";
+            var nl_pos = "bl"
+            var nl_color = "black";
+            var nl_compact = "1";
+          `}
+        </Script>
+
+        {/* 2. הסקריפט הראשי (External) */}
+        <Script
+          id="nagishli-main"
+          src="/nagishli_v3_beta/nagishli_beta.js"
+          strategy="afterInteractive" // מקביל ל-'defer'
+        />
         {children}
         <Footer />
         {/* <ScrollToTop /> */}
