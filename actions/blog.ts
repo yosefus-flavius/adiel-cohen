@@ -4,6 +4,7 @@ import { auth } from '@/auth'
 import BlogModel from '@/server/blog/blog.model'
 import { connectToDatabase } from '@/server/connect'
 import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
 const blogSchema = z.object({
@@ -87,16 +88,16 @@ export async function createOrUpdateBlog(formData: FormData) {
             if (process.env.NODE_ENV === 'production') {
                 await revalidateNetlify(rawFormData.slug as string)
             }
-            return { message: 'המאמר עודכן בהצלחה' }
+            return { message: 'המאמר עודכן בהצלחה', id: String(res._id) }
         } else {
-            await BlogModel.create(validatedData)
+            const newBlog = await BlogModel.create(validatedData)
             revalidatePath(`/blog/${rawFormData.slug}`)
             revalidatePath(`/blog`)
             if (process.env.NODE_ENV === 'production') {
                 await revalidateNetlify(rawFormData.slug as string)
             }
             await fetch(`https://www.google.com/ping?sitemap=${process.env.NEXT_PUBLIC_SITE_URL}/sitemap.xml`)
-            return { message: 'המאמר נוצר בהצלחה' }
+            return { message: 'המאמר נוצר בהצלחה' , id: String(newBlog._id) }
         }
     } catch (error) {
         if (error instanceof ZodError) {
