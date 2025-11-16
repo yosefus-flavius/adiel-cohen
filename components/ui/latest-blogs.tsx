@@ -2,10 +2,9 @@ import BlogModel from "@/server/blog/blog.model";
 import { connectToDatabase } from "@/server/connect";
 import { ArrowLeft } from "lucide-react";
 import { unstable_cache } from "next/cache";
-import Image from "next/image";
 import Link from "next/link";
+import BlogCard from "../blog-card";
 import { Button } from "./button";
-import { Card } from "./card";
 
 const getBlogs = unstable_cache(
   async () => {
@@ -36,37 +35,7 @@ export async function LatestBlogs() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-8">
           {latestBlogs.map((blog) => (
-            <Link
-              href={`/blog/${blog.slug}`}
-              key={blog._id}
-              className="group "
-            >
-              <Card
-                className=" rounded-2xl p-8 shadow-xs hover:shadow-md h-full transition-shadow"
-              >
-                <div className="relative h-64 mb-6 rounded-xl overflow-hidden">
-                  <Image
-                    src={blog.coverImage}
-                    alt={blog.title}
-                    fill
-                    className="object-cover transition-transform group-hover:scale-105"
-                  />
-                </div>
-                <div>
-                  <span className="text-sm text-gray-500">
-                    {new Date(blog.date).toLocaleDateString("he-IL", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
-                  <h3 className="mt-2 text-xl font-semibold group-hover:text-gray-600">
-                    {blog.title}
-                  </h3>
-                  <p className="mt-3 text-gray-600 line-clamp-2">{blog.excerpt}</p>
-                </div>
-              </Card>
-            </Link>
+            <BlogCard key={blog._id} blog={blog} />
           ))}
         </div>
       </div>

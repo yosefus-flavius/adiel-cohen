@@ -1,3 +1,4 @@
+import BlogCard from "@/components/blog-card";
 import { Card } from "@/components/ui/card";
 import BlogModel, { IBlog } from '@/server/blog/blog.model';
 import Image from "next/image";
@@ -24,27 +25,7 @@ export default async function RelatedPosts({ blog }: { blog: IBlog }) {
                     <h2 className="text-3xl font-bold tracking-tight mb-12">כתבות דומות</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {relatedPosts.map((post) => (
-                            <Link
-                                key={post._id}
-                                href={`/blog/${post.slug}`}
-                                className="group h-full"
-                            >
-                                <Card className="h-full flex flex-col">
-
-                                    <div className="relative h-48 mb-6 rounded-t-xl overflow-hidden">
-                                        <Image
-                                            src={post.coverImage}
-                                            alt={post.title}
-                                            fill
-                                            className="object-cover transition-transform group-hover:scale-105"
-                                        />
-                                    </div>
-                                    <h3 className="text-xl px-4 font-semibold flex-1 group-hover:text-gray-600 mb-3">
-                                        {post.title}
-                                    </h3>
-                                    <p className="text-gray-600 px-4 mb-6  line-clamp-2">{post.excerpt}</p>
-                                </Card>
-                            </Link>
+                           <BlogCard key={post._id} blog={post} />
                         ))}
                     </div>
                 </div>

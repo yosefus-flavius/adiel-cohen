@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'עדיאל כהן - יועץ משכנתאות',
     short_name: 'עדיאל כהן',
-    description: 'יועץ משכנתאות מוסמך המתמחה בליווי אישי ומקצועי',
+    description: 'יועץ משכנתאות  המתמחה בליווי אישי ומקצועי',
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',

@@ -6,16 +6,17 @@ import "./globals.css";
 import { Footer } from "@/components/layout/footer";
 // import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from "next/script";
 
 const heebo = Heebo({ subsets: ["hebrew", "latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "עדיאל כהן - יועץ משכנתאות מוסמך",
+    default: "עדיאל כהן - הדרך הפשוטה למשכנתא שלך ",
     template: "%s | עדיאל כהן"
   },
-  description: "יועץ משכנתאות מוסמך המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא. מספק ייעוץ מקצועי, אמין ומותאם אישית לצרכי הלקוח",
+  description: "יועץ משכנתאות  המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא. מספק ייעוץ מקצועי, אמין ומותאם אישית לצרכי הלקוח",
   keywords: ["יועץ משכנתאות", "משכנתא", "ייעוץ משכנתאות", "מימון לדירה", "הלוואת משכנתא", "עדיאל כהן"],
   authors: [{ name: "עדיאל כהן" }],
   creator: "עדיאל כהן",
@@ -30,8 +31,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "עדיאל כהן - יועץ משכנתאות מוסמך",
-    description: "יועץ משכנתאות מוסמך המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא",
+    title: "עדיאל כהן - הדרך הפשוטה למשכנתא שלך",
+    description: "יועץ משכנתאות המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא",
     url: '/',
     siteName: "עדיאל כהן - יועץ משכנתאות",
     images: [
@@ -73,6 +74,22 @@ export default function RootLayout({
     <html lang="he" dir="rtl">
       <body className={`${heebo.className} bg-[hsl(var(--background))]`}>
         <div className="h-16" />
+        <Script id="nagishli-config" strategy="beforeInteractive">
+          {`
+            var nl_dir = "/nagishli_v3_beta/nagishli-files/";
+            var nl_contact = "p:0537278461|u:adil7278461+d:gmail.com";
+            var nl_pos = "bl"
+            var nl_color = "black";
+            var nl_compact = "1";
+          `}
+        </Script>
+
+        {/* 2. הסקריפט הראשי (External) */}
+        <Script
+          id="nagishli-main"
+          src="/nagishli_v3_beta/nagishli_beta.js"
+          strategy="afterInteractive" // מקביל ל-'defer'
+        />
         {children}
         <Footer />
         {/* <ScrollToTop /> */}
