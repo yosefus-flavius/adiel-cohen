@@ -1,12 +1,10 @@
-import { Card } from "@/components/ui/card";
+import BlogCard from "@/components/blog-card";
 import { SearchPosts } from "@/components/ui/search-posts";
-import { blogsGemini } from "@/lib/data/blogs-gemini";
+// import { blogsGemini } from "@/lib/data/blogs-gemini";
 // import { blogs } from "@/lib/data/blogs";
 import BlogModel, { IBlog } from "@/server/blog/blog.model";
 import { connectToDatabase } from "@/server/connect";
 import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "כתבות משכנתאות",
@@ -50,53 +48,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredBlogs.map((blog: IBlog) => (
-            <Link
-              key={blog._id?.toString()}
-              href={`/blog/${blog.slug}`}
-              className="group h-full"
-            >
-              <Card className="h-full">
-
-                <div className="relative h-64 mb-6 rounded-t-xl  overflow-hidden">
-                  <Image
-                    src={blog.coverImage}
-                    alt={blog.title}
-                    fill
-                    className="object-cover transition-transform group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-4">
-                  <div className="flex items-center gap-4 mb-3">
-                    <span className="text-sm text-gray-500">
-                      {new Date(blog.date).toLocaleDateString("he-IL", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </span>
-                    <span className="text-sm font-medium text-gray-600">
-                      {blog.category}
-                    </span>
-                  </div>
-                  <h2 className="text-xl font-semibold group-hover:text-gray-600 mb-3">
-                    {blog.title}
-                  </h2>
-                  <p className="text-gray-600 line-clamp-2">{blog.excerpt}</p>
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {blog.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Card>
-            </Link>
-          ))}
+          {filteredBlogs.map((blog: IBlog) => (<BlogCard key={blog._id as string} blog={blog} />))}
           {!filteredBlogs.length && <p className="text-center">לא נמצאו כתבות</p>}
         </div>
       </div>
