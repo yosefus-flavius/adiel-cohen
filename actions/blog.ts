@@ -85,6 +85,7 @@ export async function createOrUpdateBlog(formData: FormData) {
             const res = await BlogModel.findByIdAndUpdate(rawFormData.id, validatedData, { new: true })
             revalidatePath(`/blog/${rawFormData.slug}`)
             revalidatePath(`/blog`)
+            revalidatePath(`/`)
             if (process.env.NODE_ENV === 'production') {
                 await revalidateNetlify(rawFormData.slug as string)
             }
@@ -93,6 +94,7 @@ export async function createOrUpdateBlog(formData: FormData) {
             const newBlog = await BlogModel.create(validatedData)
             revalidatePath(`/blog/${rawFormData.slug}`)
             revalidatePath(`/blog`)
+            revalidatePath(`/`)
             if (process.env.NODE_ENV === 'production') {
                 await revalidateNetlify(rawFormData.slug as string)
             }
@@ -112,6 +114,12 @@ export async function createOrUpdateBlog(formData: FormData) {
 }
 const revalidateNetlify = async (slug: string) => {
     await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?path=/blog/${slug}`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${process.env.REVALIDATE_TOKEN}`
+        }
+    })
+    await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?path=/`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${process.env.REVALIDATE_TOKEN}`
