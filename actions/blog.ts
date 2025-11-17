@@ -4,8 +4,7 @@ import { auth } from '@/auth'
 import BlogModel from '@/server/blog/blog.model'
 import { connectToDatabase } from '@/server/connect'
 import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
-import { z } from 'zod'
+import { z, ZodError } from 'zod'
 
 const blogSchema = z.object({
     title: z.string().min(5, "כותרת חייבת להכיל לפחות 5 תווים"),
@@ -19,7 +18,6 @@ const blogSchema = z.object({
 })
 
 
-import { ZodError } from 'zod'
 
 function formatZodErrors(error: ZodError): string {
     return error.errors.map(err => {
@@ -99,7 +97,7 @@ export async function createOrUpdateBlog(formData: FormData) {
                 await revalidateNetlify(rawFormData.slug as string)
             }
             await fetch(`https://www.google.com/ping?sitemap=${process.env.NEXT_PUBLIC_SITE_URL}/sitemap.xml`)
-            return { message: 'המאמר נוצר בהצלחה' , id: String(newBlog._id) }
+            return { message: 'המאמר נוצר בהצלחה', id: String(newBlog._id) }
         }
     } catch (error) {
         if (error instanceof ZodError) {
