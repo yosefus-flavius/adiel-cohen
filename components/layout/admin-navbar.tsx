@@ -16,6 +16,11 @@ export const adminLinks = [
         icon: <FileText/>
     },
     {
+        href: "/admin/flash",
+        name: "ידיעות",
+        icon: <FileText/>
+    },
+    {
         href: "/",
         name: "בית לקוחות",
         icon: <Home/>
