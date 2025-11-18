@@ -89,7 +89,7 @@ export default async function FlashesPage() {
                               </div>
                            </summary>
 
-                           <p className="text-gray-600 leading-relaxed mb-4">
+                           <p className="text-gray-600 leading-relaxed mb-4 prose prose-lg  whitespace-pre-line">
                               {flash.content}
                            </p>
 
