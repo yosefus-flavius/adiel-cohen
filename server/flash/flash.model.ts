@@ -9,7 +9,9 @@ export interface IFlash   {
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
-  links?: string[]
+  links?: string[];
+    __v: number;
+
 }
 
 // export interface IFlashDoc extends IFlash, mongoose.Document {}

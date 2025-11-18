@@ -15,13 +15,13 @@ export default function CalcPage() {
             <Image src="/calc.webp" fill alt="מחשבון משכנתא" className="object-cover z-5" />
             <div className="absolute inset-0 bg-black opacity-50 z-10" />
             <div className="relative z-20">
-               <h2 className="text-4xl md:text-7xl font-bold tracking-tight text-center mb-6 rtl">חישוב משכנתא</h2>
+               <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-center mb-6 rtl">מחשבון משכנתא</h1>
                <p className="text-center text-white mb-12">השתמשו במחשבון כדי לחשב את המשכנתא שלכם</p>
             </div>
          </div>
-         <div className="container mx-auto px-4 py-12 md:py-24">
+         <main className="container mx-auto px-4 py-12 md:py-24">
             <Calc />
-         </div>
+         </main>
       </div>
    );
 }
