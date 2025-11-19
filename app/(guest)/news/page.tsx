@@ -38,8 +38,8 @@ export default async function FlashesPage() {
       <div className="min-h-screen  bg-linear-to-b from-primary/10 to-white" >
          {/* Header Section */}
          <div className="relative py-24 px-4">
-            <Image src="/news.webp" fill alt="חדשות משכנתא" className="object-cover z-5" />
-            <div className="absolute inset-0 bg-black opacity-50 z-10" />
+            <Image src="/news.webp" priority  fill alt="חדשות משכנתא"  className="object-cover z-5" />
+            <div className="absolute inset-0 bg-black/60 z-10" />
             <div className="relative z-20">
                <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-center mb-6 rtl">חדשות משכנתא</h1>
                <p className="text-center text-white mb-12">
