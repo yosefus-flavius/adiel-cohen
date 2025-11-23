@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { signOut } from "next-auth/react";
 
-export function MobileMenu({ links = []}: { links: { name: string, href: string }[] }) {
+export function MobileMenu({ links = [] }: { links: { name: string, href: string, isButton?: boolean }[] }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -20,18 +20,22 @@ export function MobileMenu({ links = []}: { links: { name: string, href: string 
       <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-(--background)">
         <SheetTitle className="sr-only ">תפריט ניווט</SheetTitle>
         <SheetDescription className="sr-only">תפריט ניווט</SheetDescription>
-        <nav className="flex flex-col gap-4 mt-6">
+        <nav className="flex flex-col gap-1 mt-5">
           {links.map((link) => (
             <Link
               key={link.name}
               onClick={() => setIsOpen(false)}
               href={link.href}
-              className="block py-2 text-lg font-semibold hover:text-gray-600"
+              className="block py-3 text-lg font-semibold hover:text-gray-600"
             >
-              {link.name}
+              {link.isButton ? (
+                <Button>{link.name}</Button>
+              ) : (
+                <span>{link.name}</span>
+              )}
             </Link>
           ))}
-      
+
         </nav>
       </SheetContent>
     </Sheet>

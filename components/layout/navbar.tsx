@@ -1,15 +1,17 @@
+import { cn } from "@/lib/utils";
 import { MobileMenu } from "@/components/ui/mobile-menu";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 export const guestLinks = [
-  { href: "/", name: "ראשי" },
-  { href: "/#about", name: "אודות" },
-  {href: '/news', name: 'חדשות'},
+  { href: "/", name: "בית" },
   { href: "/blog", name: "מאמרים" },
-  { href: "/#contact", name: "צור קשר", isButton: true },
+  { href: '/news', name: 'חדשות' },
+  { href: "/#about", name: "אודות" },
   { href: "/#steps", name: "השלבים" },
   { href: "/services", name: "שירותים" },
   { href: "/calc", name: "מחשבון" },
+  { href: "/#contact", name: "צור קשר", isButton: true },
 ]
 
 export function Navbar() {
@@ -25,9 +27,16 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-lg font-semibold text-gray-600 hover:text-gray-500"
+              className={cn("cursor-pointer",
+                !link.isButton &&
+                "text-lg font-semibold text-gray-600 hover:text-gray-500"
+              )}
             >
-              {link.name}
+              {link.isButton ? (
+                <Button>{link.name}</Button>
+              ) : (
+                <span>{link.name}</span>
+              )}
             </Link>
           ))}
         </div>
