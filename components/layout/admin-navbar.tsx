@@ -1,6 +1,6 @@
 import { signOut } from "@/auth";
 import { MobileMenu } from "@/components/ui/mobile-menu";
-import { Calculator, FileText, Home, LayoutDashboard } from "lucide-react";
+import { Calculator, FileText, Home, LayoutDashboard, Lightbulb } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 
@@ -14,6 +14,11 @@ export const adminLinks = [
         href: "/admin/blogs",
         name: "מאמרים",
         icon: <FileText/>
+    },
+    {
+        href: "/admin/flash",
+        name: "ידיעות",
+        icon: <Lightbulb/>
     },
     {
         href: "/",

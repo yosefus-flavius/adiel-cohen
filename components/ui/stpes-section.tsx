@@ -41,15 +41,15 @@ const steps: MortgageStep[] = [
     },
     {
         id: "success",
-        number: "06",
-        title: "מזל טוב!!! 🥳",
+        number: "🥳",
+        title: "מזל טוב!!!",
         description: "יש לכם משכנתא."
       }
 ];
 
 const StepsSections = () => {
   return (
-    <section id="steps" className="w-full py-12 md:py-24  container md:rounded-3xl mx-auto p-4 bg-(--foreground) min-h-screen">
+    <section id="steps" className="w-full py-12 md:py-24  container md:rounded-3xl mx-auto p-4 bg-(--foreground)  min-h-screen">
       <div className="text-center mb-12 space-y-4">
         <h2 className="text-4xl md:text-5xl font-bold">
           השלבים ללקיחת משכנתא
@@ -60,11 +60,11 @@ const StepsSections = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-12">
         {steps.map((step) => (
           <Card key={step.id} className="relative">
-            <div className="absolute md:-top-2 -top-10 right-1/2 translate-x-1/2 md:translate-x-0 md:-right-10 bg-white shadow-md border rounded-full w-20 h-20 flex items-center justify-center">
-              <span className="text-4xl md:text-4xl font-bold text-(--primary-color)">
+            <div className="absolute md:-top-2 -top-10 bg-(--primary-color) right-1/2 translate-x-1/2 md:translate-x-0 md:-right-10  shadow-md border rounded-full w-20 h-20 flex items-center justify-center">
+              <span className="text-4xl md:text-4xl font-bold ">
                 {step.number}
               </span>
             </div>
@@ -74,7 +74,7 @@ const StepsSections = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 text-right">
+              <p className="opacity-80 text-right">
                 {step.description}
               </p>
             </CardContent>

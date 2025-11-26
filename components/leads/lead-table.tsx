@@ -1,5 +1,3 @@
-// import { formatDistanceToNow } from 'date-fns';
-// import { he } from 'date-fns/locale';
 import { Badge } from '@/components/ui/badge';
 import {
    Table,
@@ -12,6 +10,7 @@ import {
 import DeleteButton from './delete-button';
 import { LeadDialog } from './lead-dialog';
 import { Phone } from 'lucide-react';
+import { formatDateDistance } from '@/lib/date-utils';
 
 interface Lead {
    _id: string;
@@ -76,10 +75,7 @@ export function LeadsTable({ leads }: LeadsTableProps) {
                            </Badge>
                         </TableCell>
                         <TableCell className="text-muted-foreground">
-                           {/* {formatDistanceToNow(new Date(lead.createdAt), {
-                    addSuffix: true,
-                    locale: he,
-                  })} */}
+                           {formatDateDistance(lead.createdAt)}
                         </TableCell>
                         <TableCell className='flex gap-2 items-center'>
                            <LeadDialog lead={lead} />
@@ -123,10 +119,7 @@ export function LeadsTable({ leads }: LeadsTableProps) {
                         {lead.message}
                      </p>
                      <p className="text-xs text-muted-foreground">
-                        {/* {formatDistanceToNow(new Date(lead.createdAt), {
-                  addSuffix: true,
-                  locale: he,
-                })} */}
+                        {formatDateDistance(lead.createdAt)}
                      </p>
                   </div>
                   <div className="flex gap-2 items-center">
