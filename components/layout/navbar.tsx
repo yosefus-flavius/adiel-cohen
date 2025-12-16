@@ -11,7 +11,7 @@ export const guestLinks = [
   { href: "/#steps", name: "השלבים" },
   { href: "/services", name: "שירותים" },
   { href: "/calc", name: "מחשבון" },
-  { href: "/restore", name: "שחזור משכנתא" },
+  { href: "/restore", name: "מיחזור משכנתא" },
   { href: "/#contact", name: "צור קשר", isButton: true },
 ]
 

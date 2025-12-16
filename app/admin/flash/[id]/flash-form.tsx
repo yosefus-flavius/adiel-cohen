@@ -145,7 +145,6 @@ export default function FlashForm({ flash }: { flash: IFlash | null }) {
                                 name="links"
                                 defaultValue={flash?.links?.join('\n') || ''}
                                 className="min-h-[180px]"
-                                required
                             />
                         </div>
 
@@ -186,7 +185,7 @@ export default function FlashForm({ flash }: { flash: IFlash | null }) {
                             שמור פלש
                         </Button>
 
-                      
+
                     </div>
                 </form>
             </CardContent>
