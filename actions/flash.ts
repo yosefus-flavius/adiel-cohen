@@ -63,13 +63,13 @@ export async function createOrUpdateFlash(formData: FormData) {
    rawFormData.links = (rawFormData.links as string).split('\n')
 
    console.log({ rawFormData })
-   
+
    try {
       const validatedData = flashSchema.parse({
          ...rawFormData,
          isActive: rawFormData.isActive === 'on',
       })
-      
+
       console.log({ validatedData })
       await connectToDatabase()
 
@@ -111,7 +111,7 @@ const revalidateNetlify = async () => {
          'Authorization': `Bearer ${process.env.REVALIDATE_TOKEN}`
       }
    })
-   await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?path=/flash`, {
+   await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?path=/news`, {
       method: 'POST',
       headers: {
          'Authorization': `Bearer ${process.env.REVALIDATE_TOKEN}`

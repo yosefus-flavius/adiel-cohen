@@ -18,7 +18,7 @@ const MortgageServicesSection = () => {
             <Image src="/services.webp" fill alt="מחשבון משכנתא" className="object-cover z-5" />
             <div className="absolute inset-0 bg-black opacity-50 z-10" />
             <div className="relative z-20">
-               <h2 className="text-4xl md:text-7xl font-bold tracking-tight text-center mb-6 rtl">שירותים מקצועיים</h2>
+               <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-center mb-6 rtl">שירותים מקצועיים</h1>
                <p className="text-center text-white mb-12">אנו מציעים מגוון רחב של שירותי משכנתא מותאמים אישית לצרכים שלכם</p>
             </div>
          </div>
