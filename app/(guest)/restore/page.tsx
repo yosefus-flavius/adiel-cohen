@@ -48,9 +48,12 @@ export default function MortgageRefinancingPage() {
    return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100" dir="rtl">
          <div className="relative py-24 px-4">
+
+
             <Image src="/restore.webp" fill alt="מחזור משכנתא" className="object-cover z-5" />
             <div className="absolute inset-0 bg-black opacity-70 z-10" />
-            <div className="relative z-20">
+
+            <div className="relative z-20 container max-w-5xl mx-auto">
                <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-white text-center mb-6 ">
                   4 סיבות מקצועיות לבדיקת מחזור המשכנתא שלכם היום
                </h1>

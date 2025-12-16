@@ -1,6 +1,6 @@
 import { connectToDatabase } from '@/server/connect';
 import flashModel, { IFlash } from '@/server/flash/flash.model';
-import { Clock, ExternalLink, Tag } from 'lucide-react';
+import { ChevronDown, Clock, ExternalLink, Tag } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
 
@@ -38,7 +38,7 @@ export default async function FlashesPage() {
       <div className="min-h-screen  bg-linear-to-b from-primary/10 to-white" >
          {/* Header Section */}
          <div className="relative py-24 px-4">
-            <Image src="/news.webp" priority  fill alt="חדשות משכנתא"  className="object-cover z-5" />
+            <Image src="/news.webp" priority fill alt="חדשות משכנתא" className="object-cover z-5" />
             <div className="absolute inset-0 bg-black/60 z-10" />
             <div className="relative z-20">
                <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-center mb-6 rtl">חדשות משכנתא</h1>
@@ -55,9 +55,9 @@ export default async function FlashesPage() {
                   {serializedFlashes.map((flash) => (
                      <article
                         key={flash._id}
-                        className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
+                        className="group/article bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
                      >
-                        <details className="p-6">
+                        <details className="p-6 group">
                            <summary className="cursor-pointer flex">
                               {flash.img && (
                                  <div className="relative h-48 overflow-hidden">
@@ -65,7 +65,7 @@ export default async function FlashesPage() {
                                        fill
                                        src={flash.img}
                                        alt={flash.title}
-                                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                       className="w-full h-full object-cover group-hover/article:scale-105 transition-transform duration-500"
                                     />
                                     <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent"></div>
                                  </div>
@@ -83,9 +83,12 @@ export default async function FlashesPage() {
                                     </span>
                                  </div>
 
-                                 <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-(--primary-color) transition-colors">
+                                 <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover/article:text-(--primary-color) transition-colors">
                                     {flash.title}
                                  </h3>
+                              </div>
+                              <div className="mr-auto self-start pt-1 pl-2">
+                                 <ChevronDown className="w-5 h-5 text-gray-400 transition-all duration-300 group-open:rotate-180 group-open:text-(--primary-color)" />
                               </div>
                            </summary>
 

@@ -48,7 +48,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredBlogs.map((blog: IBlog) => (<BlogCard key={blog._id as string} blog={blog} />))}
+          {filteredBlogs.map((blog: IBlog) => (<BlogCard key={String(blog._id)} blog={blog} />))}
           {!filteredBlogs.length && <p className="text-center">לא נמצאו כתבות</p>}
         </div>
       </div>
