@@ -36,7 +36,7 @@ export function Hero() {
             href="#about"
             className="rounded-md border border-white px-6 py-3 text-lg font-semibold text-white hover:/10"
           >
-            קרא עוד
+            קצת עלי
           </a>
         </div>
       </div>

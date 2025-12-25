@@ -1,9 +1,11 @@
-import { blogs } from "@/lib/data/blogs";
 import BlogModel from "@/server/blog/blog.model";
 import { connectToDatabase } from "@/server/connect";
 import { MetadataRoute } from "next";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://adiel-cohen.co.il';
+
+// Force dynamic rendering to ensure sitemap reflects latest blog posts
+export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   await connectToDatabase()

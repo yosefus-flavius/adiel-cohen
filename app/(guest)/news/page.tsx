@@ -83,9 +83,9 @@ export default async function FlashesPage() {
                                     </span>
                                  </div>
 
-                                 <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover/article:text-(--primary-color) transition-colors">
+                                 <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover/article:text-(--primary-color) transition-colors">
                                     {flash.title}
-                                 </h3>
+                                 </h2>
                               </div>
                               <div className="mr-auto self-start pt-1 pl-2">
                                  <ChevronDown className="w-5 h-5 text-gray-400 transition-all duration-300 group-open:rotate-180 group-open:text-(--primary-color)" />

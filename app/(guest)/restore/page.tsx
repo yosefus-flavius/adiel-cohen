@@ -54,7 +54,7 @@ export default function MortgageRefinancingPage() {
             <div className="absolute inset-0 bg-black opacity-70 z-10" />
 
             <div className="relative z-20 container max-w-5xl mx-auto">
-               <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-white text-center mb-6 ">
+               <h1 className="text-4xl md:text-7xl font-bold tracking-tight  text-center mb-6 ">
                   4 סיבות מקצועיות לבדיקת מחזור המשכנתא שלכם היום
                </h1>
                <p className="text-md text-white/80 leading-relaxed mb-8">

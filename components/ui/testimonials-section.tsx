@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { testimonials } from "@/lib/data/testimonials";
-import { Star, UserRound } from "lucide-react";
+import { Star } from "lucide-react";
+import Image from "next/image";
 import { Card } from "./card";
 
 export function TestimonialsSection() {
@@ -40,6 +40,10 @@ export function TestimonialsSection() {
             </Card>
           ))}
         </div>
+      </div>
+      <div className="container mx-auto mt-12">
+        <h2 className="text-4xl font-bold tracking-tight text-center mb-8">ביקורות מגוגל</h2>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3387.5321892301126!2d34.81554708484018!3d31.89213468124825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x62257a41eb25afe5%3A0xac633c205ec1ae57!2z16LXk9eZ15DXnCDXm9eU158g15nXoteV16Ug157Xqdeb16DXqteQ15XXqg!5e0!3m2!1siw!2sin!4v1766634305060!5m2!1siw!2sin" className="w-full border-0 rounded-2xl shadow-md" width="1920" height="400" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
       </div>
     </section>
   );

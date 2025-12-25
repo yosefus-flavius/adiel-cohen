@@ -74,6 +74,17 @@ export default function RootLayout({
     <html lang="he" dir="rtl">
       <body className={`${heebo.className} bg-[hsl(var(--background))]`}>
         <div className="h-16" />
+        {/* jsonld name website */}
+        <Script type="application/ld+json" strategy="beforeInteractive">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "עדיאל כהן - יועץ משכנתאות",
+              "url": ${process.env.NEXT_PUBLIC_SITE_URL}
+            }
+          `}
+        </Script>
         <Script id="nagishli-config" strategy="beforeInteractive">
           {`
             var nl_dir = "/nagishli_v3_beta/nagishli-files/";

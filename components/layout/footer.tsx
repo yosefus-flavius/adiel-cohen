@@ -1,5 +1,5 @@
 import { contactInfo } from "@/lib/data/contact";
-import { Instagram, Linkedin } from "lucide-react";
+import { Instagram, Linkedin, Map } from "lucide-react";
 import Link from "next/link";
 import { guestLinks } from "./navbar";
 
@@ -32,9 +32,22 @@ export function Footer() {
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">פרטי התקשרות</h3>
             <ul className="space-y-2 text-sm">
-              <li>{contactInfo.phone}</li>
-              <li>{contactInfo.email}</li>
-              <li>{contactInfo.address}</li>
+              <li>
+                <a href={`tel:${contactInfo.phone}`} dir="ltr" target="_blank" className="hover:text-white">
+                  {contactInfo.phone}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${contactInfo.email}`} target="_blank" className="hover:text-white">
+                  {contactInfo.email}
+                </a>
+              </li>
+              <li>
+                <a href={contactInfo.googleMap} target="_blank" className="flex items-center gap-2 cursor-pointer" rel="noopener noreferrer">
+                  <span >{contactInfo.address}</span>
+                  <Map className="h-5 w-5" />
+                </a>
+              </li>
             </ul>
             <div className="flex gap-4 mt-6">
               {contactInfo.socialMedia.facebook && (
@@ -75,10 +88,10 @@ export function Footer() {
           <p>
             <a dir="ltr" href="https://yosefus-flavius.com/" target="_blank" rel="noopener noreferrer">
               ©
-              Yosefus-Flavius 
-            בניית אתרים - 
+              Yosefus-Flavius
+              בניית אתרים -
               כל הזכויות שמורות.
-            {" "}
+              {" "}
               {new Date().getFullYear()}
             </a>
           </p>
