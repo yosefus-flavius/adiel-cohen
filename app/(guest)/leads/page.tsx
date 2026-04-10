@@ -68,7 +68,7 @@ const Index = () => {
    };
 
    return (
-      <div dir="rtl" className="min-h-screen  bg-secondary text-secondary-foreground ">
+      <div className="min-h-screen dark bg-secondary text-secondary-foreground ">
 
          {/* Hero Section */}
          <section className="relative overflow-hidden py-16 md:py-24">

@@ -72,7 +72,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="he" dir="rtl">
-      <body className={`${heebo.className} bg-[hsl(var(--background))]`}>
+      <body className={`${heebo.className}  bg-[hsl(var(--background))]`}>
         <div className="h-16" />
         {/* jsonld name website */}
         <Script type="application/ld+json" strategy="beforeInteractive">
