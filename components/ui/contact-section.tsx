@@ -1,98 +1,99 @@
+"use client";
+
 import { contactInfo } from "@/lib/data/contact";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 import { Card, CardContent } from "./card";
 import Lead from "./lead";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
+
+const contactMethods = [
+  {
+    icon: Phone,
+    title: "טלפון",
+    value: contactInfo.phone,
+    href: `tel:${contactInfo.phone}`,
+    description: "זמין בימי עבודה",
+  },
+  {
+    icon: Mail,
+    title: "אימייל",
+    value: contactInfo.email,
+    href: `mailto:${contactInfo.email}`,
+    description: "מענה תוך 24 שעות",
+  },
+  {
+    icon: MapPin,
+    title: "כתובת",
+    value: contactInfo.address,
+    href: "https://waze.com/ul?ll=31.89236134%2C34.81322765&navigate=yes",
+    description: "לחץ לניווט",
+    external: true,
+  },
+];
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-12 md:py-24 w-full ">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-4xl font-bold tracking-tight mb-4">צור קשר</h2>
-          <p className="text-xl text-gray-600 font-semibold">
+    <section id="contact" className="section-padding bg-[hsl(40,33%,96%)] overflow-hidden">
+      <div className="container-main">
+        {/* Header */}
+        <FadeIn className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
+            צור קשר
+          </h2>
+          <p className="text-slate-600 max-w-xl mx-auto">
             אשמח לעזור לך בכל שאלה או התייעצות בנושא משכנתאות
           </p>
-        </div>
+        </FadeIn>
 
-
-        <div className="grid grid-cols-3 md:grid-cols-3 gap-6 mb-8 mx-auto">
-          <Card>
-            <a dir="ltr" href={`tel:${contactInfo.phone}`} className="text-gray-600 font-semibold hover:text-(--primary-color)">
-              <CardContent className="flex flex-col items-center gap-4 p-6">
-                <Phone className="h-8 w-8 text-(--primary-color)" />
-                <div className="text-center">
-                  <h3 className="font-medium mb-1">טלפון</h3>
-                  <span className="hidden md:block">
-                  {contactInfo.phone}
-                  </span>
-                </div>
-              </CardContent>
-            </a>
-          </Card>
-
-          <Card>
-            <a  href={`mailto:${contactInfo.email}`} className="text-gray-600 font-semibold hover:text-(--primary-color)">
-              <CardContent className="flex flex-col items-center gap-4 p-6">
-                <Mail className="h-8 w-8 text-(--primary-color)" />
-                <div className="text-center">
-                  <h3 className="font-medium mb-1">אימייל</h3>
-                  <span className="hidden md:block">
-                  {contactInfo.email}
-                  </span>
-                </div>
-              </CardContent>
-            </a>
-          </Card>
-  
-          <Card>
-              <a href={"https://waze.com/ul?ll=31.89236134%2C34.81322765&navigate=yes"} target="_blank" rel="noopener noreferrer" className="text-gray-600 font-semibold hover:text-(--primary-color)">
-            <CardContent className="flex flex-col items-center gap-4 p-6">
-              <MapPin className="h-8 w-8 text-(--primary-color)" />
-                <div className="text-center">
-                  <h3 className="font-medium mb-1">לניווט</h3>
-                  <span className="hidden md:block">
-                  {contactInfo.address}
-                </span>
-              </div>
-            </CardContent>
+        {/* Contact Cards */}
+        <StaggerContainer 
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+          staggerDelay={0.1}
+        >
+          {contactMethods.map((method) => (
+            <StaggerItem key={method.title}>
+              <a
+                href={method.href}
+                target={method.external ? "_blank" : undefined}
+                rel={method.external ? "noopener noreferrer" : undefined}
+                className="block h-full"
+              >
+                <Card className="h-full bg-white border border-slate-200 hover:border-[var(--color-brand-gold)]/50 transition-colors">
+                  <CardContent className="flex flex-col items-center gap-3 p-6">
+                    <div className="w-12 h-12 rounded-xl bg-[var(--color-brand-gold)]/10 flex items-center justify-center text-[var(--color-brand-gold)]">
+                      <method.icon className="w-6 h-6" />
+                    </div>
+                    <div className="text-center">
+                      <h3 className="font-medium text-slate-900 mb-1 text-sm">
+                        {method.title}
+                      </h3>
+                      <p className="text-slate-600 font-medium">
+                        {method.value}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
               </a>
-          </Card>
-        </div>
-        <Lead />
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
 
-        {/* <div className="flex justify-center gap-6 mt-8">
-          {contactInfo.socialMedia.facebook && (
-            <a
-              href={contactInfo.socialMedia.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <svg className="h-7 w-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
-            </a>
-          )}
-          {contactInfo.socialMedia.linkedin && (
-            <a
-              href={contactInfo.socialMedia.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <Linkedin className="h-6 w-6" />
-            </a>
-          )}
-          {contactInfo.socialMedia.instagram && (
-            <a
-              href={contactInfo.socialMedia.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <Instagram className="h-6 w-6" />
-            </a>
-          )}
-        </div> */}
+        {/* Lead Form Container */}
+        <FadeIn delay={0.4}>
+          <div className="max-w-2xl mx-auto">
+            <Lead />
+          </div>
+        </FadeIn>
 
+        {/* Working Hours Note */}
+        <FadeIn delay={0.5} className="mt-12">
+          <div className="flex items-center justify-center gap-2 text-slate-100">
+            <Clock className="w-5 h-5 text-[var(--color-brand-gold)]" />
+            <span className="text-body-sm">
+              שעות פעילות: ימים א'-ה' 09:00-18:00 | יום ו' 09:00-13:00
+            </span>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

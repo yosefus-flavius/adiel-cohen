@@ -2,11 +2,20 @@ import BlogCard from "@/components/blog-card";
 import BlogModel, { IBlog } from '@/server/blog/blog.model';
 
 export default async function RelatedPosts({ blog }: { blog: IBlog }) {
-    const relatedPosts = await BlogModel.aggregate([
+    const posts = await BlogModel.aggregate([
         { $match: { slug: { $ne: blog.slug }, isActive: true } },
         { $sample: { size: 3 } },
         { $sort: { date: -1 } }
     ]);
+
+    // Convert MongoDB documents to plain objects for client component serialization
+    const relatedPosts = posts.map(post => ({
+        ...post,
+        _id: String(post._id),
+        createdAt: post.createdAt ? new Date(post.createdAt).toISOString() : undefined,
+        updatedAt: post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined,
+        date: post.date ? new Date(post.date).toISOString() : undefined,
+    }));
 
     return (
         <div>

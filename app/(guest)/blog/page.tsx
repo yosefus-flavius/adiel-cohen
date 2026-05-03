@@ -18,14 +18,22 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
 
   await connectToDatabase();
 
-
-  const filteredBlogs = term ? await BlogModel.find({
+  const blogs = term ? await BlogModel.find({
     $or: [
       { name: { $regex: term, $options: 'i' } },
       { content: { $regex: term, $options: 'i' } }
     ],
     isActive: true
-  }).sort({ createdAt: -1 }) : await BlogModel.find({ isActive: true }).sort({ createdAt: -1 });
+  }).sort({ createdAt: -1 }).lean() : await BlogModel.find({ isActive: true }).sort({ createdAt: -1 }).lean();
+
+  // Convert MongoDB documents to plain objects for client component serialization
+  const filteredBlogs = blogs.map(blog => ({
+    ...blog,
+    _id: String(blog._id),
+    createdAt: blog.createdAt ? new Date(blog.createdAt).toISOString() : undefined,
+    updatedAt: blog.updatedAt ? new Date(blog.updatedAt).toISOString() : undefined,
+    date: blog.date ? new Date(blog.date).toISOString() : undefined,
+  }));
   // if (!filteredBlogs.length) {
   //   await BlogModel.create(blogs.map(b=> ({...b, author: 'עדיאל כהן', date: new Date()})))
   // }
@@ -48,7 +56,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredBlogs.map((blog: IBlog) => (<BlogCard key={String(blog._id)} blog={blog} />))}
+          {filteredBlogs.map((blog) => (<BlogCard key={blog._id} blog={blog as unknown as IBlog} />))}
           {!filteredBlogs.length && <p className="text-center">לא נמצאו כתבות</p>}
         </div>
       </div>

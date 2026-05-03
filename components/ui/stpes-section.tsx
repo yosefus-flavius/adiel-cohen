@@ -1,85 +1,124 @@
-import React from 'react';
+"use client";
+
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
+import { FileText, CheckCircle, Handshake, PenSquare, Shield, PartyPopper } from "lucide-react";
 
 interface MortgageStep {
   id: string;
   number: string;
   title: string;
   description: string;
+  icon: React.ReactNode;
 }
 
 const steps: MortgageStep[] = [
-    {
-      id: "docs",
-      number: "01",
-      title: "איסוף מסמכים",
-      description: "בשלב זה תישלח אליכם רשימת מסמכים ראשונית ע\"מ שנוכל להגיש בקשה בבנקים השונים."
-    },
-    {
-      id: "approval",
-      number: "02",
-      title: "קבלת אישור עקרוני",
-      description: "בשלב זה יתקבל אישור עקרוני מהבנקים שאליהם הוגשה הבקשה."
-    },
-    {
-      id: "negotiation",
-      number: "03",
-      title: "משא ומתן",
-      description: "בשלב זה יועץ המשכנתאות מנהל מו\"מ עם הבנקים ע\"מ שנקבל את ההצעה הטובה ביותר."
-    },
-    {
-      id: "signing",
-      number: "04",
-      title: "חתימות",
-      description: "בשעה טובה תחתמו על המשכנתא המצוינת שלכם!"
-    },
-    {
-      id: "collateral",
-      number: "05",
-      title: "בטחונות",
-      description: "על מנת שהכסף יעבור לחשבונכם, הבנק דורש שמאי, ביטוח ועוד."
-    },
-    {
-        id: "success",
-        number: "🥳",
-        title: "מזל טוב!!!",
-        description: "יש לכם משכנתא."
-      }
+  {
+    id: "docs",
+    number: "01",
+    title: "איסוף מסמכים",
+    description: "בשלב זה תישלח אליכם רשימת מסמכים ראשונית ע\"מ שנוכל להגיש בקשה בבנקים השונים.",
+    icon: <FileText className="w-6 h-6" />,
+  },
+  {
+    id: "approval",
+    number: "02",
+    title: "קבלת אישור עקרוני",
+    description: "בשלב זה יתקבל אישור עקרוני מהבנקים שאליהם הוגשה הבקשה.",
+    icon: <CheckCircle className="w-6 h-6" />,
+  },
+  {
+    id: "negotiation",
+    number: "03",
+    title: "משא ומתן",
+    description: "בשלב זה יועץ המשכנתאות מנהל מו\"מ עם הבנקים ע\"מ שנקבל את ההצעה הטובה ביותר.",
+    icon: <Handshake className="w-6 h-6" />,
+  },
+  {
+    id: "signing",
+    number: "04",
+    title: "חתימות",
+    description: "בשעה טובה תחתמו על המשכנתא המצוינת שלכם!",
+    icon: <PenSquare className="w-6 h-6" />,
+  },
+  {
+    id: "collateral",
+    number: "05",
+    title: "בטחונות",
+    description: "על מנת שהכסף יעבור לחשבונכם, הבנק דורש שמאי, ביטוח ועוד.",
+    icon: <Shield className="w-6 h-6" />,
+  },
+  {
+    id: "success",
+    number: "06",
+    title: "מזל טוב!",
+    description: "יש לכם משכנתא. תהנו מהבית החדש שלכם!",
+    icon: <PartyPopper className="w-6 h-6" />,
+  }
 ];
 
 const StepsSections = () => {
   return (
-    <section id="steps" className="w-full py-12 md:py-24  container md:rounded-3xl mx-auto p-4 bg-(--foreground)  min-h-screen">
-      <div className="text-center mb-12 space-y-4">
-        <h2 className="text-4xl md:text-5xl font-bold">
-          השלבים ללקיחת משכנתא
-        </h2>
-        <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-          אני פועל ומכוון לתהליך ליווי מדויק ומקצועי עד לשלב החתימה בבנק וקבלת הכסף לחשבון.
-          אני מאמין בשירות דיגיטלי, אישי ואנושי לחסכון משמעותי!
-        </p>
-      </div>
+    <section id="steps" className="section-padding bg-[hsl(40,33%,96%)] overflow-hidden">
+      <div className="container-main">
+        {/* Header */}
+        <FadeIn className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
+            השלבים ללקיחת משכנתא
+          </h2>
+          <p className="text-slate-600 max-w-xl mx-auto">
+            ליווי מקצועי ואישי עד לשלב החתימה בבנק
+          </p>
+        </FadeIn>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-12">
-        {steps.map((step) => (
-          <Card key={step.id} className="relative">
-            <div className="absolute md:-top-2 -top-10 bg-(--primary-color) right-1/2 translate-x-1/2 md:translate-x-0 md:-right-10  shadow-md border rounded-full w-20 h-20 flex items-center justify-center">
-              <span className="text-4xl md:text-4xl font-bold ">
-                {step.number}
-              </span>
-            </div>
-            <CardHeader className="md:pt-20 pt-10">
-              <CardTitle className="text-2xl font-bold text-right">
-                {step.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="opacity-80 text-right">
-                {step.description}
-              </p>
-            </CardContent>
-          </Card>
-        ))}
+        {/* Steps Grid */}
+        <StaggerContainer 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          staggerDelay={0.1}
+        >
+          {steps.map((step, index) => (
+            <StaggerItem key={step.id}>
+              <Card className="relative h-full bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden">
+                {/* Step Number Badge */}
+                <div className="absolute top-0 right-0 w-20 h-20 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-28 h-28 bg-[var(--color-brand-gold)]/10 transform rotate-45 translate-x-8 -translate-y-14" />
+                  <span className="absolute top-3 right-3 text-2xl font-bold text-[var(--color-brand-gold)]">
+                    {step.number}
+                  </span>
+                </div>
+
+                <CardHeader className="pt-12 pb-4">
+                  {/* Icon */}
+                  <div className="w-12 h-12 rounded-xl bg-[var(--color-brand-gold)]/10 flex items-center justify-center text-[var(--color-brand-gold)] mb-4 group-hover:scale-110 transition-transform duration-300">
+                    {step.icon}
+                  </div>
+                  <CardTitle className="text-h4 text-slate-900 text-right">
+                    {step.title}
+                  </CardTitle>
+                </CardHeader>
+                
+                <CardContent>
+                  <p className="text-body-sm text-slate-600 text-right leading-relaxed">
+                    {step.description}
+                  </p>
+                </CardContent>
+              </Card>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+
+        {/* CTA */}
+        <FadeIn delay={0.6} className="text-center mt-12">
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 transition-colors shadow-lg"
+          >
+            התחל את התהליך עכשיו
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </FadeIn>
       </div>
     </section>
   );

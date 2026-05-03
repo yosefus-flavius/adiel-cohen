@@ -1,45 +1,121 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { FadeIn, FadeInOnly } from "@/components/animations";
 
 export function Hero() {
   return (
-    <div className="relative h-[90vh] w-full overflow-hidden bg-black">
-      <Image
-        src="/hero-bg.webp"
-        alt="עדיאל כהן - יועץ משכנתאות"
-        fill
-        className="object-cover opacity-70 z-1"
-        priority
+    <section className="relative min-h-[90vh] w-full overflow-hidden bg-gradient-to-b from-slate-900 to-slate-800">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <Image
+          src="/hero.webp"
+          alt="עדיאל כהן - יועץ משכנתאות"
+          fill
+          className="object-cover opacity-40"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-slate-900/60" />
+      </div>
+
+      {/* Decorative Elements */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 0.1, scale: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="absolute top-20 right-10 w-72 h-72 bg-[var(--color-brand-gold)] rounded-full blur-[100px]"
       />
-      <Image
-        src='/hero-house.webp'
-        alt={'house'}
-        className="absolute md:bottom-3 z-2 left-3 -bottom-20"
-        width={600}
-        height={600}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 0.05, scale: 1 }}
+        transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
+        className="absolute bottom-20 left-10 w-96 h-96 bg-[var(--color-brand-gold)] rounded-full blur-[120px]"
       />
-      <div className="absolute inset-0 z-2  bg-linear-to-b from-black/60 to-black/30" />
-      <div className="absolute inset-0 z-3 flex flex-col items-center justify-center text-center">
-        <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-6xl">
-          המומחה שלך לייעוץ משכנתאות
-        </h1>
-        <p className="mt-6 max-w-2xl text-xl text-gray-200">
-          מלווה אותך לאורך כל הדרך למשכנתא המושלמת עבורך
-        </p>
-        <div className="mt-10 flex gap-x-6">
-          <a
-            href="#contact"
-            className="rounded-md  px-6 py-3 text-lg font-semibold text-black shadow-xs bg-(--primary-color) hover:bg-black"
-          >
-            דבר איתי
-          </a>
-          <a
-            href="#about"
-            className="rounded-md border border-white px-6 py-3 text-lg font-semibold text-white hover:/10"
-          >
-            קצת עלי
-          </a>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-[90vh] px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-4xl mx-auto">
+
+          {/* Main Heading */}
+          <FadeIn delay={0.2}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">
+              עדיאל כהן
+              <br />
+              <span className="text-[var(--color-brand-gold)]">
+                יועץ משכנתאות מוסמך
+              </span>
+            </h1>
+          </FadeIn>
+
+          {/* Subtitle */}
+          <FadeIn delay={0.4}>
+            <p className="mt-6 md:mt-8 text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              מלווה אותך לאורך כל הדרך למשכנתא המושלמת עבורך
+              {' '}
+              <br className="hidden sm:block" />
+              עם ליווי אישי, מקצועי ואנושי
+            </p>
+          </FadeIn>
+
+          {/* CTA Buttons */}
+          <FadeIn delay={0.6}>
+            <div className="mt-10 md:mt-12 flex sm:flex-row items-center justify-center gap-4">
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative px-5 flex items-center gap-2 py-2 bg-[var(--color-brand-gold)] text-slate-900 font-semibold text-lg rounded-xl shadow-lg shadow-[var(--color-brand-gold)]/25 transition-all duration-300 hover:shadow-xl hover:shadow-[var(--color-brand-gold)]/40"
+              >
+                  <svg 
+                    className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                <span className="relative z-10 flex items-center gap-2">
+                  דבר איתי
+                </span>
+              </motion.a>
+              
+              <motion.a
+                href="#about"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-5 py-2 bg-white/10 backdrop-blur-sm text-white font-semibold text-lg rounded-xl border border-white/20 transition-all duration-300 hover:bg-white/20"
+              >
+                קצת עלי
+              </motion.a>
+            </div>
+          </FadeIn>
+
+          {/* Trust Indicators */}
+          <FadeIn delay={0.8}>
+            <div className="mt-12 md:mt-16 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-400">
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-[var(--color-brand-gold)]" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>ליווי אישי</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-[var(--color-brand-gold)]" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>חיסכון משמעותי</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-[var(--color-brand-gold)]" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>מחזור משכנתא</span>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

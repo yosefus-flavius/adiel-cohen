@@ -1,4 +1,4 @@
-import BlogModel from "@/server/blog/blog.model";
+import BlogModel, { IBlog } from "@/server/blog/blog.model";
 import { connectToDatabase } from "@/server/connect";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -9,12 +9,20 @@ import Link from "next/link";
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug
   await connectToDatabase();
-  const blog = await BlogModel.findOne({ slug: decodeURIComponent(slug), isActive: true });
-  blog._id = blog._id.toString();
+  const blogDoc = await BlogModel.findOne({ slug: decodeURIComponent(slug), isActive: true }).lean() as unknown as IBlog;
 
-  if (!blog) {
+  if (!blogDoc) {
     notFound();
   }
+
+  // Convert MongoDB document to plain object
+  const blog = {
+    ...blogDoc,
+    _id: String(blogDoc._id),
+    createdAt: blogDoc.createdAt ? new Date(blogDoc.createdAt).toISOString() : undefined,
+    updatedAt: blogDoc.updatedAt ? new Date(blogDoc.updatedAt).toISOString() : undefined,
+    date: blogDoc.date ? new Date(blogDoc.date).toISOString() : undefined,
+  };
 
   return (
     <main className="min-h-screen py-8">
@@ -22,13 +30,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="max-w-4xl mx-auto">
           <header className="mb-12">
             <div className="flex items-center gap-4 mb-6 text-sm">
-              <time dateTime={blog.date} className="text-gray-500">
+             {blog.date && <time dateTime={blog.date} className="text-gray-500">
                 {new Date(blog.date).toLocaleDateString("he-IL", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
                 })}
-              </time>
+              </time>}
               <span className="text-gray-600 font-medium">{blog.category}</span>
             </div>
             <h1 className="text-4xl font-bold tracking-tight mb-8">{blog.title}</h1>
@@ -48,7 +56,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
 
           <div className="flex flex-wrap gap-2 mt-8">
-            {blog.tags.map((tag: string) => (
+            {blog.tags?.map?.((tag: string) => (
               <Link key={tag} href={`/blog?search=${tag}`}>
                 <span
                   className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full"
@@ -60,7 +68,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
 
-        <RelatedPosts blog={blog} />
+        <RelatedPosts blog={blog as unknown as IBlog} />
       </article>
     </main>
   );

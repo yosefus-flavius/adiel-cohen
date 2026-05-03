@@ -1,50 +1,90 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { MobileMenu } from "@/components/ui/mobile-menu";
 import Link from "next/link";
 import { Button } from "../ui/button";
-
-export const guestLinks = [
-  { href: "/", name: "בית" },
-  { href: "/blog", name: "מאמרים" },
-  { href: '/news', name: 'חדשות' },
-  { href: '/leads', name: 'המדריך' },
-  { href: "/#about", name: "אודות" },
-  { href: "/#steps", name: "השלבים" },
-  { href: "/services", name: "שירותים" },
-  { href: "/calc", name: "מחשבון" },
-  { href: "/restore", name: "מיחזור משכנתא" },
-  { href: "/#contact", name: "צור קשר", isButton: true },
-]
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { guestLinks } from "@/lib/data/nav-links";
 
 export function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 /80 backdrop-blur-md border-b">
-      <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold text-(--primary-color)">
-          עדיאל כהן
+    <motion.header 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        scrolled 
+          ? "bg-white/90 backdrop-blur-lg shadow-sm border-b border-slate-200/50" 
+          : "bg-transparent"
+      )}
+    >
+      <nav className="container-main h-16 flex items-center justify-between">
+        {/* Logo */}
+        <Link 
+          href="/" 
+          className={cn(
+            "text-xl font-bold transition-colors duration-300",
+            scrolled 
+              ? "text-slate-900" 
+              : "text"
+          )}
+        >
+          <span className="text-[var(--color-brand-gold)]">עדיאל</span> כהן
         </Link>
 
-        <div className="hidden lg:flex items-center gap-8">
+        {/* Desktop Navigation */}
+        <div className="hidden xl:flex items-center gap-6">
           {guestLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className={cn("cursor-pointer",
-                !link.isButton &&
-                "text-lg font-semibold text-gray-600 hover:text-gray-500"
+              className={cn(
+                "transition-colors duration-200",
+                link.isButton
+                  ? ""
+                  : scrolled
+                    ? "text-slate-600 hover:text-[var(--color-brand-gold)] text-sm font-medium"
+                    : "text-white/80 hover:text-white text-sm font-medium"
               )}
             >
               {link.isButton ? (
-                <Button>{link.name}</Button>
+                <Button 
+                  className={cn(
+                    "bg-[var(--color-brand-gold)] text-slate-900 hover:bg-[var(--color-brand-gold-dark)] font-semibold px-6",
+                    !scrolled && "shadow-lg shadow-[var(--color-brand-gold)]/30"
+                  )}
+                >
+                  {link.name}
+                </Button>
               ) : (
-                <span>{link.name}</span>
+                <span className="relative group">
+                  {link.name}
+                  <span className="absolute -bottom-1 right-0 w-0 h-0.5 bg-[var(--color-brand-gold)] transition-all duration-300 group-hover:w-full" />
+                </span>
               )}
             </Link>
           ))}
         </div>
 
-        <MobileMenu links={guestLinks} />
+        {/* Mobile Menu */}
+        <div className="xl:hidden">
+          <MobileMenu links={guestLinks} scrolled={scrolled} />
+        </div>
       </nav>
-    </header>
+    </motion.header>
   );
 }

@@ -135,7 +135,7 @@ const Index = () => {
          <section className="border-y border-primary/10 bg-secondary/30 py-20">
             <div className="container mx-auto px-4">
                <AnimatedSection>
-                  <h2 className="mb-16 text-center text-3xl font-black md:text-5xl">
+                  <h2 className="mb-16 text-center text-3xl font-black md:text-5xl text-foreground">
                      4 סימני אזהרה שהמשכנתא שלכם{" "}
                      <span className="text-primary">עולה לכם ביוקר</span>
                   </h2>
@@ -153,7 +153,7 @@ const Index = () => {
                               <div className="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
                                  <item.icon className="h-6 w-6 text-primary" />
                               </div>
-                              <p className="text-lg leading-relaxed">{item.text}</p>
+                              <p className="text-lg leading-relaxed text-foreground">{item.text}</p>
                            </CardContent>
                         </Card>
                      </AnimatedSection>
@@ -166,7 +166,7 @@ const Index = () => {
          <section className="py-24">
             <div className="container mx-auto px-4">
                <AnimatedSection>
-                  <h2 className="mb-16 text-center text-3xl font-black md:text-5xl">
+                  <h2 className="mb-16 text-center text-3xl font-black md:text-5xl text-foreground">
                      מה תמצאו <span className="text-primary">במדריך?</span>
                   </h2>
                </AnimatedSection>
@@ -179,7 +179,7 @@ const Index = () => {
                      <AnimatedSection key={i} delay={i * 0.12}>
                         <div className="flex items-start gap-5 rounded-2xl border border-primary/10 bg-secondary/20 p-6 backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-secondary/30">
                            <CheckCircle2 className="mt-1 h-7 w-7 shrink-0 text-primary" />
-                           <p className="text-lg md:text-xl font-medium">{text}</p>
+                           <p className="text-lg md:text-xl font-medium text-foreground">{text}</p>
                         </div>
                      </AnimatedSection>
                   ))}
@@ -207,7 +207,7 @@ const Index = () => {
                         </div>
                      </div>
                      <div className="text-center md:text-right">
-                        <h2 className="mb-6 text-3xl font-black md:text-4xl">
+                        <h2 className="mb-6 text-3xl font-black md:text-4xl text-foreground">
                            <span className="text-primary">עדיאל כהן</span> | יועץ משכנתאות
                         </h2>
                         <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
@@ -226,7 +226,7 @@ const Index = () => {
          <section className="border-y border-primary/10 bg-secondary/30 py-24">
             <div className="container mx-auto px-4">
                <AnimatedSection>
-                  <h2 className="mb-16 text-center text-3xl font-black md:text-5xl">
+                  <h2 className="mb-16 text-center text-3xl font-black md:text-5xl text-foreground">
                      המספרים <span className="text-primary">מדברים</span>
                   </h2>
                </AnimatedSection>
@@ -254,7 +254,7 @@ const Index = () => {
          <section className="py-24">
             <div className="container mx-auto px-4">
                <AnimatedSection>
-                  <h2 className="mb-16 text-center text-3xl font-black md:text-5xl">
+                  <h2 className="mb-16 text-center text-3xl font-black md:text-5xl text-foreground">
                      שאלות <span className="text-primary">נפוצות</span>
                   </h2>
                </AnimatedSection>
@@ -279,7 +279,7 @@ const Index = () => {
                   ].map((faq, i) => (
                      <AnimatedSection key={i} delay={i * 0.08}>
                         <details className="group rounded-2xl border border-primary/10 bg-secondary/20 transition-all hover:border-primary/30">
-                           <summary className="flex cursor-pointer items-center justify-between p-6 text-lg font-bold">
+                           <summary className="flex cursor-pointer items-center justify-between p-6 text-lg font-bold text-foreground">
                               <span className="flex items-center gap-4">
                                  <HelpCircle className="h-6 w-6 shrink-0 text-primary" />
                                  {faq.q}
@@ -299,7 +299,7 @@ const Index = () => {
             <div className="container mx-auto px-4 flex justify-center">
                {isMounted && (
                   <div className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-primary/20 bg-white p-2 shadow-2xl shadow-primary/10">
-                     <iframe width="100%" height="500" src="https://embed.vp4.me/LandingPage,d27a1818-1249-4544-b00a-cba4a4d0b754,605750.aspx?r=1009" frameBorder="0" allowFullScreen className="rounded-2xl" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-top-navigation-by-user-activation"></iframe>
+                     <iframe title="צור קשר" width="100%" height="500" src="https://embed.vp4.me/LandingPage,d27a1818-1249-4544-b00a-cba4a4d0b754,605750.aspx?r=1009" frameBorder="0" allowFullScreen className="rounded-2xl" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-top-navigation-by-user-activation"></iframe>
                      <Script id="smoove-embed" src="https://embed.vp4.me/core/embd.min.js?v=20260331172123" strategy="afterInteractive" />
                   </div>
                )}
