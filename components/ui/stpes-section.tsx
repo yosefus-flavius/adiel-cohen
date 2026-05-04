@@ -2,7 +2,7 @@
 
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
-import { FileText, CheckCircle, Handshake, PenSquare, Shield, PartyPopper } from "lucide-react";
+import { FileText, CheckCircle, Handshake, PenSquare, Shield, PartyPopper, ArrowLeft } from "lucide-react";
 
 interface MortgageStep {
   id: string;
@@ -72,7 +72,7 @@ const StepsSections = () => {
         </FadeIn>
 
         {/* Steps Grid */}
-        <StaggerContainer 
+        <StaggerContainer
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
           staggerDelay={0.1}
         >
@@ -96,7 +96,7 @@ const StepsSections = () => {
                     {step.title}
                   </CardTitle>
                 </CardHeader>
-                
+
                 <CardContent>
                   <p className="text-body-sm text-slate-600 text-right leading-relaxed">
                     {step.description}
@@ -114,9 +114,7 @@ const StepsSections = () => {
             className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 transition-colors shadow-lg"
           >
             התחל את התהליך עכשיו
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+            <ArrowLeft className="w-5 h-5" />
           </a>
         </FadeIn>
       </div>

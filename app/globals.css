@@ -91,7 +91,7 @@
   --space-24: 6rem;
 
   --section-padding-y: 6rem;
-  --section-padding-y-mobile: 3rem;
+  --section-padding-y-mobile: 4rem;
   --container-max-width: 72rem;
 
   /* ========================================
@@ -207,6 +207,7 @@
     padding-top: var(--section-padding-y-mobile);
     padding-bottom: var(--section-padding-y-mobile);
   }
+
   @media (min-width: 768px) {
     .section-padding {
       padding-top: var(--section-padding-y);

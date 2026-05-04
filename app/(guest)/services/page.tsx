@@ -3,6 +3,7 @@ import mortgageServices from '@/lib/data/services';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowLeft, Check } from 'lucide-react';
 
 export const metadata: Metadata = {
    title: "שירותים מקצועיים",
@@ -11,76 +12,73 @@ export const metadata: Metadata = {
 
 const MortgageServicesSection = () => {
 
-
    return (
-      <div  >
-         <div className="relative py-24 px-4">
-            <Image src="/services.webp" fill alt="מחשבון משכנתא" className="object-cover z-5" />
-            <div className="absolute inset-0 bg-black opacity-50 z-10" />
-            <div className="relative z-20">
-               <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-center mb-6 rtl">שירותים מקצועיים</h1>
-               <p className="text-center text-white mb-12">אנו מציעים מגוון רחב של שירותי משכנתא מותאמים אישית לצרכים שלכם</p>
+      <div className="bg-[hsl(40,33%,96%)] min-h-screen pb-12">
+         <div className="relative py-24 px-4 overflow-hidden">
+            <Image src="/services-2.webp" fill alt="שירותים מקצועיים" className="object-cover z-0" />
+            <div className="absolute inset-0 bg-slate-900/70 z-10" />
+            <div className="relative z-20 container-main">
+               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center mb-6 text-white">שירותים מקצועיים</h1>
+               <p className="text-center text-slate-200 text-lg md:text-xl max-w-2xl mx-auto">אנו מציעים מגוון רחב של שירותי משכנתא מותאמים אישית לצרכים שלכם</p>
             </div>
          </div>
 
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 py-12 md:py-24 container mx-auto">
-            {mortgageServices.map((service, index) => (
-               <div
-                  key={service.title}
-                  className="transform transition-all duration-300 hover:-translate-y-2"
-                  style={{ animationDelay: `${index * 150}ms` }}
-               >
-                  <Card className="rounded-2xl overflow-hidden border border-amber-100 h-full shadow-sm hover:shadow-xl transition-shadow bg-white">
-                     <div className=" h-11 md:h-9 -mt-3 -ml-2 bg-amber-400 -rotate-3"></div>
-                     <CardHeader className="pt-6 pb-2 px-6">
-                        <div className="flex items-center gap-3 mb-2">
+         <div className="container-main section-padding -mt-8 relative z-30">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+               {mortgageServices.map((service, index) => (
+                  <Card key={service.title} className="relative h-full bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden">
+                     {/* Decorative top-right shape */}
+                     <div className="absolute top-0 right-0 w-20 h-20 overflow-hidden pointer-events-none">
+                        <div className="absolute top-0 right-0 w-28 h-28 bg-[var(--color-brand-gold)]/5 transform rotate-45 translate-x-8 -translate-y-14 transition-transform duration-500 group-hover:scale-110" />
+                     </div>
+
+                     <CardHeader className="pt-8 pb-4 relative z-10">
+                        <div className="flex flex-col items-start gap-4">
                            {service.icon && (
-                              <div className="mr-4 bg-amber-100 p-3 rounded-full">
+                              <div className="w-14 h-14 rounded-xl bg-[var(--color-brand-gold)]/10 flex items-center justify-center text-[var(--color-brand-gold)] group-hover:scale-110 transition-transform duration-300">
                                  {service.icon}
                               </div>
                            )}
-                           <CardTitle className="text-2xl font-bold text-right text-gray-900">
+                           <CardTitle className="text-xl md:text-2xl font-bold text-right text-slate-900 w-full">
                               {service.title}
                            </CardTitle>
                         </div>
                      </CardHeader>
-                     <CardContent className="px-6 pb-6">
-                        <p className="text-gray-600 text-right leading-relaxed">
+
+                     <CardContent className="relative z-10 pb-8">
+                        <p className="text-sm md:text-base text-slate-600 text-right leading-relaxed mb-6">
                            {service.description}
                         </p>
 
                         {service.features && (
-                           <ul className="mt-4 space-y-2 text-right">
+                           <ul className="space-y-3 text-right border-t border-slate-100 pt-6 mt-auto">
                               {service.features.map((feature, i) => (
-                                 <li key={i} className="flex items-center justify-start text-gray-700">
-                                    <div className="h-5 w-5 text-amber-600 shrink-0">
-                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                       </svg>
+                                 <li key={i} className="flex items-start justify-start text-slate-700">
+                                    <div className="w-5 h-5 rounded-full bg-[var(--color-brand-gold)]/10 flex items-center justify-center text-[var(--color-brand-gold)] shrink-0 ml-3 mt-0.5">
+                                       <Check className="w-3 h-3" strokeWidth={3} />
                                     </div>
-                                    <span className="mr-2">{feature}</span>
+                                    <span className="text-sm">{feature}</span>
                                  </li>
                               ))}
                            </ul>
                         )}
-
                      </CardContent>
                   </Card>
-               </div>
-            ))}
-         </div>
+               ))}
+            </div>
 
-         <div className="text-center mb-12">
-            <Link href="/#contact">
-               <button className="bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-8 rounded-full transition-colors shadow-lg hover:shadow-xl">
+            <div className="text-center mt-16">
+               <Link
+                  href="/#contact"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 transition-colors shadow-lg hover:shadow-xl group"
+               >
                   לייעוץ ראשוני חינם
-               </button>
-            </Link>
+                  <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+               </Link>
+            </div>
          </div>
-
       </div>
    );
 };
-
 
 export default MortgageServicesSection;

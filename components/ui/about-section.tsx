@@ -1,8 +1,8 @@
 "use client";
 
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
 import { aboutInfo } from "@/lib/data/about";
 import Image from "next/image";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
 
 export function AboutSection() {
   return (
@@ -21,9 +21,9 @@ export function AboutSection() {
                   className="object-cover opacity-60"
                 />
               </div>
-              
+
               {/* Main Image */}
-              <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl">
+              <div className="relative z-10 rounded-2xl overflow-hidden ">
                 <Image
                   src={aboutInfo.image}
                   alt={aboutInfo.title}
@@ -39,9 +39,12 @@ export function AboutSection() {
           <div className="order-1 lg:order-2">
             <StaggerContainer className="space-y-5" staggerDelay={0.1}>
               <StaggerItem>
-                <span className="text-sm font-medium text-[var(--color-brand-gold)]">
-                  אודות
-                </span>
+                <div className="flex items-center gap-3 mb-3 mt-6 md:mt-0">
+                  <div className="w-8 h-0.5 bg-[var(--color-brand-gold)]" />
+                  <span className="text-sm font-semibold text-[var(--color-brand-gold)] uppercase tracking-wider">
+                    אודות
+                  </span>
+                </div>
               </StaggerItem>
 
               <StaggerItem>

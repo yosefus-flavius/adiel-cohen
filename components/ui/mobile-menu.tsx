@@ -17,9 +17,9 @@ export function MobileMenu({ links = [], scrolled = false }: MobileMenuProps) {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button 
-          variant="ghost" 
-          size="icon" 
+        <Button
+          variant="ghost"
+          size="icon"
           className={cn(
             "xl:hidden",
             scrolled ? "text-slate-900" : "text"
@@ -32,10 +32,10 @@ export function MobileMenu({ links = [], scrolled = false }: MobileMenuProps) {
       <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-white border-l border-slate-200">
         <SheetTitle className="sr-only">תפריט ניווט</SheetTitle>
         <SheetDescription className="sr-only">תפריט ניווט</SheetDescription>
-        
+
         {/* Mobile Menu Header */}
         <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
-          <span className="text-xl font-bold">
+          <span className="text-xl font-bold text-black">
             <span className="text-[var(--color-brand-gold)]">עדיאל</span> כהן
           </span>
         </div>
