@@ -1,8 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { FadeIn, FadeInOnly } from "@/components/animations";
 
 export function Hero() {
   return (
@@ -14,58 +10,44 @@ export function Hero() {
           alt="עדיאל כהן - יועץ משכנתאות"
           fill
           className="object-cover opacity-40"
+          sizes="100vw"
+          quality={70}
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-slate-900/60" />
       </div>
 
       {/* Decorative Elements */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.1, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute top-20 right-10 w-72 h-72 bg-[var(--color-brand-gold)] rounded-full blur-[100px]"
-      />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.05, scale: 1 }}
-        transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
-        className="absolute bottom-20 left-10 w-96 h-96 bg-[var(--color-brand-gold)] rounded-full blur-[120px]"
-      />
+      <div aria-hidden="true" className="absolute top-20 right-10 w-72 h-72 bg-[var(--color-brand-gold)] rounded-full blur-[100px] opacity-10" />
+      <div aria-hidden="true" className="absolute bottom-20 left-10 w-96 h-96 bg-[var(--color-brand-gold)] rounded-full blur-[120px] opacity-5" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[90vh] px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-4xl mx-auto">
 
           {/* Main Heading */}
-          <FadeIn delay={0.2}>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">
               עדיאל כהן
               <br />
               <span className="text-[var(--color-brand-gold)]">
                 יועץ משכנתאות מוסמך
               </span>
             </h1>
-          </FadeIn>
 
           {/* Subtitle */}
-          <FadeIn delay={0.4}>
-            <p className="mt-6 md:mt-8 text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-6 md:mt-8 text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
               מלווה אותך לאורך כל הדרך למשכנתא המושלמת עבורך
               {' '}
               <br className="hidden sm:block" />
               עם ליווי אישי, מקצועי ואנושי
             </p>
-          </FadeIn>
 
           {/* CTA Buttons */}
-          <FadeIn delay={0.6}>
+          <div className="hero-fade-up" style={{ animationDelay: "0.15s" }}>
             <div className="mt-10 md:mt-12 flex sm:flex-row items-center justify-center gap-4">
-              <motion.a
+              <a
                 href="#contact"
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="group relative px-5 flex items-center gap-2 py-2 bg-[var(--color-brand-gold)] text-slate-900 font-semibold text-lg rounded-xl shadow-lg shadow-[var(--color-brand-gold)]/25 transition-all duration-300 hover:shadow-xl hover:shadow-[var(--color-brand-gold)]/40"
+                className="group relative px-5 flex hover:-translate-y-0.5 active:scale-[0.98] items-center gap-2 py-2 bg-[var(--color-brand-gold)] text-slate-900 font-semibold text-lg rounded-xl shadow-lg shadow-[var(--color-brand-gold)]/25 transition-all duration-300 hover:shadow-xl hover:shadow-[var(--color-brand-gold)]/40"
               >
                   <svg 
                     className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
@@ -78,21 +60,19 @@ export function Hero() {
                 <span className="relative z-10 flex items-center gap-2">
                   דבר איתי
                 </span>
-              </motion.a>
+              </a>
               
-              <motion.a
+              <a
                 href="#about"
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-5 py-2 bg-white/10 backdrop-blur-sm text-white font-semibold text-lg rounded-xl border border-white/20 transition-all duration-300 hover:bg-white/20"
+                className="px-5 py-2 hover:-translate-y-0.5 active:scale-[0.98] bg-white/10 backdrop-blur-sm text-white font-semibold text-lg rounded-xl border border-white/20 transition-all duration-300 hover:bg-white/20"
               >
                 קצת עלי
-              </motion.a>
+              </a>
             </div>
-          </FadeIn>
+          </div>
 
           {/* Trust Indicators */}
-          <FadeIn delay={0.8}>
+          <div className="hero-fade-up" style={{ animationDelay: "0.3s" }}>
             <div className="mt-12 md:mt-16 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-400">
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-[var(--color-brand-gold)]" fill="currentColor" viewBox="0 0 20 20">
@@ -113,7 +93,7 @@ export function Hero() {
                 <span>מחזור משכנתא</span>
               </div>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </div>
     </section>

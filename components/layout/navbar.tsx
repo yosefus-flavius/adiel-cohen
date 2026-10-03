@@ -5,7 +5,6 @@ import { MobileMenu } from "@/components/ui/mobile-menu";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { guestLinks } from "@/lib/data/nav-links";
 
 export function Navbar() {
@@ -21,12 +20,9 @@ export function Navbar() {
   }, []);
 
   return (
-    <motion.header 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "navbar-enter fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled 
           ? "bg-white/90 backdrop-blur-lg shadow-sm border-b border-slate-200/50" 
           : "bg-transparent"
@@ -85,6 +81,6 @@ export function Navbar() {
           <MobileMenu links={guestLinks} scrolled={scrolled} />
         </div>
       </nav>
-    </motion.header>
+    </header>
   );
 }
