@@ -59,7 +59,15 @@ Metadata routes: `app/sitemap.ts` (force-dynamic, reads blogs from DB), `app/rob
 2. **User experience**
 3. **UX/UI design**
 
-### Known issues found during initial read (candidates, not yet fixed)
+### Done on branch `seo-perf` (3 commits)
+- SEO: per-page canonicals (root canonical removed), valid WebSite + FinancialService JSON-LD (address street/city is inferred from `lib/data/contact.ts`, owner should confirm), Article JSON-LD + twitter cards + canonical on blog posts, sitemap uses real `updatedAt`, robots URL fallback, `/login` noindex.
+- Perf: hero is a server component with CSS animations (no framer-motion in hero/navbar), heading renders immediately, hero image has `sizes`.
+- A11y: `--color-brand-gold-text` (#8a6410) for gold text on light backgrounds, `<main>` on /services and /leads, heading order, calc iframe title, jQuery on /calc loads afterInteractive.
+- Baseline Lighthouse (mobile, prod build, localhost): home perf 40, services 46, calc 43, restore 63, blog 43, leads 53, blog post 85; SEO 92-100, A11y 91-98. Not yet re-measured after these changes.
+- Not actionable: shared 46 KB chunk is Next's own runtime; the `_DSC89xx.webp` files are not referenced anywhere in code (unused, ~20 MB in repo; owner decides whether to delete).
+- Gotcha: the user's `next dev` shares `.next`; builds need free RAM (~1.5 GB). `tsc --noEmit` needs `NODE_OPTIONS=--max-old-space-size=3072`.
+
+### Known issues found during initial read (candidates; items above are done)
 SEO / structured data
 - `app/layout.tsx` WebSite JSON-LD is invalid JSON (`"url": ${...}` is unquoted) and uses `next/script beforeInteractive`; replace with a `<script type="application/ld+json">` with `JSON.stringify`. Add `Organization`/`FinancialService`/`LocalBusiness` + `Person` (Adiel), `Article` on blog posts, `BreadcrumbList`, `FAQPage` where there is FAQ content.
 - `canonical: '/'` is set in the root layout, so inner pages inherit the homepage canonical unless they override it. Each page needs its own `alternates.canonical`.
