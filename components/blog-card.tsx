@@ -8,9 +8,10 @@ import { Calendar, ArrowLeft, Tag } from 'lucide-react'
 
 interface BlogCardProps {
   blog: IBlog;
+  headingLevel?: 'h2' | 'h3';
 }
 
-export default function BlogCard({ blog }: BlogCardProps) {
+export default function BlogCard({ blog, headingLevel: Heading = 'h3' }: BlogCardProps) {
   const formattedDate = new Date(blog.date).toLocaleDateString("he-IL", {
     year: "numeric",
     month: "short",
@@ -52,9 +53,9 @@ export default function BlogCard({ blog }: BlogCardProps) {
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-[var(--color-brand-gold)] transition-colors">
+          <Heading className="text-lg font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-[var(--color-brand-gold-text)] transition-colors">
             {blog.title}
-          </h3>
+          </Heading>
 
           {/* Excerpt */}
           <p className="text-slate-600 text-sm leading-relaxed line-clamp-2 mb-4 flex-grow">
@@ -81,7 +82,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
             </div>
 
             {/* Read More Link */}
-            <span className="flex items-center gap-1 text-sm font-semibold text-[var(--color-brand-gold)] group-hover:gap-2 transition-all">
+            <span className="flex items-center gap-1 text-sm font-semibold text-[var(--color-brand-gold-text)] group-hover:gap-2 transition-all">
               קרא עוד
               <ArrowLeft className="w-4 h-4" />
             </span>

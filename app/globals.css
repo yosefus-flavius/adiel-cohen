@@ -46,6 +46,8 @@
   --color-brand-gold: rgb(224, 185, 101);
   --color-brand-gold-dark: rgb(200, 165, 85);
   --color-brand-dark: rgb(30, 41, 59);
+  /* Darker gold for text on light backgrounds (>= 4.5:1 on white) */
+  --color-brand-gold-text: #8a6410;
   
   /* Text Colors */
   --color-text-primary: #1a1a1a;

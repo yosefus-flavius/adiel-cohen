@@ -39,7 +39,7 @@ export function Navbar() {
               : "text"
           )}
         >
-          <span className="text-[var(--color-brand-gold)]">עדיאל</span> כהן
+          <span className={scrolled ? "text-[var(--color-brand-gold-text)]" : "text-[var(--color-brand-gold)]"}>עדיאל</span> כהן
         </Link>
 
         {/* Desktop Navigation */}

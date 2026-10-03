@@ -41,7 +41,7 @@ export function AboutSection() {
               <StaggerItem>
                 <div className="flex items-center gap-3 mb-3 mt-6 md:mt-0">
                   <div className="w-8 h-0.5 bg-[var(--color-brand-gold)]" />
-                  <span className="text-sm font-semibold text-[var(--color-brand-gold)] uppercase tracking-wider">
+                  <span className="text-sm font-semibold text-[var(--color-brand-gold-text)] uppercase tracking-wider">
                     אודות
                   </span>
                 </div>

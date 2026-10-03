@@ -35,7 +35,7 @@ export async function LatestBlogs() {
           <div>
             <div className="flex items-center gap-3 mb-3">
               <div className="w-8 h-0.5 bg-[var(--color-brand-gold)]" />
-              <span className="text-sm font-semibold text-[var(--color-brand-gold)] uppercase tracking-wider">
+              <span className="text-sm font-semibold text-[var(--color-brand-gold-text)] uppercase tracking-wider">
                 בלוג
               </span>
             </div>
@@ -46,7 +46,7 @@ export async function LatestBlogs() {
           
           <Link href="/blog">
             <Button 
-              className="text-[var(--color-brand-gold)] hover:text-[var(--color-brand-gold-dark)] flex gap-2 items-center font-semibold" 
+              className="text-[var(--color-brand-gold-text)] hover:text-[var(--color-brand-gold-dark)] flex gap-2 items-center font-semibold" 
               variant="ghost"
             >
               לכל הכתבות

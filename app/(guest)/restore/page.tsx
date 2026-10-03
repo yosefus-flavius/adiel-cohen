@@ -99,7 +99,7 @@ export default function MortgageRefinancingPage() {
                            <TrendingDown className="w-7 h-7" />
                         </div>
                         <div className="w-full">
-                           <div className="text-[var(--color-brand-gold)] font-bold text-sm mb-2">סיבה 01</div>
+                           <div className="text-[var(--color-brand-gold-text)] font-bold text-sm mb-2">סיבה 01</div>
                            <CardTitle className="text-xl md:text-2xl font-bold text-right text-slate-900 leading-tight">
                               הפוטנציאל לחיסכון במסלול הריבית המשתנה
                            </CardTitle>
@@ -118,7 +118,7 @@ export default function MortgageRefinancingPage() {
 
                      <div className="bg-[var(--color-brand-gold)]/5 border-r-4 border-[var(--color-brand-gold)] p-5 rounded-lg">
                         <h3 className="font-bold text-sm text-slate-900 mb-2">
-                           <span className="text-[var(--color-brand-gold)]">ההזדמנות:</span>
+                           <span className="text-[var(--color-brand-gold-text)]">ההזדמנות:</span>
                         </h3>
                         <p className="text-slate-600 text-sm md:text-base leading-relaxed">
                            ניתן להשיג כיום מרווחים נמוכים יותר על העוגן. מחזור מאפשר להחליף את המסלול או לבצע מו"מ מחדש על תנאי ההלוואה.
@@ -139,7 +139,7 @@ export default function MortgageRefinancingPage() {
                            <Calculator className="w-7 h-7" />
                         </div>
                         <div className="w-full">
-                           <div className="text-[var(--color-brand-gold)] font-bold text-sm mb-2">סיבה 02</div>
+                           <div className="text-[var(--color-brand-gold-text)] font-bold text-sm mb-2">סיבה 02</div>
                            <CardTitle className="text-xl md:text-2xl font-bold text-right text-slate-900 leading-tight">
                               הוזלת המרווח במסלול הפריים
                            </CardTitle>
@@ -158,7 +158,7 @@ export default function MortgageRefinancingPage() {
 
                      <div className="bg-[var(--color-brand-gold)]/5 border-r-4 border-[var(--color-brand-gold)] p-5 rounded-lg">
                         <h3 className="font-bold text-sm text-slate-900 mb-2">
-                           <span className="text-[var(--color-brand-gold)]">התועלת הישירה:</span>
+                           <span className="text-[var(--color-brand-gold-text)]">התועלת הישירה:</span>
                         </h3>
                         <p className="text-slate-600 text-sm md:text-base leading-relaxed">
                            בדיקה מאפשרת להוזיל את המרווח באופן נקודתי, ובכך להפחית את עלות הריבית על רכיב זה במשכנתא ולצמצם את ההחזר.
@@ -179,7 +179,7 @@ export default function MortgageRefinancingPage() {
                            <Shield className="w-7 h-7" />
                         </div>
                         <div className="w-full">
-                           <div className="text-[var(--color-brand-gold)] font-bold text-sm mb-2">סיבה 03</div>
+                           <div className="text-[var(--color-brand-gold-text)] font-bold text-sm mb-2">סיבה 03</div>
                            <CardTitle className="text-xl md:text-2xl font-bold text-right text-slate-900 leading-tight">
                               טיפול בחשיפה למדד: הקרן שגדלה
                            </CardTitle>
@@ -198,7 +198,7 @@ export default function MortgageRefinancingPage() {
 
                      <div className="bg-[var(--color-brand-gold)]/5 border-r-4 border-[var(--color-brand-gold)] p-5 rounded-lg">
                         <h3 className="font-bold text-sm text-slate-900 mb-2">
-                           <span className="text-[var(--color-brand-gold)]">הפתרון המקצועי:</span>
+                           <span className="text-[var(--color-brand-gold-text)]">הפתרון המקצועי:</span>
                         </h3>
                         <p className="text-slate-600 text-sm md:text-base leading-relaxed">
                            באמצעות מחזור, ניתן לצמצם את החשיפה למדד על ידי המרת חלק מהמסלול למסלולים שאינם צמודים.
@@ -219,7 +219,7 @@ export default function MortgageRefinancingPage() {
                            <CheckCircle className="w-7 h-7" />
                         </div>
                         <div className="w-full">
-                           <div className="text-[var(--color-brand-gold)] font-bold text-sm mb-2">סיבה 04</div>
+                           <div className="text-[var(--color-brand-gold-text)] font-bold text-sm mb-2">סיבה 04</div>
                            <CardTitle className="text-xl md:text-2xl font-bold text-right text-slate-900 leading-tight">
                               התאמת ההחזר החודשי לשינויים בתזרים הבית
                            </CardTitle>
@@ -265,7 +265,7 @@ export default function MortgageRefinancingPage() {
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900">ההמלצה המקצועית שלי</h2>
                   <p className="text-xl md:text-2xl font-medium leading-relaxed mb-4 text-slate-800">
-                     אני ממליץ לכל לווה לבצע <strong className="text-[var(--color-brand-gold)]">בדיקת כדאיות מחזור יזומה אחת לשנתיים</strong>.
+                     אני ממליץ לכל לווה לבצע <strong className="text-[var(--color-brand-gold-text)]">בדיקת כדאיות מחזור יזומה אחת לשנתיים</strong>.
                   </p>
                   <p className="text-lg leading-relaxed text-slate-600">
                      בכך תבטיחו שהמשכנתא שלכם מתאימה למצב בשוק וליכולת ההחזר הריאלית שלכם.
@@ -279,7 +279,7 @@ export default function MortgageRefinancingPage() {
                   <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
                      בדיקת כדאיות מקצועית
                   </h2>
-                  <p className="text-xl text-[var(--color-brand-gold)] font-semibold">חינם וללא התחייבות</p>
+                  <p className="text-xl text-[var(--color-brand-gold-text)] font-semibold">חינם וללא התחייבות</p>
                </div>
 
                <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-10">

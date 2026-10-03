@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const MortgageServicesSection = () => {
 
    return (
-      <div className="bg-[hsl(40,33%,96%)] min-h-screen pb-12">
+      <main className="bg-[hsl(40,33%,96%)] min-h-screen pb-12">
          <div className="relative py-24 px-4 overflow-hidden">
             <Image src="/services-2.webp" fill alt="שירותים מקצועיים" className="object-cover z-0" />
             <div className="absolute inset-0 bg-slate-900/70 z-10" />
@@ -78,7 +78,7 @@ const MortgageServicesSection = () => {
                </Link>
             </div>
          </div>
-      </div>
+      </main>
    );
 };
 

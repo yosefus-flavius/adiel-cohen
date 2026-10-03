@@ -36,7 +36,7 @@ export function MobileMenu({ links = [], scrolled = false }: MobileMenuProps) {
         {/* Mobile Menu Header */}
         <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
           <span className="text-xl font-bold text-black">
-            <span className="text-[var(--color-brand-gold)]">עדיאל</span> כהן
+            <span className="text-[var(--color-brand-gold-text)]">עדיאל</span> כהן
           </span>
         </div>
 

@@ -82,7 +82,7 @@ const StepsSections = () => {
                 {/* Step Number Badge */}
                 <div className="absolute top-0 right-0 w-20 h-20 overflow-hidden">
                   <div className="absolute top-0 right-0 w-28 h-28 bg-[var(--color-brand-gold)]/10 transform rotate-45 translate-x-8 -translate-y-14" />
-                  <span className="absolute top-3 right-3 text-2xl font-bold text-[var(--color-brand-gold)]">
+                  <span className="absolute top-3 right-3 text-2xl font-bold text-[var(--color-brand-gold-text)]">
                     {step.number}
                   </span>
                 </div>

@@ -59,7 +59,7 @@ const Index = () => {
    };
 
    return (
-      <div className="min-h-screen bg-background text-foreground selection:bg-primary/30">
+      <main className="min-h-screen bg-background text-foreground selection:bg-primary/30">
 
          {/* Hero Section */}
          <section className="relative overflow-hidden py-20 md:py-32">
@@ -307,7 +307,7 @@ const Index = () => {
          </section>
          {/* Floating CTA */}
          <FloatingCTA />
-      </div>
+      </main>
    );
 };
 

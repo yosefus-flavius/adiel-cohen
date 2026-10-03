@@ -65,7 +65,7 @@ export function Footer() {
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-white font-semibold mb-6">קישורים מהירים</h3>
+              <h2 className="text-white font-semibold mb-6">קישורים מהירים</h2>
               <ul className="space-y-3">
                 {guestLinks.filter(l => !l.isButton).slice(0, 6).map((link) => (
                   <li key={link.name}>
@@ -83,7 +83,7 @@ export function Footer() {
 
             {/* Services */}
             <div>
-              <h3 className="text-white font-semibold mb-6">שירותים</h3>
+              <h2 className="text-white font-semibold mb-6">שירותים</h2>
               <ul className="space-y-3 text-sm">
                 <li>
                   <Link href="/services" className="text-slate-400 hover:text-[var(--color-brand-gold)] transition-colors">
@@ -110,7 +110,7 @@ export function Footer() {
 
             {/* Contact Info */}
             <div>
-              <h3 className="text-white font-semibold mb-6">פרטי התקשרות</h3>
+              <h2 className="text-white font-semibold mb-6">פרטי התקשרות</h2>
               <ul className="space-y-4">
                 <li>
                   <a 
