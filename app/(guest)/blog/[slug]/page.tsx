@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 import RelatedPosts from "./related-posts";
 import Link from "next/link";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://adiel-cohen.co.il";
+
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug
   await connectToDatabase();
@@ -24,8 +26,26 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     date: blogDoc.date ? new Date(blogDoc.date).toISOString() : undefined,
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: blog.title,
+    description: blog.excerpt,
+    image: blog.coverImage,
+    datePublished: blog.date,
+    dateModified: blog.updatedAt ?? blog.date,
+    author: { "@type": "Person", name: blog.author || "עדיאל כהן" },
+    publisher: { "@type": "Organization", name: "עדיאל כהן - יועץ משכנתאות", url: siteUrl },
+    mainEntityOfPage: `${siteUrl}/blog/${blog.slug}`,
+    inLanguage: "he-IL",
+  };
+
   return (
     <main className="min-h-screen py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c") }}
+      />
       <article className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <header className="mb-12">
@@ -94,24 +114,27 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     } as Metadata;
   }
 
+  const url = `${siteUrl}/blog/${blog.slug}`;
+
   return {
     title: blog.title,
     description: blog.excerpt,
+    alternates: { canonical: `/blog/${blog.slug}` },
     openGraph: {
       title: blog.title,
       description: blog.excerpt,
       type: "article",
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${blog.slug}`,
-      images: [
-        {
-          url: blog.coverImage,
-          width: 800,
-          height: 600,
-          alt: blog.title,
-        },
-      ],
+      url,
+      publishedTime: blog.date ? new Date(blog.date).toISOString() : undefined,
+      modifiedTime: blog.updatedAt ? new Date(blog.updatedAt).toISOString() : undefined,
+      authors: [blog.author],
+      images: [{ url: blog.coverImage, alt: blog.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description: blog.excerpt,
+      images: [blog.coverImage],
     },
   } as Metadata;
 }
-//  for testing await 20 seconds
-// await new Promise((resolve) => setTimeout(resolve, 20000));

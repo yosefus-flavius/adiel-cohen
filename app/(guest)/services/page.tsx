@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ArrowLeft, Check } from 'lucide-react';
 
 export const metadata: Metadata = {
+   alternates: { canonical: '/services' },
    title: "שירותים מקצועיים",
    description: "אנו מציעים מגוון רחב של שירותי משכנתא מותאמים אישית לצרכים שלכם",
 }

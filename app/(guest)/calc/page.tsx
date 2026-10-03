@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
+   alternates: { canonical: '/calc' },
    title: "מחשבון משכנתא",
    description: "חישוב משכנתא בקלות",
 }

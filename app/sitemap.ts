@@ -12,15 +12,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Get all blog posts URLs
   const blogUrlsRaw = await BlogModel.find({ isActive: true })
-    .select("slug")
+    .select("slug updatedAt")
     .lean()
     .exec()
 
   const blogUrls = blogUrlsRaw.map((blog) => ({
     url: `${siteUrl}/blog/${blog.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "daily" as const,
-    priority: 0.8,
+    lastModified: blog.updatedAt ? new Date(blog.updatedAt) : undefined,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
   }));
 
 
@@ -28,37 +28,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
     {
       url: siteUrl,
-      lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 1,
     },
     {
       url: `${siteUrl}/blog`,
-      lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     },
     {
       url: `${siteUrl}/services`,
-      lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     },
     {
       url: `${siteUrl}/calc`,
-      lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     },
     {
       url: `${siteUrl}/news`,
-      lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     },
     {
       url: `${siteUrl}/restore`,
-      lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     },

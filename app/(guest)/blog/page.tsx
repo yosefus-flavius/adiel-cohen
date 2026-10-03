@@ -7,6 +7,7 @@ import { connectToDatabase } from "@/server/connect";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
+   alternates: { canonical: '/blog' },
   title: "כתבות משכנתאות",
   description: "כתבות ותחקירים בנושא חדשות פיננסים ומשכנתאות "
 }

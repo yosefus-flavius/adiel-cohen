@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
+   alternates: { canonical: '/news' },
    title: "חדשות משכנתא",
    description: "חדשות ותחקירים בנושא חדשות פיננסים ומשכנתאות",
 }

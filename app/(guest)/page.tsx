@@ -6,6 +6,11 @@ import { LatestBlogsSkeleton } from "@/components/ui/latest-blogs-skeleton";
 import StepsSections from "@/components/ui/stpes-section";
 import { TestimonialsSection } from "@/components/ui/testimonials-section";
 import { Suspense } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   

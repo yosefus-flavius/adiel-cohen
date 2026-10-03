@@ -8,8 +8,42 @@ import { Footer } from "@/components/layout/footer";
 import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from "next/script";
+import { contactInfo } from "@/lib/data/contact";
 
 const heebo = Heebo({ subsets: ["hebrew", "latin"] });
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://adiel-cohen.co.il';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "עדיאל כהן - יועץ משכנתאות",
+      url: siteUrl,
+      inLanguage: "he-IL",
+    },
+    {
+      "@type": "FinancialService",
+      "@id": `${siteUrl}/#business`,
+      name: "עדיאל כהן - יועץ משכנתאות",
+      url: siteUrl,
+      image: `${siteUrl}/front.webp`,
+      telephone: contactInfo.phone,
+      email: contactInfo.email,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "מנדלי מוכר ספרים 2",
+        addressLocality: "רחובות",
+        addressCountry: "IL",
+      },
+      areaServed: "IL",
+      founder: { "@type": "Person", name: "עדיאל כהן", jobTitle: "יועץ משכנתאות" },
+      sameAs: [contactInfo.socialMedia.facebook],
+    },
+  ],
+};
 
 export const metadata: Metadata = {
   title: {
@@ -27,9 +61,6 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://adiel-cohen.co.il'),
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
     title: "עדיאל כהן - הדרך הפשוטה למשכנתא שלך",
     description: "יועץ משכנתאות המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא",
@@ -45,6 +76,12 @@ export const metadata: Metadata = {
     ],
     locale: 'he_IL',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "עדיאל כהן - הדרך הפשוטה למשכנתא שלך",
+    description: "יועץ משכנתאות המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא",
+    images: ['/front.webp'],
   },
   robots: {
     index: true,
@@ -74,17 +111,10 @@ export default function RootLayout({
     <html lang="he" dir="rtl">
       <body className={`${heebo.className}  bg-[hsl(var(--background))]`}>
         <div className="h-16" />
-        {/* jsonld name website */}
-        <Script type="application/ld+json" strategy="beforeInteractive">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "עדיאל כהן - יועץ משכנתאות",
-              "url": ${process.env.NEXT_PUBLIC_SITE_URL}
-            }
-          `}
-        </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Script id="nagishli-config" strategy="beforeInteractive">
           {`
             var nl_dir = "/nagishli_v3_beta/nagishli-files/";
