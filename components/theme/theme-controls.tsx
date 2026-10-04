@@ -74,7 +74,7 @@ export function ThemeSegmented({ className }: { className?: string }) {
       <div
         role="group"
         aria-label="מצב תצוגה"
-        className="inline-flex overflow-hidden rounded-xl border border-slate-700"
+        className="inline-flex overflow-hidden rounded-xl border border-border"
       >
         {options.map((option) => {
           const Icon = ICONS[option];
@@ -89,7 +89,7 @@ export function ThemeSegmented({ className }: { className?: string }) {
                 "inline-flex min-h-11 items-center gap-2 px-4 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[var(--color-brand-gold)]",
                 active
                   ? "bg-[var(--color-brand-gold)] text-[#1B1405]"
-                  : "text-slate-200 hover:bg-slate-800"
+                  : "text-foreground hover:bg-muted"
               )}
             >
               <Icon className="h-4 w-4" aria-hidden="true" />
@@ -98,7 +98,7 @@ export function ThemeSegmented({ className }: { className?: string }) {
           );
         })}
       </div>
-      <p className="mt-2 text-xs text-slate-400">ברירת המחדל לפי הגדרות המכשיר</p>
+      <p className="mt-2 text-xs text-muted-foreground">ברירת המחדל לפי הגדרות המכשיר</p>
     </div>
   );
 }

@@ -36,6 +36,16 @@ export function AboutSection() {
           <p className="text-lg leading-relaxed text-muted-foreground">{aboutInfo.content}</p>
           <p className="text-lg leading-relaxed text-muted-foreground">{aboutInfo.experience}</p>
 
+          <div className="flex flex-wrap items-center gap-4 rounded-2xl bg-white px-5 py-3">
+            <Image
+              src={aboutInfo.unionImage}
+              alt="לשכת יועצי המשכנתאות"
+              width={180}
+              height={53}
+              className="h-12 w-auto"
+            />
+          </div>
+
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-border bg-background p-5">
               <h3 className="mb-2 text-base font-bold text-[var(--color-brand-gold-text)]">הכשרה</h3>

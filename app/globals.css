@@ -470,3 +470,12 @@ summary:focus-visible {
   outline: 2px solid hsl(var(--foreground));
   outline-offset: 2px;
 }
+
+/* Light mode: cool slate-mist gradient on page sections only; small cards and inputs stay flat (dark mode stays flat) */
+:root:not(.dark) section.bg-background:not(.no-mist),
+:root:not(.dark) main.bg-background,
+:root:not(.dark) body {
+  background-image:
+    radial-gradient(70% 55% at 10% 0%, rgba(148, 170, 205, 0.35), transparent 70%),
+    linear-gradient(180deg, #eef1f6 0%, #f6f3ea 100%);
+}
