@@ -101,12 +101,13 @@ Design
 ## Owner decisions
 - Main goal: **more leads** (form submissions, WhatsApp clicks, phone calls). Judge UX/design changes by this.
 - Design scope: **moderate refresh**. Keep brand colors (gold + dark slate); rework hero, sections, cards. No full rebrand.
-- Theme: **light + dark with a toggle**. Finish dark mode properly (tokens, no hard-coded `bg-white`/`slate-*` that break in dark).
+- Theme: **light + dark, both available to visitors**. Default = the visitor's OS preference (`prefers-color-scheme`); manual toggle (auto / light / dark) in navbar and footer, remembered per visitor. Finish dark mode properly (tokens, no hard-coded `bg-white`/`slate-*` that break in dark). Avoid a flash of wrong theme (set the class before paint).
 - Page priority: unknown, treat all pages equally.
 - Trust data: owner has only some real data. Never invent numbers, ratings, license numbers or lender names; ask for each item.
 - Traffic: site is **live, organic only**. Do not change existing URLs without 301 redirects; protect rankings; keep GA working.
 - Workflow: **audit first** (production build + Lighthouse), present a ranked list for approval before changing code.
 - Tooling: use the `ui-ux-pro-max:ui-ux-pro-max` skill for design/UX work (palette, typography, UX guidelines, accessibility), and `ui-ux-pro-max:ui-styling` for dark mode/Tailwind tokens.
+- Design mockups (canvas with 4 full-homepage directions A-D, each light+dark): https://claude.ai/artifact/5g1HYWfqxspKDugC6XVa4m . Real content used: lib/data/*, `aboutInfo.image` (/about-no-bg.webp) must stay in the About section. Dark gold text token `--color-brand-gold-text` for light mode.
 - Design process: before implementing any visual redesign, **show the user 4 distinct design ideas** (mockups/previews) and wait for their pick.
 - `/leads` page: **leave the `https://embed.vp4.me` script as is** (app/(guest)/leads/page.tsx). Do not remove or defer it.
 - Risky changes (lazy-loading Nagishli, admin security fixes, real lead API/spam protection, blog content format/DB changes): **ask the user before each one**; never do them silently.
