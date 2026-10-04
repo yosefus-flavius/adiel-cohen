@@ -4,18 +4,54 @@ import { Heebo } from "next/font/google";
 import "./globals.css";
 // import "./animations.css";
 import { Footer } from "@/components/layout/footer";
-import { ScrollToTop } from "@/components/ui/scroll-to-top";
+// import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { contactInfo } from "@/lib/data/contact";
+import { themeInitScript } from "@/lib/theme";
+import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from "next/script";
 
 const heebo = Heebo({ subsets: ["hebrew", "latin"] });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://adiel-cohen.co.il';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "עדיאל כהן - יועץ משכנתאות",
+      url: siteUrl,
+      inLanguage: "he-IL",
+    },
+    {
+      "@type": "FinancialService",
+      "@id": `${siteUrl}/#business`,
+      name: "עדיאל כהן - יועץ משכנתאות",
+      url: siteUrl,
+      image: `${siteUrl}/og-image.jpg`,
+      telephone: contactInfo.phone,
+      email: contactInfo.email,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "מנדלי מוכר ספרים 2",
+        addressLocality: "רחובות",
+        addressCountry: "IL",
+      },
+      areaServed: "IL",
+      founder: { "@type": "Person", name: "עדיאל כהן", jobTitle: "יועץ משכנתאות" },
+      sameAs: [contactInfo.socialMedia.facebook],
+    },
+  ],
+};
+
 export const metadata: Metadata = {
   title: {
-    default: "עדיאל כהן - יועץ משכנתאות מוסמך",
+    default: "עדיאל כהן - הדרך הפשוטה למשכנתא שלך ",
     template: "%s | עדיאל כהן"
   },
-  description: "יועץ משכנתאות מוסמך המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא. מספק ייעוץ מקצועי, אמין ומותאם אישית לצרכי הלקוח",
+  description: "יועץ משכנתאות  המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא. מספק ייעוץ מקצועי, אמין ומותאם אישית לצרכי הלקוח",
   keywords: ["יועץ משכנתאות", "משכנתא", "ייעוץ משכנתאות", "מימון לדירה", "הלוואת משכנתא", "עדיאל כהן"],
   authors: [{ name: "עדיאל כהן" }],
   creator: "עדיאל כהן",
@@ -26,18 +62,14 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://adiel-cohen.co.il'),
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
-    title: "עדיאל כהן - יועץ משכנתאות מוסמך",
-    description: "יועץ משכנתאות מוסמך המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא",
+    title: "עדיאל כהן - הדרך הפשוטה למשכנתא שלך",
+    description: "יועץ משכנתאות המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא",
     url: '/',
     siteName: "עדיאל כהן - יועץ משכנתאות",
     images: [
       {
-        // TODO- change
-        url: '/1.webp',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'עדיאל כהן - יועץ משכנתאות',
@@ -45,6 +77,12 @@ export const metadata: Metadata = {
     ],
     locale: 'he_IL',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "עדיאל כהן - הדרך הפשוטה למשכנתא שלך",
+    description: "יועץ משכנתאות המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא",
+    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -57,11 +95,15 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
-  },
+  // verification: {
+  //   google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
+  // },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
 };
 
@@ -71,9 +113,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="he" dir="rtl">
-      <body className={`${heebo.className} bg-[hsl(var(--background))]`}>
+    <html lang="he" dir="rtl" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className={`${heebo.className}  bg-[hsl(var(--background))]`}>
         <div className="h-16" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+
+        <Script
+          src="https://cdn.userway.org/widget.js"
+          data-account="IeFDnJo1Ey"
+          strategy="lazyOnload"
+          data-position="3"
+        />
         {children}
         <Footer />
         {/* <ScrollToTop /> */}

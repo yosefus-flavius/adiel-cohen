@@ -45,9 +45,17 @@ export default function MortgageCalculator() {
 
     initializeCalculator();
 
+    // The calculator script injects an untitled iframe; give it an accessible name
+    const labelFrames = () => {
+      calcContainer?.querySelectorAll('iframe:not([title])').forEach((f) => f.setAttribute('title', 'מחשבון משכנתא'));
+    };
+    const observer = calcContainer ? new MutationObserver(labelFrames) : null;
+    if (calcContainer) observer?.observe(calcContainer, { childList: true, subtree: true });
+
     // Cleanup function
     return () => {
       window.removeEventListener('jquery-loaded', setupCalculator);
+      observer?.disconnect();
     };
   }, []);
 
@@ -62,7 +70,7 @@ export default function MortgageCalculator() {
       {/* Load jQuery with next/script */}
       <Script
         src="https://code.jquery.com/jquery-3.7.1.min.js"
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
         onLoad={handleJQueryLoad}
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
         crossOrigin="anonymous"
@@ -75,7 +83,7 @@ export default function MortgageCalculator() {
       />
       
       {/* Container for the calculator */}
-      <div id="calc-container" className="max-w-4xl mx-auto">
+      <div id="calc-container" className="max-w-4xl mx-auto min-h-[900px]">
         {isLoading && (
           <div className="flex justify-center items-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>

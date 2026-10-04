@@ -4,7 +4,7 @@ import { auth } from '@/auth'
 import BlogModel from '@/server/blog/blog.model'
 import { connectToDatabase } from '@/server/connect'
 import { revalidatePath } from 'next/cache'
-import { z } from 'zod'
+import { z, ZodError } from 'zod'
 
 const blogSchema = z.object({
     title: z.string().min(5, "כותרת חייבת להכיל לפחות 5 תווים"),
@@ -18,7 +18,6 @@ const blogSchema = z.object({
 })
 
 
-import { ZodError } from 'zod'
 
 function formatZodErrors(error: ZodError): string {
     return error.errors.map(err => {
@@ -84,19 +83,21 @@ export async function createOrUpdateBlog(formData: FormData) {
             const res = await BlogModel.findByIdAndUpdate(rawFormData.id, validatedData, { new: true })
             revalidatePath(`/blog/${rawFormData.slug}`)
             revalidatePath(`/blog`)
+            revalidatePath(`/`)
             if (process.env.NODE_ENV === 'production') {
                 await revalidateNetlify(rawFormData.slug as string)
             }
-            return { message: 'הבלוג עודכן בהצלחה' }
+            return { message: 'המאמר עודכן בהצלחה', id: String(res._id) }
         } else {
-            await BlogModel.create(validatedData)
+            const newBlog = await BlogModel.create(validatedData)
             revalidatePath(`/blog/${rawFormData.slug}`)
             revalidatePath(`/blog`)
+            revalidatePath(`/`)
             if (process.env.NODE_ENV === 'production') {
                 await revalidateNetlify(rawFormData.slug as string)
             }
             await fetch(`https://www.google.com/ping?sitemap=${process.env.NEXT_PUBLIC_SITE_URL}/sitemap.xml`)
-            return { message: 'הבלוג נוצר בהצלחה' }
+            return { message: 'המאמר נוצר בהצלחה', id: String(newBlog._id) }
         }
     } catch (error) {
         if (error instanceof ZodError) {
@@ -106,11 +107,17 @@ export async function createOrUpdateBlog(formData: FormData) {
             }
         }
         console.error(error)
-        return { error: 'אירעה שגיאה בשמירת הבלוג' }
+        return { error: 'אירעה שגיאה בשמירת המאמר' }
     }
 }
 const revalidateNetlify = async (slug: string) => {
     await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?path=/blog/${slug}`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${process.env.REVALIDATE_TOKEN}`
+        }
+    })
+    await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/revalidate?path=/`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${process.env.REVALIDATE_TOKEN}`

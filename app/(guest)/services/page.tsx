@@ -1,86 +1,81 @@
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-jsonld";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { CtaLink } from '@/components/ui/cta-link';
+import { PageHero } from '@/components/ui/page-hero';
 import mortgageServices from '@/lib/data/services';
 import { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Check } from 'lucide-react';
 
 export const metadata: Metadata = {
-   title: "שירותים מקצועיים",
-   description: "אנו מציעים מגוון רחב של שירותי משכנתא מותאמים אישית לצרכים שלכם",
+   alternates: { canonical: '/services' },
+   title: "שירותי ייעוץ משכנתאות",
+   description: "משכנתא לדירה ראשונה, רכישה מקבלן, מחזור, איחוד הלוואות, שיפוץ ובנייה עצמית: ליווי אישי של עדיאל כהן, יועץ משכנתאות ברחובות.",
+   openGraph: {
+      title: "שירותי ייעוץ משכנתאות | עדיאל כהן",
+      description: "ליווי אישי בכל סוגי המשכנתאות: דירה ראשונה, מקבלן, מחזור, איחוד הלוואות ועוד.",
+      url: '/services',
+      type: 'website',
+      locale: 'he_IL',
+      images: ['/og-image.jpg'],
+   },
 }
 
 const MortgageServicesSection = () => {
 
-
    return (
-      <div  >
-         <div className="relative py-24 px-4">
-            <Image src="/services.webp" fill alt="מחשבון משכנתא" className="object-cover z-5" />
-            <div className="absolute inset-0 bg-black opacity-50 z-10" />
-            <div className="relative z-20">
-               <h2 className="text-4xl md:text-7xl font-bold tracking-tight text-center mb-6 rtl">שירותים מקצועיים</h2>
-               <p className="text-center text-white mb-12">אנו מציעים מגוון רחב של שירותי משכנתא מותאמים אישית לצרכים שלכם</p>
-            </div>
-         </div>
+      <main className="bg-background text-foreground">
+      <BreadcrumbJsonLd items={[{ name: "שירותים", path: "/services" }]} />
+         <PageHero
+            image="/services-2.webp"
+            title="שירותי ייעוץ משכנתאות"
+            description="מגוון רחב של שירותי משכנתא, מותאמים אישית לצרכים שלכם"
+         />
 
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 py-12 md:py-24 container mx-auto">
-            {mortgageServices.map((service, index) => (
-               <div
-                  key={service.title}
-                  className="transform transition-all duration-300 hover:-translate-y-2"
-                  style={{ animationDelay: `${index * 150}ms` }}
-               >
-                  <Card className="rounded-2xl overflow-hidden border border-amber-100 h-full shadow-sm hover:shadow-xl transition-shadow bg-white">
-                     <div className=" h-11 md:h-9 -mt-3 -ml-2 bg-amber-400 -rotate-3"></div>
-                     <CardHeader className="pt-6 pb-2 px-6">
-                        <div className="flex items-center gap-3 mb-2">
+         <div className="container-main section-padding">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+               {mortgageServices.map((service) => (
+                  <Card key={service.title} className="group h-full rounded-2xl border-border bg-card transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-brand-gold)] hover:shadow-md">
+                     <CardHeader className="pb-4 pt-8">
+                        <div className="flex flex-col items-start gap-4">
                            {service.icon && (
-                              <div className="mr-4 bg-amber-100 p-3 rounded-full">
+                              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[var(--color-brand-gold)]/15">
                                  {service.icon}
                               </div>
                            )}
-                           <CardTitle className="text-2xl font-bold text-right text-gray-900">
+                           <h2 className="w-full text-xl font-bold leading-snug text-foreground md:text-2xl">
                               {service.title}
-                           </CardTitle>
+                           </h2>
                         </div>
                      </CardHeader>
-                     <CardContent className="px-6 pb-6">
-                        <p className="text-gray-600 text-right leading-relaxed">
+
+                     <CardContent className="pb-8">
+                        <p className="mb-6 leading-relaxed text-muted-foreground">
                            {service.description}
                         </p>
 
                         {service.features && (
-                           <ul className="mt-4 space-y-2 text-right">
-                              {service.features.map((feature, i) => (
-                                 <li key={i} className="flex items-center justify-start text-gray-700">
-                                    <div className="h-5 w-5 text-amber-600 shrink-0">
-                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                       </svg>
-                                    </div>
-                                    <span className="mr-2">{feature}</span>
+                           <ul className="space-y-3 border-t border-border pt-6">
+                              {service.features.map((feature) => (
+                                 <li key={feature} className="flex items-start gap-3 text-foreground">
+                                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-brand-gold)]/15 text-[var(--color-brand-gold-text)]">
+                                       <Check className="h-3 w-3" strokeWidth={3} aria-hidden="true" />
+                                    </span>
+                                    <span className="text-sm">{feature}</span>
                                  </li>
                               ))}
                            </ul>
                         )}
-
                      </CardContent>
                   </Card>
-               </div>
-            ))}
-         </div>
+               ))}
+            </div>
 
-         <div className="text-center mb-12">
-            <Link href="/#contact">
-               <button className="bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-8 rounded-full transition-colors shadow-lg hover:shadow-xl">
-                  לייעוץ ראשוני חינם
-               </button>
-            </Link>
+            <div className="mt-16 text-center">
+               <CtaLink href="/#contact">לייעוץ ראשוני חינם</CtaLink>
+            </div>
          </div>
-
-      </div>
+      </main>
    );
 };
-
 
 export default MortgageServicesSection;

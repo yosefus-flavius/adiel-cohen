@@ -1,98 +1,80 @@
 import { contactInfo } from "@/lib/data/contact";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { Card, CardContent } from "./card";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { CalcSummary } from "./calc-summary";
 import Lead from "./lead";
+
+const contactMethods = [
+  {
+    icon: Phone,
+    title: "טלפון",
+    value: contactInfo.phone.replace("+972", "0").replace(/^(\d{3})(\d{3})(\d{4})$/, "$1-$2-$3"),
+    href: `tel:${contactInfo.phone}`,
+    description: "זמין בימי עבודה",
+    ltr: true,
+  },
+  {
+    icon: Mail,
+    title: "אימייל",
+    value: contactInfo.email,
+    href: `mailto:${contactInfo.email}`,
+    description: "מענה תוך 24 שעות",
+    ltr: true,
+  },
+  {
+    icon: MapPin,
+    title: "כתובת",
+    value: contactInfo.address,
+    href: "https://waze.com/ul?ll=31.89236134%2C34.81322765&navigate=yes",
+    description: "לחצו לניווט",
+    external: true,
+  },
+];
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-12 md:py-24 w-full ">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-4xl font-bold tracking-tight mb-4">צור קשר</h2>
-          <p className="text-xl text-gray-600 font-semibold">
-            אשמח לעזור לך בכל שאלה או התייעצות בנושא משכנתאות
+    <section id="contact" className="section-padding bg-background">
+      <div className="container-main grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="flex flex-col gap-5">
+          <p className="text-sm font-bold text-[var(--color-brand-gold-text)]">צור קשר</p>
+          <h2 className="text-3xl font-extrabold leading-tight text-foreground md:text-4xl">
+            נבדוק את המספרים שלכם מול הבנקים
+          </h2>
+          <p className="text-lg leading-relaxed text-muted-foreground">
+            השאירו שם וטלפון ואחזור אליכם בהקדם, בלי התחייבות. אפשר גם להתקשר או לכתוב בוואטסאפ.
+          </p>
+
+          <CalcSummary />
+
+          <ul className="flex flex-col gap-3">
+            {contactMethods.map((method) => (
+              <li key={method.title}>
+                <a
+                  href={method.href}
+                  {...(method.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="flex min-h-16 items-center gap-4 rounded-2xl border border-border bg-card px-5 py-3 transition-colors hover:border-[var(--color-brand-gold)]"
+                >
+                  <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F1E7CF] text-[var(--color-brand-gold-text)] dark:bg-[#273449]">
+                    <method.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span className="flex flex-col">
+                    <strong className="text-base text-foreground">{method.title}</strong>
+                    <span dir={method.ltr ? "ltr" : undefined} className="text-start text-base text-muted-foreground">
+                      {method.value}
+                    </span>
+                    <span className="text-sm text-muted-foreground">{method.description}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <p className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Clock className="h-4 w-4" aria-hidden="true" />
+            זמין בימי עבודה
           </p>
         </div>
 
-
-        <div className="grid grid-cols-3 md:grid-cols-3 gap-6 mb-8 mx-auto">
-          <Card>
-            <a dir="ltr" href={`tel:${contactInfo.phone}`} className="text-gray-600 font-semibold hover:text-(--primary-color)">
-              <CardContent className="flex flex-col items-center gap-4 p-6">
-                <Phone className="h-8 w-8 text-(--primary-color)" />
-                <div className="text-center">
-                  <h3 className="font-medium mb-1">טלפון</h3>
-                  <span className="hidden md:block">
-                  {contactInfo.phone}
-                  </span>
-                </div>
-              </CardContent>
-            </a>
-          </Card>
-
-          <Card>
-            <a  href={`mailto:${contactInfo.email}`} className="text-gray-600 font-semibold hover:text-(--primary-color)">
-              <CardContent className="flex flex-col items-center gap-4 p-6">
-                <Mail className="h-8 w-8 text-(--primary-color)" />
-                <div className="text-center">
-                  <h3 className="font-medium mb-1">אימייל</h3>
-                  <span className="hidden md:block">
-                  {contactInfo.email}
-                  </span>
-                </div>
-              </CardContent>
-            </a>
-          </Card>
-  
-          <Card>
-              <a href={"https://waze.com/ul?ll=31.89236134%2C34.81322765&navigate=yes"} target="_blank" rel="noopener noreferrer" className="text-gray-600 font-semibold hover:text-(--primary-color)">
-            <CardContent className="flex flex-col items-center gap-4 p-6">
-              <MapPin className="h-8 w-8 text-(--primary-color)" />
-                <div className="text-center">
-                  <h3 className="font-medium mb-1">לניווט</h3>
-                  <span className="hidden md:block">
-                  {contactInfo.address}
-                </span>
-              </div>
-            </CardContent>
-              </a>
-          </Card>
-        </div>
         <Lead />
-
-        {/* <div className="flex justify-center gap-6 mt-8">
-          {contactInfo.socialMedia.facebook && (
-            <a
-              href={contactInfo.socialMedia.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <svg className="h-7 w-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
-            </a>
-          )}
-          {contactInfo.socialMedia.linkedin && (
-            <a
-              href={contactInfo.socialMedia.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <Linkedin className="h-6 w-6" />
-            </a>
-          )}
-          {contactInfo.socialMedia.instagram && (
-            <a
-              href={contactInfo.socialMedia.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <Instagram className="h-6 w-6" />
-            </a>
-          )}
-        </div> */}
-
       </div>
     </section>
   );

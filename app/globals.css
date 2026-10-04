@@ -5,6 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  /* ========================================
+     COLOR SYSTEM - 2026 Modern Design
+     ======================================== */
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
 
@@ -39,21 +42,96 @@
   --color-chart-4: hsl(var(--chart-4));
   --color-chart-5: hsl(var(--chart-5));
 
+  /* Brand Colors */
+  --color-brand-gold: rgb(224, 185, 101);
+  --color-brand-gold-dark: rgb(200, 165, 85);
+  --color-brand-dark: rgb(30, 41, 59);
+  /* Darker gold for text on light backgrounds (>= 4.5:1 on white) */
+  --color-brand-gold-text: #8a6410;
+  
+  /* Text Colors */
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #4a4a4a;
+  --color-text-muted: #737373;
+
+  /* ========================================
+     TYPOGRAPHY SCALE
+     ======================================== */
+  --font-size-h1: 3rem;
+  --font-size-h1-mobile: 2rem;
+  --font-size-h2: 2.25rem;
+  --font-size-h2-mobile: 1.75rem;
+  --font-size-h3: 1.5rem;
+  --font-size-h3-mobile: 1.25rem;
+  --font-size-h4: 1.25rem;
+  --font-size-body: 1.125rem;
+  --font-size-body-sm: 1rem;
+  --font-size-small: 0.875rem;
+
+  --line-height-h1: 1.1;
+  --line-height-h2: 1.2;
+  --line-height-h3: 1.3;
+  --line-height-h4: 1.4;
+  --line-height-body: 1.6;
+
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: -0.01em;
+  --letter-spacing-wide: 0.01em;
+
+  /* ========================================
+     SPACING SYSTEM (8px base)
+     ======================================== */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  --section-padding-y: 6rem;
+  --section-padding-y-mobile: 4rem;
+  --container-max-width: 72rem;
+
+  /* ========================================
+     BORDER RADIUS
+     ======================================== */
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  /* ========================================
+     SHADOWS / ELEVATION
+     ======================================== */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-card: 0 4px 20px -4px rgb(0 0 0 / 0.08);
+  --shadow-card-hover: 0 8px 30px -4px rgb(0 0 0 / 0.12);
+
+  /* ========================================
+     ANIMATION TIMING
+     ======================================== */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-fast: 0.2s;
+  --duration-normal: 0.4s;
+  --duration-slow: 0.6s;
+  --duration-slower: 0.8s;
 }
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
   looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
 */
 @layer base {
-
   *,
   ::after,
   ::before,
@@ -64,73 +142,233 @@
 }
 
 @layer utilities {
-  body {
-    font-family: Arial, Helvetica, sans-serif;
+  /* ========================================
+     TYPOGRAPHY UTILITIES
+     ======================================== */
+  .text-h1 {
+    font-size: var(--font-size-h1-mobile);
+    line-height: var(--line-height-h1);
+    letter-spacing: var(--letter-spacing-tight);
+    font-weight: 700;
+  }
+  @media (min-width: 768px) {
+    .text-h1 {
+      font-size: var(--font-size-h1);
+    }
+  }
+
+  .text-h2 {
+    font-size: var(--font-size-h2-mobile);
+    line-height: var(--line-height-h2);
+    letter-spacing: var(--letter-spacing-normal);
+    font-weight: 700;
+  }
+  @media (min-width: 768px) {
+    .text-h2 {
+      font-size: var(--font-size-h2);
+    }
+  }
+
+  .text-h3 {
+    font-size: var(--font-size-h3-mobile);
+    line-height: var(--line-height-h3);
+    font-weight: 600;
+  }
+  @media (min-width: 768px) {
+    .text-h3 {
+      font-size: var(--font-size-h3);
+    }
+  }
+
+  .text-h4 {
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
+    font-weight: 600;
+  }
+
+  .text-body {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    color: var(--color-text-secondary);
+  }
+
+  .text-body-sm {
+    font-size: var(--font-size-body-sm);
+    line-height: var(--line-height-body);
+  }
+
+  .text-small {
+    font-size: var(--font-size-small);
+    line-height: 1.5;
+  }
+
+  /* ========================================
+     SECTION UTILITIES
+     ======================================== */
+  .section-padding {
+    padding-top: var(--section-padding-y-mobile);
+    padding-bottom: var(--section-padding-y-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: var(--section-padding-y);
+      padding-bottom: var(--section-padding-y);
+    }
+  }
+
+  .container-main {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+  @media (min-width: 768px) {
+    .container-main {
+      padding-left: var(--space-6);
+      padding-right: var(--space-6);
+    }
+  }
+
+  /* ========================================
+     CARD ELEVATION
+     ======================================== */
+  .card-elevation {
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--duration-normal) var(--ease-out-quart),
+                transform var(--duration-normal) var(--ease-out-quart);
+  }
+
+  .card-elevation:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  /* ========================================
+     GRADIENTS
+     ======================================== */
+  .gradient-gold {
+    background: linear-gradient(135deg, var(--color-brand-gold) 0%, var(--color-brand-gold-dark) 100%);
+  }
+
+  .hero-fade-up {
+    animation: hero-fade-up 0.6s var(--ease-out-expo) both;
+  }
+
+  .navbar-enter {
+    animation: navbar-enter 0.5s var(--ease-out-expo) both;
+  }
+
+  @keyframes hero-fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes navbar-enter {
+    from { transform: translateY(-100%); }
+    to { transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-fade-up, .navbar-enter { animation: none; }
+  }
+
+  .gradient-overlay {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);
   }
 }
 
 @layer base {
   :root {
+    /* ========================================
+       LIGHT MODE - 2026 Modern Design
+       ======================================== */
+    
+    /* Brand Colors */
     --primary-color: rgb(224, 185, 101);
-    --secondary-color: rgb(224, 185, 101);
-    /* --primary-color: rgb(30, 58, 95); */
-    --background: hsl(220 20% 97%);;
-    /* --background: hsl(220 20% 97%);; */
-    /* --foreground: 240 10% 3.9%; */
-    --foreground: rgb(253, 247, 238);
-    /* --foreground: hsl(210 40% 95%); */
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --secondary-color: rgb(200, 165, 85);
+    
+    /* Background System */
+    --background: 40 38% 95%;         /* Warm cream */
+    --background-cream: 40 33% 96%;   /* Cream for cards/surfaces */
+    --foreground: 218 22% 10%;        /* Dark text */
+    
+    /* Surface Colors */
+    --card: 0 0% 100%;                /* Pure white cards */
+    --card-foreground: 218 22% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
+    --popover-foreground: 218 22% 10%;
+    
+    /* Interactive Colors */
+    --primary: 43 65% 64%;            /* Brand gold */
+    --primary-foreground: 220 20% 10%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 20% 10%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 34%;    /* 7:1 on cream */
+    --accent: 43 65% 64%;
+    --accent-foreground: 220 20% 10%;
+    
+    /* Utility Colors */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-    --chart-1: 12 76% 61%;
+    --border: 43 23% 85%;
+    --input: 43 23% 85%;
+    --ring: 43 65% 64%;
+    
+    /* Chart Colors */
+    --chart-1: 43 65% 64%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
+    --chart-4: 220 20% 50%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    
+    --radius: 0.75rem;
   }
 
   .dark {
+    /* ========================================
+       DARK MODE - applied by the theme system (class on <html>)
+       ======================================== */
     --primary-color: rgb(224, 185, 101);
-
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    
+    --background: 222 47% 11%;        /* Deep navy */
+    --background-cream: 222 30% 16%;
+    --foreground: 210 40% 98%;
+    
+    --card: 217 33% 17%;
+    --card-foreground: 210 40% 98%;
+    --popover: 217 33% 17%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
+    
+    --primary: 43 65% 64%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 222 30% 22%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --muted: 222 30% 22%;
+    --muted-foreground: 214 32% 84%;
+    --accent: 43 65% 64%;
+    --accent-foreground: 222 47% 11%;
+    
+    --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
+    --border: 215 25% 27%;
+    --input: 215 25% 27%;
+    --ring: 43 65% 64%;
+    
+    --chart-1: 43 65% 64%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    /* Gold text stays bright on dark backgrounds */
+    --color-brand-gold-text: #e0b965;
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #cbd5e1;
+    --color-text-muted: #94a3b8;
   }
 }
 
@@ -139,20 +377,105 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-[hsl(var(--background))] text-foreground;
-    background-color: hsl(var(--background));
+  html {
+    scroll-behavior: smooth;
   }
 
-  h1, h2, h3 {
-    color: var(--primary-color);
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typography Hierarchy */
+  h1 {
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
+    letter-spacing: var(--letter-spacing-h1);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  h2 {
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-h2);
+    letter-spacing: var(--letter-spacing-h2);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  h3 {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
+    letter-spacing: var(--letter-spacing-h3);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  h4 {
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
+    letter-spacing: var(--letter-spacing-h4);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  p {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    color: var(--color-text-secondary);
   }
 }
 
+/* ========================================
+   SCROLLBAR STYLING
+   ======================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
 
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
 
-* {
-  scroll-behavior: smooth;
-  transition: all 0.2s ease-in-out;
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
 
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* ========================================
+   SELECTION STYLING
+   ======================================== */
+::selection {
+  background: var(--color-brand-gold);
+  color: var(--color-text-primary);
+}
+
+/* ========================================
+   FOCUS VISIBILITY (keyboard users)
+   ======================================== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 2px solid hsl(var(--foreground));
+  outline-offset: 2px;
+}
+
+/* Light mode: cool slate-mist gradient on page sections only; small cards and inputs stay flat (dark mode stays flat) */
+:root:not(.dark) section.bg-background:not(.no-mist),
+:root:not(.dark) main.bg-background,
+:root:not(.dark) body {
+  background-image:
+    radial-gradient(70% 55% at 10% 0%, rgba(148, 170, 205, 0.35), transparent 70%),
+    linear-gradient(180deg, #eef1f6 0%, #f6f3ea 100%);
 }

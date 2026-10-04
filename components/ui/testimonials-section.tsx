@@ -1,45 +1,48 @@
-import Image from "next/image";
 import { testimonials } from "@/lib/data/testimonials";
-import { Star } from "lucide-react";
-import { Card } from "./card";
+import Image from "next/image";
 
 export function TestimonialsSection() {
   return (
-    <section className="py-12 md:py-24 ">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold tracking-tight text-center mb-16">
-          לקוחות מספרים
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
-            <Card
-              key={testimonial._id}
-              className=" rounded-2xl p-8 shadow-xs hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="relative rounded-full overflow-hidden">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    width={64}
-                    height={64}
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg">{testimonial.name}</h3>
-                  <p className="text-gray-600">{testimonial.role}</p>
-                </div>
-              </div>
-              <div className="flex mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <p className="text-gray-700">{testimonial.content}</p>
-            </Card>
-          ))}
+    <section className="section-padding border-y border-border bg-card">
+      <div className="container-main">
+        <div className="mb-10 flex items-end justify-between gap-4">
+          <div className="flex flex-col gap-2">
+            <p className="text-sm font-bold text-[var(--color-brand-gold-text)]">לקוחות מספרים</p>
+            <h2 className="text-3xl font-extrabold text-foreground md:text-4xl">מה אומרים עליי</h2>
+          </div>
+          <span
+            role="img"
+            aria-label="5 מתוך 5 כוכבים"
+            className="text-2xl tracking-widest text-[var(--color-brand-gold-text)]"
+          >
+            ★★★★★
+          </span>
         </div>
+
+        <ul className="grid gap-5 md:grid-cols-3">
+          {testimonials.map((item) => (
+            <li key={item._id}>
+              <figure className="flex h-full flex-col gap-5 rounded-2xl border border-border bg-background p-7">
+                <blockquote className="text-lg leading-relaxed text-foreground">
+                  &quot;{item.content}&quot;
+                </blockquote>
+                <figcaption className="mt-auto flex items-center gap-3">
+                  <Image
+                    src={item.image}
+                    alt=""
+                    width={48}
+                    height={48}
+                    className="h-12 w-12 rounded-full object-cover"
+                  />
+                  <span className="flex flex-col">
+                    <strong className="text-base text-foreground">{item.name}</strong>
+                    <span className="text-sm text-muted-foreground">{item.role}</span>
+                  </span>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

@@ -6,28 +6,31 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { IBlog } from '@/server/blog/blog.model'
-import { useState } from 'react'
-import { toast, Toaster } from 'sonner'
-import { CldUploadWidget, CldImage } from 'next-cloudinary'
+import { CldUploadWidget } from 'next-cloudinary'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { toast, Toaster } from 'sonner'
 
 
 export const BLOG_CATEGORIES: string[] = [
-    "מדריכים", 
-    "כלכלה", 
-    "טיפים", 
-    "השקעות", 
-    "זכויות", 
-    "רגולציה", 
-    "טכנולוגיה", 
+    "מדריכים",
+    "כלכלה",
+    "טיפים",
+    "השקעות",
+    "זכויות",
+    "רגולציה",
+    "טכנולוגיה",
     "סביבה"
-  ];
+];
 
 export default function BlogForm({ blog }: { blog: IBlog | null }) {
     const [selectedTags, setSelectedTags] = useState<string[]>(blog?.tags || [])
     const [coverImage, setCoverImage] = useState<string>(blog?.coverImage || '/1.webp')
     const [isUploading, setIsUploading] = useState<boolean>(false)
+    const { replace } = useRouter()
+
 
     const handleCloudinaryUpload = (result: any) => {
         if (result.event === 'success') {
@@ -40,25 +43,26 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const fd = new FormData(e.currentTarget)
-        
+
         // Ensure tags are comma-separated
         fd.set('tags', selectedTags.join(','))
         fd.set('coverImage', coverImage)
-        
+
         const res = await createOrUpdateBlog(fd)
         if (res.error) {
             toast.error(res.error)
         } else {
             toast.success(res.message)
+            replace(`/admin/blogs/${res.id}`)
         }
     }
 
     return (
         <Card>
-            <Toaster/>
+            <Toaster />
             <CardHeader>
                 <CardTitle>
-                    {blog ? 'ערוך בלוג' : 'צור בלוג חדש'}
+                    {blog ? 'ערוך מאמר' : 'צור מאמר חדש'}
                 </CardTitle>
             </CardHeader>
             <CardContent>
@@ -72,11 +76,11 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
                         />
                     )}
 
-                       {/* Cloudinary Image Upload with Preview */}
-                       <div className="space-y-4">
+                    {/* Cloudinary Image Upload with Preview */}
+                    <div className="space-y-4">
                         <label className="block mb-2">תמונת כריכה</label>
-                        <CldUploadWidget 
-                            uploadPreset="blog_pre" 
+                        <CldUploadWidget
+                            uploadPreset="blog_pre"
                             // @ts-ignore
                             onUploadStart={(event: { type: string }) => {
                                 setIsUploading(true)
@@ -89,9 +93,9 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
                             }}
                         >
                             {({ open }: { open: () => void }) => (
-                                <Button 
-                                    type="button" 
-                                    variant="outline" 
+                                <Button
+                                    type="button"
+                                    variant="outline"
                                     disabled={isUploading}
                                     onClick={() => open()}
                                 >
@@ -99,29 +103,29 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
                                 </Button>
                             )}
                         </CldUploadWidget>
-                        
+
                         {coverImage && (
                             <div className="mt-4 relative w-64 h-40">
-                                <Image 
-                                    src={coverImage} 
-                                    alt="תצוגה מקדימה של תמונת כריכה" 
-                                    fill 
+                                <Image
+                                    src={coverImage}
+                                    alt="תצוגה מקדימה של תמונת כריכה"
+                                    fill
                                     className="object-cover rounded-md"
                                 />
                             </div>
                         )}
-                        
-                        <input 
-                            type="hidden" 
-                            name="coverImage" 
-                            value={coverImage} 
+
+                        <input
+                            type="hidden"
+                            name="coverImage"
+                            value={coverImage}
                         />
                     </div>
 
                     <div className="space-y-4">
                         {/* Title Input */}
                         <div>
-                            <label htmlFor="title" className="block mb-2">כותרת הבלוג</label>
+                            <label htmlFor="title" className="block mb-2">כותרת המאמר</label>
                             <Input
                                 id="title"
                                 name="title"
@@ -143,7 +147,7 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
 
                         {/* Excerpt Input */}
                         <div>
-                            <label htmlFor="excerpt" className="block mb-2">תקציר הבלוג</label>
+                            <label htmlFor="excerpt" className="block mb-2">תקציר המאמר</label>
                             <Textarea
                                 id="excerpt"
                                 name="excerpt"
@@ -155,7 +159,7 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
 
                         {/* Content Textarea */}
                         <div>
-                            <label htmlFor="content" className="block mb-2">תוכן הבלוג</label>
+                            <label htmlFor="content" className="block mb-2">תוכן המאמר</label>
                             <Textarea
                                 id="content"
                                 name="content"
@@ -210,10 +214,10 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
 
                         {/* Active Status */}
                         <div className="flex items-center space-x-2">
-                            <input 
-                                type="checkbox" 
-                                id="isActive" 
-                                name="isActive" 
+                            <input
+                                type="checkbox"
+                                id="isActive"
+                                name="isActive"
                                 defaultChecked={!!blog?.isActive}
                                 className="form-checkbox"
                             />
@@ -222,10 +226,10 @@ export default function BlogForm({ blog }: { blog: IBlog | null }) {
 
                         {/* Submit Button */}
                         <Button type="submit" className="w-full mt-4">
-                            שמור בלוג
+                            שמור מאמר
                         </Button>
                         {/* see the real page  */}
-                      {blog?.slug &&  <Link href={`/blog/${blog?.slug}`} target="_blank" className="w-full mt-4">
+                        {blog?.slug && <Link href={`/blog/${blog?.slug}`} target="_blank" className="w-full mt-4">
                             <Button type="button" variant="outline" className="w-full mt-4">
                                 תצוגה מקדימה
                             </Button>

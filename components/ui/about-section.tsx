@@ -1,49 +1,61 @@
-import { aboutInfo } from "@/lib/data/about";
+import { aboutInfo, aboutTraining } from "@/lib/data/about";
 import Image from "next/image";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-12 md:py-24 ">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-12 items-center">
-          <div className="relative h-[450px] mt-12 md:mt-0 md:h-[600px] rounded-2xl">
+    <section id="about" className="section-padding border-y border-border bg-card">
+      <div className="container-main grid items-center gap-12 lg:grid-cols-[minmax(0,440px)_1fr] lg:gap-16">
+        <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-[#F1E7CF] dark:bg-[#273449]">
+            <Image
+              src={aboutInfo.backImage}
+              alt=""
+              fill
+              sizes="(max-width: 1024px) 90vw, 440px"
+              className="object-cover opacity-50"
+            />
             <Image
               src={aboutInfo.image}
               alt={aboutInfo.title}
-              width={600}
-              height={600}
-              className="sm:object-cover sm:max-h-fit max-h-96 object-contain relative z-10"
+              width={400}
+              height={500}
+              sizes="(max-width: 1024px) 90vw, 440px"
+              className="relative block h-auto w-full"
             />
-            <Image
-              src={aboutInfo.backImage}
-              alt={aboutInfo.title}
-              width={600}
-              height={600}
-              className=" inset-0  -bottom-10 top-10 object-contain absolute z-3 -rotate-90"
-            />
-
           </div>
-          <article className="space-y-8 ">
-            <h2 className="text-4xl font-bold tracking-tight ">{aboutInfo.title}</h2>
-            <div className="space-y-6 text-lg text-gray-600">
-              <p>{aboutInfo.content}</p>
-              <div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3">החזון שלי</h3>
-                <p>{aboutInfo.vision}</p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3">ניסיון מקצועי</h3>
-                <p>{aboutInfo.experience}</p>
-              </div>
-              <Image
-                src={aboutInfo.unionImage}
-                alt={aboutInfo.title}
-                width={300}
-                height={100}
-                className=""
-              />
+          <p className="absolute -bottom-4 start-4 rounded-2xl bg-[var(--color-brand-gold)] px-5 py-3 text-base font-extrabold text-[#1B1405] shadow-md">
+            חבר בהתאחדות יועצי המשכנתאות
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-5">
+          <p className="text-sm font-bold text-[var(--color-brand-gold-text)]">אודות</p>
+          <h2 className="text-3xl font-extrabold leading-tight text-foreground md:text-4xl">
+            {aboutInfo.title}
+          </h2>
+          <p className="text-lg leading-relaxed text-muted-foreground">{aboutInfo.content}</p>
+          <p className="text-lg leading-relaxed text-muted-foreground">{aboutInfo.experience}</p>
+
+          <div className="flex flex-wrap items-center gap-4 rounded-2xl bg-white px-5 py-3">
+            <Image
+              src={aboutInfo.unionImage}
+              alt="לשכת יועצי המשכנתאות"
+              width={180}
+              height={53}
+              className="h-12 w-auto"
+            />
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-border bg-background p-5">
+              <h3 className="mb-2 text-base font-bold text-[var(--color-brand-gold-text)]">הכשרה</h3>
+              <p className="text-base leading-relaxed text-muted-foreground">{aboutTraining}</p>
             </div>
-          </article>
+            <div className="rounded-2xl border border-border bg-background p-5">
+              <h3 className="mb-2 text-base font-bold text-[var(--color-brand-gold-text)]">המטרה שלי</h3>
+              <p className="text-base leading-relaxed text-muted-foreground">{aboutInfo.vision}</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

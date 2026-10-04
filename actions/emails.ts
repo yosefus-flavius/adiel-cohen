@@ -6,7 +6,26 @@ import LeadModel from '@/server/lead/lead.model';
 
 import nodemailer from 'nodemailer';
 
-export async function sendEmail({ name, email, message, subject ,phone}: { name: string, email: string, message: string, subject: string, phone: string }) {
+interface LeadInput {
+   name: string;
+   phone: string;
+   email?: string;
+   message?: string;
+   subject?: string;
+}
+
+export async function sendEmail(input: LeadInput) {
+   const name = (input.name ?? '').trim();
+   const phone = (input.phone ?? '').trim();
+   const email = (input.email ?? '').trim();
+   const message = (input.message ?? '').trim();
+   const subject = (input.subject ?? '').trim() || 'פנייה מהאתר';
+
+   // Only name and phone are required; email and message are optional.
+   if (name.length < 2 || !/^[0-9+\-\s]{9,15}$/.test(phone)) {
+      return { success: false, message: 'Invalid input' };
+   }
+
    try {
       await connectToDatabase();
       const lead = await LeadModel.create({ name, email, message, subject, phone });
@@ -18,17 +37,18 @@ export async function sendEmail({ name, email, message, subject ,phone}: { name:
             pass: process.env.EMAIL_PASS
          }
       });
-   
+
       const mailOptions = {
-         from: email,
+         from: email || process.env.EMAIL_USER,
+         ...(email ? { replyTo: email } : {}),
          to: contactInfo.email,
          subject: `הודעה חדשה מהאתר שלנו 😎 מ ${name}`,
          text: `
          שם: ${name}
-         אימייל: ${email}
-         נושא: ${subject}
-         הודעה: ${message}
          טלפון: ${phone}
+         אימייל: ${email || 'לא צוין'}
+         נושא: ${subject}
+         הודעה: ${message || 'ללא הודעה'}
          `
       };
 
@@ -40,5 +60,3 @@ export async function sendEmail({ name, email, message, subject ,phone}: { name:
       return { success: false, message: 'Email not sent' };
    }
 }
-
-

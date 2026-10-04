@@ -1,75 +1,54 @@
-import BlogModel from "@/server/blog/blog.model";
+import BlogModel, { IBlog } from "@/server/blog/blog.model";
 import { connectToDatabase } from "@/server/connect";
 import { ArrowLeft } from "lucide-react";
 import { unstable_cache } from "next/cache";
-import Image from "next/image";
 import Link from "next/link";
-import { Button } from "./button";
-import { Card } from "./card";
+import BlogCard from "../blog-card";
 
 const getBlogs = unstable_cache(
   async () => {
     await connectToDatabase();
-    return await BlogModel.find({ isActive: true }).sort({ createdAt: -1 }).limit(3)
+    const blogs = await BlogModel.find({ isActive: true }).sort({ createdAt: -1 }).limit(3).lean();
+    // Convert MongoDB documents to plain objects for client component serialization
+    return blogs.map(blog => ({
+      ...blog,
+      _id: String(blog._id),
+      createdAt: blog.createdAt ? new Date(blog.createdAt).toISOString() : undefined,
+      updatedAt: blog.updatedAt ? new Date(blog.updatedAt).toISOString() : undefined,
+      date: blog.date ? new Date(blog.date).toISOString() : undefined,
+    }));
   },
   ['posts'],
   { revalidate: 3600, tags: ['posts'] }
 )
 
 export async function LatestBlogs() {
-  const latestBlogs = await getBlogs();;
+  const latestBlogs = await getBlogs();
 
   return (
-    <section className="py-12 md:py-24 ">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-16 gap-4 flex-wrap flex-cols sm:flex-row">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">כתבות אחרונות</h2>
+    <section className="section-padding border-t border-border bg-card">
+      <div className="container-main">
+        <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div className="flex flex-col gap-2">
+            <p className="text-sm font-bold text-[var(--color-brand-gold-text)]">בלוג</p>
+            <h2 className="text-3xl font-extrabold text-foreground md:text-4xl">כתבות אחרונות</h2>
+          </div>
+
           <Link
             href="/blog"
-            className=""
+            className="inline-flex min-h-11 items-center gap-2 text-base font-bold text-[var(--color-brand-gold-text)] hover:underline"
           >
-            <Button className="text-sm flex gap-4" variant="link" >
-              לכל הכתבות
-              <ArrowLeft />
-            </Button>
+            לכל הכתבות
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-8">
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {latestBlogs.map((blog) => (
-            <Link
-              href={`/blog/${blog.slug}`}
-              key={blog._id}
-              className="group "
-            >
-              <Card
-                className=" rounded-2xl p-8 shadow-xs hover:shadow-md h-full transition-shadow"
-              >
-                <div className="relative h-64 mb-6 rounded-xl overflow-hidden">
-                  <Image
-                    src={blog.coverImage}
-                    alt={blog.title}
-                    fill
-                    className="object-cover transition-transform group-hover:scale-105"
-                  />
-                </div>
-                <div>
-                  <span className="text-sm text-gray-500">
-                    {new Date(blog.date).toLocaleDateString("he-IL", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
-                  <h3 className="mt-2 text-xl font-semibold group-hover:text-gray-600">
-                    {blog.title}
-                  </h3>
-                  <p className="mt-3 text-gray-600 line-clamp-2">{blog.excerpt}</p>
-                </div>
-              </Card>
-            </Link>
+            <BlogCard key={blog._id} blog={blog as unknown as IBlog} />
           ))}
         </div>
       </div>
-    </section >
+    </section>
   );
 }

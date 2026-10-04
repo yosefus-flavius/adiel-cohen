@@ -1,16 +1,16 @@
-import { Card } from "@/components/ui/card";
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-jsonld";
+import BlogCard from "@/components/blog-card";
 import { SearchPosts } from "@/components/ui/search-posts";
-import { blogsGemini } from "@/lib/data/blogs-gemini";
+// import { blogsGemini } from "@/lib/data/blogs-gemini";
 // import { blogs } from "@/lib/data/blogs";
 import BlogModel, { IBlog } from "@/server/blog/blog.model";
 import { connectToDatabase } from "@/server/connect";
 import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 
 export const metadata: Metadata = {
+   alternates: { canonical: '/blog' },
   title: "כתבות משכנתאות",
-  description: "כתבות ותחקירים בנושא חדשות פיננסים ומשכנתאות "
+  description: "כתבות ומדריכים בנושא משכנתאות: איך לבחור מסלול, מתי כדאי למחזר ומה חשוב לדעת לפני שלוקחים משכנתא."
 }
 
 
@@ -20,14 +20,22 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
 
   await connectToDatabase();
 
-
-  const filteredBlogs = term ? await BlogModel.find({
+  const blogs = term ? await BlogModel.find({
     $or: [
       { name: { $regex: term, $options: 'i' } },
       { content: { $regex: term, $options: 'i' } }
     ],
     isActive: true
-  }).sort({ createdAt: -1 }) : await BlogModel.find({ isActive: true }).sort({ createdAt: -1 });
+  }).sort({ createdAt: -1 }).lean() : await BlogModel.find({ isActive: true }).sort({ createdAt: -1 }).lean();
+
+  // Convert MongoDB documents to plain objects for client component serialization
+  const filteredBlogs = blogs.map(blog => ({
+    ...blog,
+    _id: String(blog._id),
+    createdAt: blog.createdAt ? new Date(blog.createdAt).toISOString() : undefined,
+    updatedAt: blog.updatedAt ? new Date(blog.updatedAt).toISOString() : undefined,
+    date: blog.date ? new Date(blog.date).toISOString() : undefined,
+  }));
   // if (!filteredBlogs.length) {
   //   await BlogModel.create(blogs.map(b=> ({...b, author: 'עדיאל כהן', date: new Date()})))
   // }
@@ -37,67 +45,22 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
   // }
 
   return (
-    <main className="min-h-screen py-24">
+    <main className="bg-background py-16 text-foreground md:py-24">
+      <BreadcrumbJsonLd items={[{ name: "כתבות", path: "/blog" }]} />
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto mb-16">
-          <h1 className="text-4xl font-bold tracking-tight text-center ">
+          <h1 className="mb-4 text-center text-4xl font-bold tracking-tight md:text-5xl">
             כתבות משכנתאות
           </h1>
-          <p className="mb-8 text-center opacity-80" >
+          <p className="mb-8 text-center text-lg text-muted-foreground">
             כתבות ומדריכים בנושא חדשות פיננסים ומשכנתאות
           </p>
           <SearchPosts />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredBlogs.map((blog: IBlog) => (
-            <Link
-              key={blog._id?.toString()}
-              href={`/blog/${blog.slug}`}
-              className="group h-full"
-            >
-              <Card className="h-full">
-
-                <div className="relative h-64 mb-6 rounded-t-xl  overflow-hidden">
-                  <Image
-                    src={blog.coverImage}
-                    alt={blog.title}
-                    fill
-                    className="object-cover transition-transform group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-4">
-                  <div className="flex items-center gap-4 mb-3">
-                    <span className="text-sm text-gray-500">
-                      {new Date(blog.date).toLocaleDateString("he-IL", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </span>
-                    <span className="text-sm font-medium text-gray-600">
-                      {blog.category}
-                    </span>
-                  </div>
-                  <h2 className="text-xl font-semibold group-hover:text-gray-600 mb-3">
-                    {blog.title}
-                  </h2>
-                  <p className="text-gray-600 line-clamp-2">{blog.excerpt}</p>
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {blog.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Card>
-            </Link>
-          ))}
-          {!filteredBlogs.length && <p className="text-center">לא נמצאו כתבות</p>}
+          {filteredBlogs.map((blog) => (<BlogCard key={blog._id} blog={blog as unknown as IBlog} headingLevel="h2" />))}
+          {!filteredBlogs.length && <p className="col-span-full py-12 text-center text-muted-foreground">לא נמצאו כתבות</p>}
         </div>
       </div>
     </main>

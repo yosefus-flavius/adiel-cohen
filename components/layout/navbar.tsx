@@ -1,37 +1,45 @@
 import { MobileMenu } from "@/components/ui/mobile-menu";
+import { ThemeToggle } from "@/components/theme/theme-controls";
+import { guestLinks } from "@/lib/data/nav-links";
 import Link from "next/link";
-
-export const guestLinks = [
-  { href: "/", name: "ראשי" },
-  { href: "/#about", name: "אודות" },
-  { href: "/blog", name: "בלוג" },
-  { href: "/#contact", name: "צור קשר", isButton: true },
-  { href: "/#steps", name: "השלבים" },
-  { href: "/services", name: "שירותים" },
-  { href: "/calc", name: "מחשבון" },
-]
 
 export function Navbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 /80 backdrop-blur-md border-b">
-      <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold text-(--primary-color)">
-          עדיאל כהן
+    <header className="navbar-enter fixed inset-x-0 top-0 z-50 border-b border-border bg-card/95 backdrop-blur">
+      <nav aria-label="ראשי" className="container-main flex h-16 items-center justify-between gap-4">
+        <Link href="/" className="text-xl font-extrabold text-foreground">
+          <span className="text-[var(--color-brand-gold-text)]">עדיאל</span> כהן
         </Link>
 
-        <div className="hidden lg:flex items-center gap-8">
-          {guestLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="text-lg font-semibold text-gray-600 hover:text-gray-500"
-            >
-              {link.name}
-            </Link>
-          ))}
+        {/* Desktop navigation */}
+        <div className="hidden items-center gap-5 xl:flex">
+          {guestLinks.map((link) =>
+            link.isButton ? (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="inline-flex min-h-11 items-center rounded-xl bg-[var(--color-brand-gold)] px-6 text-sm font-bold text-[#1B1405] transition-colors hover:bg-[var(--color-brand-gold-dark)]"
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.name}
+              </Link>
+            )
+          )}
+          <ThemeToggle />
         </div>
 
-        <MobileMenu links={guestLinks} />
+        {/* Mobile: theme toggle stays visible next to the menu button */}
+        <div className="flex items-center gap-2 xl:hidden">
+          <ThemeToggle />
+          <MobileMenu links={guestLinks} />
+        </div>
       </nav>
     </header>
   );

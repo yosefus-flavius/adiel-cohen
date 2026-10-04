@@ -22,11 +22,11 @@ export default async function AdminBlogList() {
         <div className="container mx-auto p-4">
             <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-2xl font-bold">ניהול בלוגים</CardTitle>
+                    <CardTitle className="text-2xl font-bold">ניהול מאמרים</CardTitle>
                     <Link href="/admin/blogs/new">
                         <Button variant="outline" className="flex items-center gap-2">
                             <PlusCircle className="w-5 h-5" />
-                            יצירת בלוג חדש
+                            יצירת מאמר חדש
                         </Button>
                     </Link>
                 </CardHeader>
@@ -42,7 +42,7 @@ export default async function AdminBlogList() {
                         </TableHeader>
                         <TableBody>
                             {blogs.map((blog: IBlog) => (
-                                <TableRow className='even:bg-gray-50' key={blog._id?.toString()}>
+                                <TableRow className='even:bg-muted/50' key={blog._id?.toString()}>
                                     <TableCell>{blog.title}</TableCell>
                                     <TableCell className='hidden md:table-cell'>
                                         {blog.date.toLocaleDateString('he-IL', {
@@ -90,8 +90,8 @@ export default async function AdminBlogList() {
                         </TableBody>
                     </Table>
                     {blogs.length === 0 && (
-                        <div className="text-center py-8 text-gray-500">
-                            אין בלוגים קיימים. צור בלוג חדש כדי להתחיל
+                        <div className="text-center py-8 text-muted-foreground">
+                            אין מאמרים קיימים. צור מאמר חדש כדי להתחיל
                         </div>
                     )}
                 </CardContent>

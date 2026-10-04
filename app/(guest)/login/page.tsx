@@ -10,10 +10,10 @@ export default function Login() {
         })
     }
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-md text-center">
+        <main className="flex min-h-[70vh] items-center justify-center bg-background px-4">
+            <div className="rounded-2xl border border-border bg-card p-8 text-center text-card-foreground shadow-sm">
                 <h1 className="text-2xl font-bold mb-4">כניסה למערכת ניהול</h1>
-                <p className="mb-6 text-gray-600">
+                <p className="mb-6 text-muted-foreground">
                     הכניסה מותרת רק למנהלים המורשים
                 </p>
                 <Button
@@ -22,10 +22,10 @@ export default function Login() {
                 >
                     התחבר עם Google
                 </Button>
-                <div className="mt-4 text-sm text-gray-500">
+                <div className="mt-4 text-sm text-muted-foreground">
                     * רק מנהלים עם כתובות דוא״ל מורשות יכולים להתחבר
                 </div>
             </div>
-        </div>
+        </main>
     )
 }

@@ -11,6 +11,8 @@ export interface IBlog extends mongoose.Document {
   isActive: boolean;
   tags: string[];
   author: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const BlogSchema = new mongoose.Schema<IBlog>({
