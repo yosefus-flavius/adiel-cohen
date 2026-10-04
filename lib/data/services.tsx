@@ -4,7 +4,7 @@ const mortgageServices = [
    {
        title: "משכנתא לדירה ראשונה",
        description: "ליווי משפחות צעירות וזוגות בתהליך רכישת הדירה הראשונה, כולל מיצוי זכאויות ומענקים ממשלתיים.",
-       icon: <FileText className="w-6 h-6 text-amber-600" />,
+       icon: <FileText className="w-6 h-6 text-[var(--color-brand-gold-text)]" />,
        features: [
            "בדיקת זכאות למענקים ממשלתיים",
            "בניית תמהיל מסלולים אופטימלי",
@@ -14,7 +14,7 @@ const mortgageServices = [
    {
        title: "רכישה מקבלן",
        description: "כשקונים דירה מקבלן – הזמנים, התנאים והדרישות שונים ממשכנתא רגילה. אנחנו נדאג שתגיעו מוכנים: עם אישור עקרוני מהיר, תכנון נכון של שלבי ההעברה והתשלום.",
-       icon: <Building className="w-6 h-6 text-amber-600" />,
+       icon: <Building className="w-6 h-6 text-[var(--color-brand-gold-text)]" />,
        features: [
            "אישור עקרוני מהיר",
            "תכנון שלבי העברה ותשלום",
@@ -24,7 +24,7 @@ const mortgageServices = [
    {
        title: "מחיר למשתכן",
        description: "מסלול \"מחיר למשתכן\" דורש התנהלות מדויקת מול הבנקים, תוך עמידה בלוחות זמנים קפדניים וניווט בתוך רגולציה ייחודית. אנחנו מתמחים בליווי זכאים.",
-       icon: <Key className="w-6 h-6 text-amber-600" />,
+       icon: <Key className="w-6 h-6 text-[var(--color-brand-gold-text)]" />,
        features: [
            "התמחות בליווי זכאים",
            "הבנת הדקויות הרגולטוריות",
@@ -34,7 +34,7 @@ const mortgageServices = [
    {
        title: "איחוד הלוואות",
        description: "הלוואות שונות מכבידות על התקציב? באמצעות איחוד הלוואות למשכנתא – נוכל להוריד את ההחזר החודשי, לפשט את ההתנהלות הפיננסית וליצור יציבות כלכלית חדשה עבורכם.",
-       icon: <Minimize2 className="w-6 h-6 text-amber-600" />,
+       icon: <Minimize2 className="w-6 h-6 text-[var(--color-brand-gold-text)]" />,
        features: [
            "הורדת ההחזר החודשי",
            "פישוט ההתנהלות הפיננסית",
@@ -44,7 +44,7 @@ const mortgageServices = [
    {
        title: "משכנתא לשיפוץ",
        description: "שיפוץ זה לא רק צבע חדש על הקירות – זו השקעה של ממש. אנחנו נדאג שתממנו את הפרויקט בצורה החכמה ביותר, עם הלוואה שמתאימה לערך הדירה ולעתיד הכלכלי שלכם.",
-       icon: <Award className="w-6 h-6 text-amber-600" />,
+       icon: <Award className="w-6 h-6 text-[var(--color-brand-gold-text)]" />,
        features: [
            "הלוואה מותאמת לערך הדירה",
            "ליווי מול הבנק",
@@ -54,7 +54,7 @@ const mortgageServices = [
    {
        title: "משכנתא לגיל השלישי",
        description: "גם בגיל השלישי מגיעה לכם איכות חיים. משכנתא מותאמת לגיל פרישה מאפשרת לשחרר הון כלוא, ליהנות מפנסיה נוחה יותר או לעזור לדור ההמשך.",
-       icon: <Clock className="w-6 h-6 text-amber-600" />,
+       icon: <Clock className="w-6 h-6 text-[var(--color-brand-gold-text)]" />,
        features: [
            "שחרור הון כלוא",
            "תהליך עדין ורגיש",
@@ -64,7 +64,7 @@ const mortgageServices = [
    {
        title: "מחזור משכנתא",
        description: "ריבית ירדה? התנאים השתנו? ייתכן שאתם משלמים הרבה יותר ממה שצריך. תנו לנו לבדוק עבורכם – ללא התחייבות – האם ניתן למחזר את המשכנתא ולהוזיל משמעותית את ההחזר החודשי.",
-       icon: <RefreshCw className="w-6 h-6 text-amber-600" />,
+       icon: <RefreshCw className="w-6 h-6 text-[var(--color-brand-gold-text)]" />,
        features: [
            "בדיקה ללא התחייבות",
            "הוזלת ההחזר החודשי",
@@ -74,7 +74,7 @@ const mortgageServices = [
    {
        title: "משכנתא למסורבים",
        description: "קיבלתם סירוב מהבנק? זה לא סוף הדרך. בזכות ניסיון עשיר והיכרות עמוקה עם המערכת הבנקאית – אנחנו יודעים לפתוח דלתות שנסגרו.",
-       icon: <AlertCircle className="w-6 h-6 text-amber-600" />,
+       icon: <AlertCircle className="w-6 h-6 text-[var(--color-brand-gold-text)]" />,
        features: [
            "בחינת המצב הפיננסי",
            "בניית תכנית פעולה מדויקת",
@@ -84,7 +84,7 @@ const mortgageServices = [
    {
        title: "משכנתא עסקית",
        description: "מחפש מימון לעסק, למבנה מסחרי או להשקעה נדל\"נית? אנחנו יודעים לחבר בין פתרונות משכנתא לעולם העסקי.",
-       icon: <Briefcase className="w-6 h-6 text-amber-600" />,
+       icon: <Briefcase className="w-6 h-6 text-[var(--color-brand-gold-text)]" />,
        features: [
            "ניתוח צרכים עסקיים",
            "תמהיל מימון מותאם",
@@ -94,7 +94,7 @@ const mortgageServices = [
    {
        title: "בנייה עצמית",
        description: "בונים את בית החלומות? זה פרויקט מורכב שדורש תכנון משכנתא מדויק, שלבי שחרור מותאמים ותיאום מושלם עם הקבלן. אנחנו נדאג לכל פרט – משלב התכנון ועד תום הבנייה.",
-       icon: <Building className="w-6 h-6 text-amber-600" />,
+       icon: <Building className="w-6 h-6 text-[var(--color-brand-gold-text)]" />,
        features: [
            "תכנון משכנתא מדויק",
            "שלבי שחרור מותאמים",

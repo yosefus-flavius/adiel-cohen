@@ -21,7 +21,7 @@ export default async function RelatedPosts({ blog }: { blog: IBlog }) {
         <div>
             {relatedPosts.length > 0 && (
                 <div className="max-w-7xl mx-auto mt-24">
-                    <h2 className="text-3xl font-bold tracking-tight mb-12">כתבות נוספות</h2>
+                    <h2 className="mb-12 text-3xl font-bold tracking-tight text-foreground">כתבות נוספות</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {relatedPosts.map((post) => (
                             <BlogCard key={post._id} blog={post} />

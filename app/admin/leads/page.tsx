@@ -76,7 +76,7 @@ export default async function LeadsPage({ searchParams }: PageProps) {
             <p className="text-sm text-muted-foreground">לידים פעילים</p>
           </div>
           <div className="rounded-lg border bg-card p-6">
-            <div className="text-2xl font-bold text-gray-600">
+            <div className="text-2xl font-bold text-muted-foreground">
               {leads.filter((l) => !l.isActive).length}
             </div>
             <p className="text-sm text-muted-foreground">לידים לא פעילים</p>

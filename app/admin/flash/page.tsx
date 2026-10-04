@@ -42,7 +42,7 @@ export default async function AdminflashList() {
                         </TableHeader>
                         <TableBody>
                             {flashes.map((flash: IFlash) => (
-                                <TableRow className='even:bg-gray-50' key={flash._id?.toString()}>
+                                <TableRow className='even:bg-muted/50' key={flash._id?.toString()}>
                                     <TableCell>{flash.title}</TableCell>
                                     <TableCell className='hidden md:table-cell'>
                                         {flash.createdAt.toLocaleDateString('he-IL', {
@@ -82,7 +82,7 @@ export default async function AdminflashList() {
                         </TableBody>
                     </Table>
                     {flashes.length === 0 && (
-                        <div className="text-center py-8 text-gray-500">
+                        <div className="text-center py-8 text-muted-foreground">
                             אין ידיעות קיימות צור ידיעה חדשה כדי להתחיל
                         </div>
                     )}

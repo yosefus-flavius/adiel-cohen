@@ -2,12 +2,13 @@ import { connectToDatabase } from '@/server/connect';
 import flashModel, { IFlash } from '@/server/flash/flash.model';
 import { ChevronDown, Clock, ExternalLink, Tag } from 'lucide-react';
 import { Metadata } from 'next';
+import { PageHero } from '@/components/ui/page-hero';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
    alternates: { canonical: '/news' },
    title: "חדשות משכנתא",
-   description: "חדשות ותחקירים בנושא חדשות פיננסים ומשכנתאות",
+   description: "עדכונים וחדשות מעולם המשכנתאות והפיננסים: ריביות, רגולציה ושינויים שחשוב להכיר לפני שלוקחים או ממחזרים משכנתא.",
 }
 
 export default async function FlashesPage() {
@@ -36,105 +37,85 @@ export default async function FlashesPage() {
    };
 
    return (
-      <div className="min-h-screen  bg-linear-to-b from-primary/10 to-white" >
-         {/* Header Section */}
-         <div className="relative py-24 px-4">
-            <Image src="/news.webp" priority fill alt="חדשות משכנתא" className="object-cover z-5" />
-            <div className="absolute inset-0 bg-black/80 z-10" />
-            <div className="relative z-20">
-               <h1 className="text-4xl text-white md:text-7xl font-bold tracking-tight text-center mb-6 rtl">חדשות משכנתא</h1>
-               <p className="text-center text-white/80 mb-12">
-                  כל מה שחדש בעולמות המשכנתאות והפיננסים
-               </p>
-            </div>
-         </div>
+      <main className="bg-background text-foreground">
+         <PageHero image="/news.webp" title="חדשות משכנתא" description="כל מה שחדש בעולמות המשכנתאות והפיננסים" />
 
-         {/* Flashes Grid */}
-         <div className="container md:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 ">
+         <div className="container-main max-w-5xl py-12 md:py-16">
             {serializedFlashes.length > 0 ? (
-               <div className="grid grid-cols-1  gap-6">
+               <div className="grid grid-cols-1 gap-6">
                   {serializedFlashes.map((flash) => (
                      <article
                         key={flash._id}
-                        className="group/article bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
+                        className="group/article overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-[var(--color-brand-gold)]"
                      >
-                        <details className="p-6 group">
-                           <summary className="cursor-pointer flex">
+                        <details className="group p-6">
+                           <summary className="flex cursor-pointer items-start gap-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground">
                               {flash.img && (
-                                 <div className="relative h-48 overflow-hidden">
+                                 <div className="relative hidden h-24 w-36 shrink-0 overflow-hidden rounded-xl bg-muted sm:block">
                                     <Image
                                        fill
                                        src={flash.img}
-                                       alt={flash.title}
-                                       className="w-full h-full object-cover group-hover/article:scale-105 transition-transform duration-500"
+                                       alt=""
+                                       sizes="144px"
+                                       className="object-cover transition-transform duration-500 group-hover/article:scale-105"
                                     />
-                                    <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent"></div>
                                  </div>
                               )}
 
-                              <div >
-                                 <div className="flex items-center gap-3 mb-3 text-sm">
-                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-(--primary-color)/5 text-(--primary-color) font-medium">
-                                       <Tag className="w-3.5 h-3.5" />
+                              <div className="min-w-0 flex-1">
+                                 <div className="mb-3 flex flex-wrap items-center gap-3 text-sm">
+                                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-brand-gold)]/15 px-3 py-1 font-medium text-[var(--color-brand-gold-text)]">
+                                       <Tag className="h-3.5 w-3.5" aria-hidden="true" />
                                        {flash.category}
                                     </span>
-                                    <span className="flex items-center gap-1.5 text-gray-500">
-                                       <Clock className="w-3.5 h-3.5" />
+                                    <span className="flex items-center gap-1.5 text-muted-foreground">
+                                       <Clock className="h-3.5 w-3.5" aria-hidden="true" />
                                        {formatDate(flash.createdAt)}
                                     </span>
                                  </div>
 
-                                 <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover/article:text-(--primary-color) transition-colors">
+                                 <h2 className="text-xl font-bold leading-snug text-foreground transition-colors group-hover/article:text-[var(--color-brand-gold-text)]">
                                     {flash.title}
                                  </h2>
                               </div>
-                              <div className="mr-auto self-start pt-1 pl-2">
-                                 <ChevronDown className="w-5 h-5 text-gray-400 transition-all duration-300 group-open:rotate-180 group-open:text-(--primary-color)" />
-                              </div>
+                              <ChevronDown className="mt-1 h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 group-open:rotate-180 group-open:text-[var(--color-brand-gold-text)]" aria-hidden="true" />
                            </summary>
 
-                           <p className="text-gray-600 leading-relaxed mb-4 prose prose-lg  whitespace-pre-line">
+                           <p className="mt-4 whitespace-pre-line leading-relaxed text-muted-foreground">
                               {flash.content}
                            </p>
 
                            {flash.links && flash.links.length > 0 && (
-                              <div className="pt-4 border-t border-gray-100">
-                                 <div className="flex flex-wrap gap-2">
-                                    {flash.links.map((link, index) => (
-                                       <a
-                                          key={index}
-                                          href={link}
-                                          target="_blank"
-                                          title={link}
-                                          rel="noopener noreferrer"
-                                          className="inline-flex items-center gap-1.5 text-sm text-(--primary-color) hover:text-(--primary-color) font-medium transition-colors"
-                                       >
-                                          קישור נוסף
-                                          <ExternalLink className="w-3.5 h-3.5" />
-                                       </a>
-                                    ))}
-                                 </div>
+                              <div className="mt-4 flex flex-wrap gap-4 border-t border-border pt-4">
+                                 {flash.links.map((link, index) => (
+                                    <a
+                                       key={index}
+                                       href={link}
+                                       target="_blank"
+                                       title={link}
+                                       rel="noopener noreferrer"
+                                       className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-brand-gold-text)] underline-offset-4 hover:underline"
+                                    >
+                                       קישור נוסף
+                                       <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                                    </a>
+                                 ))}
                               </div>
                            )}
-
                         </details>
                      </article>
                   ))}
                </div>
             ) : (
-               <div className="text-center py-20">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
-                     <Tag className="w-8 h-8 text-gray-400" />
+               <div className="py-20 text-center">
+                  <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                     <Tag className="h-8 w-8 text-muted-foreground" aria-hidden="true" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                     אין עדכונים זמינים
-                  </h3>
-                  <p className="text-gray-600">
-                     חזור מאוחר יותר לעדכונים חדשים
-                  </p>
+                  <h2 className="mb-2 text-xl font-semibold">אין עדכונים זמינים</h2>
+                  <p className="text-muted-foreground">חזרו מאוחר יותר לעדכונים חדשים</p>
                </div>
             )}
          </div>
-      </div>
+      </main>
    );
 }

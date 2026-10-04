@@ -6,10 +6,10 @@ import "./globals.css";
 import { Footer } from "@/components/layout/footer";
 // import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
-import { GoogleAnalytics } from '@next/third-parties/google';
-import Script from "next/script";
 import { contactInfo } from "@/lib/data/contact";
 import { themeInitScript } from "@/lib/theme";
+import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from "next/script";
 
 const heebo = Heebo({ subsets: ["hebrew", "latin"] });
 
@@ -119,21 +119,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Script id="nagishli-config" strategy="beforeInteractive">
-          {`
-            var nl_dir = "/nagishli_v3_beta/nagishli-files/";
-            var nl_contact = "p:0537278461|u:adil7278461+d:gmail.com";
-            var nl_pos = "bl"
-            var nl_color = "black";
-            var nl_compact = "1";
-          `}
-        </Script>
 
-        {/* 2. הסקריפט הראשי (External) */}
         <Script
-          id="nagishli-main"
-          src="/nagishli_v3_beta/nagishli_beta.js"
-          strategy="afterInteractive" // מקביל ל-'defer'
+          src="https://cdn.userway.org/widget.js"
+          data-account="IeFDnJo1Ey"
+          strategy="lazyOnload"
+          data-position="3"
         />
         {children}
         <Footer />

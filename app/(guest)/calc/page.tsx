@@ -1,28 +1,36 @@
 import Calc from "@/components/ui/calc";
+import { PageHero } from "@/components/ui/page-hero";
 import { Metadata } from "next";
-import Image from "next/image";
 
 export const metadata: Metadata = {
    alternates: { canonical: '/calc' },
    title: "מחשבון משכנתא",
-   description: "חישוב משכנתא בקלות",
+   description: "מחשבון משכנתא חינמי: חשבו החזר חודשי, ריבית וסך התשלומים לפי סכום, תקופה ומסלול, ובדקו כמה המשכנתא תעלה לכם.",
+   openGraph: {
+      title: "מחשבון משכנתא | עדיאל כהן",
+      description: "חשבו החזר חודשי וסך תשלומים למשכנתא בכמה לחיצות.",
+      url: '/calc',
+      type: 'website',
+      locale: 'he_IL',
+      images: ['/front.webp'],
+   },
 }
 
 export default function CalcPage() {
 
    return (
-      <div  >
-         <div className="relative py-24 px-4">
-            <Image src="/calc-2.webp" fill alt="מחשבון משכנתא" className="object-cover z-5" />
-            <div className="absolute inset-0 bg-black/80 z-10" />
-            <div className="relative z-20">
-               <h1 className="text-4xl text-white md:text-7xl font-bold tracking-tight text-center mb-6 rtl">מחשבון משכנתא</h1>
-               <p className="text-center text-white/80 mb-12">השתמשו במחשבון כדי לחשב את המשכנתא שלכם</p>
+      <main className="bg-background text-foreground">
+         <PageHero
+            image="/calc-2.webp"
+            title="מחשבון משכנתא"
+            description="השתמשו במחשבון כדי לחשב את ההחזר החודשי והעלות הכוללת של המשכנתא"
+         />
+         <div className="container-main section-padding">
+            {/* The calculator is a third-party iframe with its own light styling, so it sits on a white card in both themes */}
+            <div className="mx-auto max-w-4xl rounded-2xl border border-border bg-white p-2 shadow-sm md:p-4">
+               <Calc />
             </div>
          </div>
-         <main className="container mx-auto px-4 py-12 md:py-24">
-            <Calc />
-         </main>
-      </div>
+      </main>
    );
 }

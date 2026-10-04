@@ -9,7 +9,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
    alternates: { canonical: '/blog' },
   title: "כתבות משכנתאות",
-  description: "כתבות ותחקירים בנושא חדשות פיננסים ומשכנתאות "
+  description: "כתבות ומדריכים בנושא משכנתאות: איך לבחור מסלול, מתי כדאי למחזר ומה חשוב לדעת לפני שלוקחים משכנתא."
 }
 
 
@@ -44,13 +44,13 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
   // }
 
   return (
-    <main className="min-h-screen py-24">
+    <main className="bg-background py-16 text-foreground md:py-24">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto mb-16">
-          <h1 className="text-4xl font-bold tracking-tight text-center ">
+          <h1 className="mb-4 text-center text-4xl font-bold tracking-tight md:text-5xl">
             כתבות משכנתאות
           </h1>
-          <p className="mb-8 text-center opacity-80" >
+          <p className="mb-8 text-center text-lg text-muted-foreground">
             כתבות ומדריכים בנושא חדשות פיננסים ומשכנתאות
           </p>
           <SearchPosts />
@@ -58,7 +58,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredBlogs.map((blog) => (<BlogCard key={blog._id} blog={blog as unknown as IBlog} headingLevel="h2" />))}
-          {!filteredBlogs.length && <p className="text-center">לא נמצאו כתבות</p>}
+          {!filteredBlogs.length && <p className="col-span-full py-12 text-center text-muted-foreground">לא נמצאו כתבות</p>}
         </div>
       </div>
     </main>

@@ -42,7 +42,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   };
 
   return (
-    <main className="min-h-screen py-8">
+    <main className="bg-background py-8 text-foreground md:py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c") }}
@@ -51,21 +51,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="max-w-4xl mx-auto">
           <header className="mb-12">
             <div className="flex items-center gap-4 mb-6 text-sm">
-             {blog.date && <time dateTime={blog.date} className="text-gray-500">
+             {blog.date && <time dateTime={blog.date} className="text-muted-foreground">
                 {new Date(blog.date).toLocaleDateString("he-IL", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
                 })}
               </time>}
-              <span className="text-gray-600 font-medium">{blog.category}</span>
+              <span className="rounded-full bg-[var(--color-brand-gold)]/15 px-3 py-1 font-medium text-[var(--color-brand-gold-text)]">{blog.category}</span>
             </div>
-            <h1 className="text-4xl font-bold tracking-tight mb-8">{blog.title}</h1>
-            <div className="relative h-[60vh] rounded-2xl overflow-hidden">
+            <h1 className="mb-8 text-balance text-3xl font-bold leading-tight tracking-tight md:text-5xl">{blog.title}</h1>
+            <div className="relative h-[40vh] overflow-hidden rounded-2xl bg-muted md:h-[55vh]">
               <Image
                 src={blog.coverImage}
                 alt={blog.title}
                 fill
+                sizes="(max-width: 896px) 100vw, 896px"
                 className="object-cover"
                 priority
               />
@@ -78,7 +79,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {blog.tags?.map?.((tag: string) => (
               <Link key={tag} href={`/blog?search=${tag}`}>
                 <span
-                  className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full"
+                  className="rounded-full bg-muted px-3 py-1 text-sm text-muted-foreground transition-colors hover:text-[var(--color-brand-gold-text)]"
                 >
                   {tag}
                 </span>
@@ -109,7 +110,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!blog) {
     return {
-      title: "Blog Post Not Found",
+      title: "הכתבה לא נמצאה",
+      robots: { index: false },
     } as Metadata;
   }
 

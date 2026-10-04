@@ -62,7 +62,7 @@ export function Markdown({ content }: { content: string }) {
   const flushParagraph = () => {
     if (paragraph.length) {
       blocks.push(
-        <p key={`p-${n++}`} className="mb-5 leading-8 text-slate-700">
+        <p key={`p-${n++}`} className="mb-5 leading-8 text-foreground/90">
           {renderLines(paragraph, `p${n}`)}
         </p>
       );
@@ -75,7 +75,7 @@ export function Markdown({ content }: { content: string }) {
       blocks.push(
         <Tag
           key={`list-${n++}`}
-          className={`mb-5 space-y-2 pr-6 leading-8 text-slate-700 ${list.ordered ? "list-decimal" : "list-disc"}`}
+          className={`mb-5 space-y-2 ps-6 leading-8 text-foreground/90 ${list.ordered ? "list-decimal" : "list-disc"}`}
         >
           {list.items.map((item, i) => (
             <li key={i}>{renderInline(item, `li${n}-${i}`)}</li>
@@ -100,7 +100,7 @@ export function Markdown({ content }: { content: string }) {
       const Tag = (`h${level}`) as "h2" | "h3" | "h4";
       const size = level === 2 ? "text-2xl" : level === 3 ? "text-xl" : "text-lg";
       blocks.push(
-        <Tag key={`h-${n++}`} className={`${size} mt-10 mb-4 font-bold text-slate-900`}>
+        <Tag key={`h-${n++}`} className={`${size} mt-10 mb-4 font-bold text-foreground`}>
           {renderInline(heading[2], `h${n}`)}
         </Tag>
       );

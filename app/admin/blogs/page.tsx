@@ -42,7 +42,7 @@ export default async function AdminBlogList() {
                         </TableHeader>
                         <TableBody>
                             {blogs.map((blog: IBlog) => (
-                                <TableRow className='even:bg-gray-50' key={blog._id?.toString()}>
+                                <TableRow className='even:bg-muted/50' key={blog._id?.toString()}>
                                     <TableCell>{blog.title}</TableCell>
                                     <TableCell className='hidden md:table-cell'>
                                         {blog.date.toLocaleDateString('he-IL', {
@@ -90,7 +90,7 @@ export default async function AdminBlogList() {
                         </TableBody>
                     </Table>
                     {blogs.length === 0 && (
-                        <div className="text-center py-8 text-gray-500">
+                        <div className="text-center py-8 text-muted-foreground">
                             אין מאמרים קיימים. צור מאמר חדש כדי להתחיל
                         </div>
                     )}
