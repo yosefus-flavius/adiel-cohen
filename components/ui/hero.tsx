@@ -12,7 +12,7 @@ export function Hero() {
             עדיאל כהן
           </p>
           <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-5xl xl:text-6xl">
-            יועץ משכנתאות מוסמך.
+            יועץ משכנתאות.
             <br />
             <span className="text-[var(--color-brand-gold-text)]">בדקו כמה תשלמו בחודש.</span>
           </h1>

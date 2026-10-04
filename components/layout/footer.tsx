@@ -20,7 +20,7 @@ export function Footer() {
                 </span>
               </Link>
               <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                יועץ משכנתאות מוסמך המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא. מלווה אותך עד לקבלת המפתח.
+                יועץ משכנתאות המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא. מלווה אותך עד לקבלת המפתח.
               </p>
               {/* Social Links */}
               <div className="flex gap-3">
