@@ -1,15 +1,18 @@
 import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 
-export const adminEmails = ['yosalsoni@gmail.com', 'adielcohenproj@gmail.com', 'ac37278461@gmail.com', 'adil7278461@gmail.com', 'a0548477385@gmail.com'];
-const secret = process.env.AUTH_SECRET || 'secret';
+// Comma-separated list of admin Google accounts, e.g. ADMIN_EMAILS="a@gmail.com,b@gmail.com".
+// If unset, nobody can sign in (fail closed).
+export const adminEmails = (process.env.ADMIN_EMAILS ?? '')
+    .split(',')
+    .map((email) => email.trim().toLowerCase())
+    .filter(Boolean);
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
     ...authConfig,
     callbacks: {
         async signIn({ user }) {
-            // Add your admin email addresses here
-            return adminEmails.includes(user.email ?? '');
+            return adminEmails.includes((user.email ?? '').toLowerCase());
         },
         async session({ session }) {
             return session;
@@ -18,7 +21,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         //     return token;
         // }
     },
-    secret,
+    // AUTH_SECRET is read from the environment by Auth.js; there is intentionally no fallback.
     trustHost: true,
 })
-
