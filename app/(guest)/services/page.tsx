@@ -1,3 +1,4 @@
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-jsonld";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CtaLink } from '@/components/ui/cta-link';
 import { PageHero } from '@/components/ui/page-hero';
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
       url: '/services',
       type: 'website',
       locale: 'he_IL',
-      images: ['/front.webp'],
+      images: ['/og-image.jpg'],
    },
 }
 
@@ -23,6 +24,7 @@ const MortgageServicesSection = () => {
 
    return (
       <main className="bg-background text-foreground">
+      <BreadcrumbJsonLd items={[{ name: "שירותים", path: "/services" }]} />
          <PageHero
             image="/services-2.webp"
             title="שירותי ייעוץ משכנתאות"

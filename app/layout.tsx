@@ -30,7 +30,7 @@ const jsonLd = {
       "@id": `${siteUrl}/#business`,
       name: "עדיאל כהן - יועץ משכנתאות",
       url: siteUrl,
-      image: `${siteUrl}/front.webp`,
+      image: `${siteUrl}/og-image.jpg`,
       telephone: contactInfo.phone,
       email: contactInfo.email,
       address: {
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     siteName: "עדיאל כהן - יועץ משכנתאות",
     images: [
       {
-        url: '/front.webp',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'עדיאל כהן - יועץ משכנתאות',
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "עדיאל כהן - הדרך הפשוטה למשכנתא שלך",
     description: "יועץ משכנתאות המתמחה בליווי אישי ומקצועי בתהליך לקיחת המשכנתא",
-    images: ['/front.webp'],
+    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -99,7 +99,11 @@ export const metadata: Metadata = {
   //   google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
   // },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
 };
 

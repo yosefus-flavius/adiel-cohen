@@ -1,59 +1,16 @@
 ﻿"use client"
-import { useState, useEffect } from "react";
-// import { supabase } from "@/integrations/supabase/client";
+
 import AnimatedSection from "@/components/animated-component";
 import FloatingCTA from "@/components/floating-cta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { AlertTriangle, ArrowDown, BadgePercent, CheckCircle2, ChevronDown, Clock, HelpCircle, Shield, TrendingDown, Users } from "lucide-react";
-import { toast } from "sonner";
-// import UrgencyTimer from "@/components/UrgencyTimer";
 import Testimonials from "@/components/testemonials";
 import Image from "next/image";
 import Script from "next/script";
-import { applyStoredTheme } from "@/lib/theme";
 
 const Index = () => {
-   const [name, setName] = useState("");
-   const [email, setEmail] = useState("");
-   const [consent, setConsent] = useState(false);
-
-   const [isSubmitting, setIsSubmitting] = useState(false);
-   const [isMounted, setIsMounted] = useState(false);
-
-   useEffect(() => {
-      setIsMounted(true);
-      // Add dark class to html element when on this page
-      document.documentElement.classList.add('dark');
-      
-      // Remove it when leaving
-      return () => {
-         applyStoredTheme();
-      };
-   }, []);
-
-   const handleSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
-      if (!name.trim() || !email.trim()) {
-         toast.error("נא למלא את כל השדות");
-         return;
-      }
-      if (!consent) {
-         toast.error("נא לאשר קבלת תכנים מקצועיים");
-         return;
-      }
-
-      setIsSubmitting(true);
-      try {
-         // Submission logic
-      } catch (err) {
-         console.error('Submit error:', err);
-         toast.error("אירעה שגיאה, נסו שוב מאוחר יותר");
-      } finally {
-         setIsSubmitting(false);
-      }
-   };
 
    const scrollToForm = () => {
       document.getElementById("lead-form")?.scrollIntoView({ behavior: "smooth" });
@@ -63,7 +20,7 @@ const Index = () => {
       <main className="min-h-screen bg-background text-foreground selection:bg-primary/30">
 
          {/* Hero Section */}
-         <section className="relative overflow-hidden py-20 md:py-32">
+         <section className="relative overflow-hidden bg-background py-20 md:py-32">
             {/* Premium Glow effect */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,hsl(43_76%_52%/0.15),transparent_70%)]" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,hsl(43_76%_52%/0.1),transparent_50%)]" />
@@ -76,7 +33,7 @@ const Index = () => {
                      transition={{ duration: 0.5 }}
                      className="mb-6 inline-block rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary backdrop-blur-sm"
                   >
-                     רפורמת המשכנתאות 2025: המדריך המלא המעודכן
+                     רפורמת המשכנתאות 2026: המדריך המלא המעודכן
                   </motion.div>
                   
                   <motion.h1
@@ -116,9 +73,8 @@ const Index = () => {
                      className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
                   >
                      <Button
-                        size="lg"
                         onClick={scrollToForm}
-                        className="group relative h-14 rounded-full px-10 text-lg font-bold transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:scale-105"
+                        className="group relative h-12 rounded-full px-10 text-lg font-bold transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:scale-105"
                      >
                         שלחו לי את המדריך בחינם!
                         <ArrowDown className="mr-2 h-5 w-5 transition-transform group-hover:translate-y-1" />
@@ -133,7 +89,7 @@ const Index = () => {
          </section>
 
          {/* Pain Points Section */}
-         <section className="border-y border-primary/10 bg-secondary/30 py-20">
+         <section className="border-y border-border bg-card py-20">
             <div className="container mx-auto px-4">
                <AnimatedSection>
                   <h2 className="mb-16 text-center text-3xl font-black md:text-5xl text-foreground">
@@ -164,7 +120,7 @@ const Index = () => {
          </section>
 
          {/* What's Inside Section */}
-         <section className="py-24">
+         <section className="bg-background py-24">
             <div className="container mx-auto px-4">
                <AnimatedSection>
                   <h2 className="mb-16 text-center text-3xl font-black md:text-5xl text-foreground">
@@ -189,7 +145,7 @@ const Index = () => {
          </section>
 
          {/* About Section */}
-         <section className="border-y border-primary/10 bg-secondary/30 py-24">
+         <section className="border-y border-border bg-card py-24">
             <div className="container mx-auto px-4">
                <AnimatedSection>
                   <div className="mx-auto flex max-w-4xl flex-col items-center gap-12 md:flex-row">
@@ -224,7 +180,7 @@ const Index = () => {
          <Testimonials />
 
          {/* Social Proof Numbers */}
-         <section className="border-y border-primary/10 bg-secondary/30 py-24">
+         <section className="border-y border-border bg-card py-24">
             <div className="container mx-auto px-4">
                <AnimatedSection>
                   <h2 className="mb-16 text-center text-3xl font-black md:text-5xl text-foreground">
@@ -252,7 +208,7 @@ const Index = () => {
          </section>
 
          {/* FAQ Section */}
-         <section className="py-24">
+         <section className="bg-background py-24">
             <div className="container mx-auto px-4">
                <AnimatedSection>
                   <h2 className="mb-16 text-center text-3xl font-black md:text-5xl text-foreground">
@@ -296,14 +252,12 @@ const Index = () => {
          </section>
 
          {/* Lead Capture Form */}
-         <section id="lead-form" className="border-t border-primary/10 bg-secondary/30 py-24">
+         <section id="lead-form" className="border-t border-border bg-card py-24">
             <div className="container mx-auto px-4 flex justify-center">
-               {isMounted && (
                   <div className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-primary/20 bg-white p-2 shadow-2xl shadow-primary/10">
                      <iframe title="צור קשר" width="100%" height="500" src="https://embed.vp4.me/LandingPage,d27a1818-1249-4544-b00a-cba4a4d0b754,605750.aspx?r=1009" frameBorder="0" allowFullScreen className="rounded-2xl" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-top-navigation-by-user-activation"></iframe>
                      <Script id="smoove-embed" src="https://embed.vp4.me/core/embd.min.js?v=20260331172123" strategy="afterInteractive" />
                   </div>
-               )}
             </div>
          </section>
          {/* Floating CTA */}

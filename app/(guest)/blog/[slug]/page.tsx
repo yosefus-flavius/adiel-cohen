@@ -1,3 +1,4 @@
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-jsonld";
 import BlogModel, { IBlog } from "@/server/blog/blog.model";
 import { connectToDatabase } from "@/server/connect";
 import { Metadata } from "next";
@@ -43,6 +44,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <main className="bg-background py-8 text-foreground md:py-12">
+      <BreadcrumbJsonLd items={[{ name: "כתבות", path: "/blog" }, { name: blog.title, path: `/blog/${blog.slug}` }]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c") }}

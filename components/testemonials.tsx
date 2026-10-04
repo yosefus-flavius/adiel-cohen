@@ -18,7 +18,7 @@ const testimonials = [
 ];
 
 const Testimonials = () => (
-   <section className="py-16">
+   <section className="bg-background py-16">
       <div className="container mx-auto px-4">
          <AnimatedSection>
             <h2 className="mb-12 text-center text-2xl font-black md:text-4xl">

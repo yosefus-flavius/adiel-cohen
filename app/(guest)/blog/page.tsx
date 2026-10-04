@@ -1,3 +1,4 @@
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-jsonld";
 import BlogCard from "@/components/blog-card";
 import { SearchPosts } from "@/components/ui/search-posts";
 // import { blogsGemini } from "@/lib/data/blogs-gemini";
@@ -45,6 +46,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
 
   return (
     <main className="bg-background py-16 text-foreground md:py-24">
+      <BreadcrumbJsonLd items={[{ name: "כתבות", path: "/blog" }]} />
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto mb-16">
           <h1 className="mb-4 text-center text-4xl font-bold tracking-tight md:text-5xl">

@@ -1,3 +1,4 @@
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-jsonld";
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { CtaLink } from '@/components/ui/cta-link';
 import { PageHero } from '@/components/ui/page-hero';
@@ -25,13 +26,13 @@ export const metadata: Metadata = {
       type: 'article',
       locale: 'he_IL',
       siteName: 'עדיאל כהן - יועץ משכנתאות',
-      images: ['/front.webp'],
+      images: ['/og-image.jpg'],
    },
    twitter: {
       card: 'summary_large_image',
       title: '4 סיבות לבדיקת מחזור המשכנתא שלכם היום',
       description: 'בדיקת כדאיות מחזור משכנתא, חינם וללא התחייבות.',
-      images: ['/front.webp'],
+      images: ['/og-image.jpg'],
    },
 };
 
@@ -106,6 +107,7 @@ function Point({ label, text, highlight }: { label: string; text: string; highli
 export default function MortgageRefinancingPage() {
    return (
       <main className="bg-background text-foreground">
+      <BreadcrumbJsonLd items={[{ name: "מחזור משכנתא", path: "/restore" }]} />
          <PageHero image="/restore.webp" title="4 סיבות מקצועיות לבדיקת מחזור המשכנתא שלכם היום">
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-200 md:text-xl">
                המשכנתא שלכם היא ההתחייבות הפיננסית הגדולה ביותר של משק הבית. התנאים הכלכליים משתנים תדיר, ואם לא בדקתם את תמהיל המשכנתא שלכם בשנתיים האחרונות, קיים סיכוי גבוה שאתם נושאים בעלויות מימון גבוהות מהנדרש.

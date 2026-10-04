@@ -1,3 +1,4 @@
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-jsonld";
 import Calc from "@/components/ui/calc";
 import { PageHero } from "@/components/ui/page-hero";
 import { Metadata } from "next";
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
       url: '/calc',
       type: 'website',
       locale: 'he_IL',
-      images: ['/front.webp'],
+      images: ['/og-image.jpg'],
    },
 }
 
@@ -20,6 +21,7 @@ export default function CalcPage() {
 
    return (
       <main className="bg-background text-foreground">
+      <BreadcrumbJsonLd items={[{ name: "מחשבון משכנתא", path: "/calc" }]} />
          <PageHero
             image="/calc-2.webp"
             title="מחשבון משכנתא"

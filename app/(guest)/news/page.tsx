@@ -1,3 +1,4 @@
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-jsonld";
 import { connectToDatabase } from '@/server/connect';
 import flashModel, { IFlash } from '@/server/flash/flash.model';
 import { ChevronDown, Clock, ExternalLink, Tag } from 'lucide-react';
@@ -38,6 +39,7 @@ export default async function FlashesPage() {
 
    return (
       <main className="bg-background text-foreground">
+      <BreadcrumbJsonLd items={[{ name: "חדשות", path: "/news" }]} />
          <PageHero image="/news.webp" title="חדשות משכנתא" description="כל מה שחדש בעולמות המשכנתאות והפיננסים" />
 
          <div className="container-main max-w-5xl py-12 md:py-16">
