@@ -70,6 +70,15 @@ Metadata routes: `app/sitemap.ts` (force-dynamic, reads blogs from DB), `app/rob
 - Not actionable: shared 46 KB chunk is Next's own runtime; the `_DSC89xx.webp` files are not referenced anywhere in code (unused, ~20 MB in repo; owner decides whether to delete).
 - Gotcha: the user's `next dev` shares `.next`; builds need free RAM (~1.5 GB). `tsc --noEmit` needs `NODE_OPTIONS=--max-old-space-size=3072`.
 
+### Done on branch `seo-perf` (continued)
+- Security: `ADMIN_EMAILS` env (comma-separated) replaces hardcoded admin emails (fails closed if unset), no `AUTH_SECRET` fallback, `deleteLead` requires a session. **Netlify must have `AUTH_SECRET` and `ADMIN_EMAILS` set before deploy.**
+- Blog posts render Markdown via `components/markdown.tsx` (no deps, no raw HTML).
+- Theme system: `lib/theme.ts`, `components/theme/theme-controls.tsx`; class `dark` on `<html>`, default = OS preference, stored choice in localStorage `theme-mode`.
+- Home redesign (direction C): `Hero` + `CalcCard` (shared state in `lib/calc-store.ts`), `QuickActions`, About (real owner copy in `lib/data/about.ts`, `aboutInfo.image` kept), timeline Steps, Testimonials, Contact (`CalcSummary` + `Lead` form: name+phone required), restyled `BlogCard`/`LatestBlogs`, solid Navbar, Footer with `ThemeSegmented`. Lighthouse mobile local: A11y/Best Practices/SEO 100, perf ~66-69 (noisy).
+- Calculator uses a sample rate (`SAMPLE_RATE` 4.5%) labelled as illustrative; owner should confirm wording/rate policy.
+- NOTE: the owner (or another tool) replaced the Nagishli scripts in `app/layout.tsx` with a UserWay widget (`cdn.userway.org`, lazyOnload). That edit is uncommitted and not mine; do not revert or commit it without asking.
+- Inner pages (services, calc, restore, blog, news, leads, admin) still use the old look: next pass after owner reviews home.
+
 ### Known issues found during initial read (candidates; items above are done)
 SEO / structured data
 - `app/layout.tsx` WebSite JSON-LD is invalid JSON (`"url": ${...}` is unquoted) and uses `next/script beforeInteractive`; replace with a `<script type="application/ld+json">` with `JSON.stringify`. Add `Organization`/`FinancialService`/`LocalBusiness` + `Person` (Adiel), `Article` on blog posts, `BreadcrumbList`, `FAQPage` where there is FAQ content.
