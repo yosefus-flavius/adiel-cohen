@@ -105,6 +105,16 @@ export async function generateStaticParams() {
   }));
 }
 
+// WhatsApp/Facebook often skip webp: serve a 1200x630 JPG via Cloudinary, else the default JPG.
+function shareImage(src?: string) {
+  if (src && src.includes("res.cloudinary.com") && src.includes("/image/upload/")) {
+    return src
+      .replace("/image/upload/", "/image/upload/f_jpg,q_auto,c_fill,w_1200,h_630/")
+      .replace(/\.(webp|png|avif)(\?.*)?$/i, ".jpg");
+  }
+  return `${siteUrl}/og-image.jpg`;
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   await connectToDatabase();
   const slug = (await params).slug
@@ -131,13 +141,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       publishedTime: blog.date ? new Date(blog.date).toISOString() : undefined,
       modifiedTime: blog.updatedAt ? new Date(blog.updatedAt).toISOString() : undefined,
       authors: [blog.author],
-      images: [{ url: blog.coverImage, alt: blog.title }],
+      images: [{ url: shareImage(blog.coverImage), width: 1200, height: 630, alt: blog.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: blog.title,
       description: blog.excerpt,
-      images: [blog.coverImage],
+      images: [shareImage(blog.coverImage)],
     },
   } as Metadata;
 }
