@@ -2,7 +2,7 @@ import { contactInfo } from "@/lib/data/contact";
 import { Instagram, Linkedin, MapPin, Phone, Mail, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { guestLinks } from "@/lib/data/nav-links";
-import { FadeIn } from "@/components/animations";
+import { ThemeSegmented } from "@/components/theme/theme-controls";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,7 +10,6 @@ export function Footer() {
   return (
     <footer className="bg-slate-900 text-slate-100">
       <div className="container-main py-16">
-        <FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             {/* Brand Column */}
             <div className="lg:col-span-1">
@@ -150,10 +149,12 @@ export function Footer() {
               </ul>
             </div>
           </div>
-        </FadeIn>
+
+        {/* Display mode */}
+        <ThemeSegmented className="mt-12" />
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-800 mt-12 pt-8">
+        <div className="border-t border-slate-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-100 text-sm">
               © {currentYear} עדיאל כהן. כל הזכויות שמורות.

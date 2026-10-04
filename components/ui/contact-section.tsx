@@ -1,18 +1,16 @@
-"use client";
-
 import { contactInfo } from "@/lib/data/contact";
-import { Mail, MapPin, Phone, Clock, MessageCircle } from "lucide-react";
-import { Card, CardContent } from "./card";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { CalcSummary } from "./calc-summary";
 import Lead from "./lead";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
 
 const contactMethods = [
   {
     icon: Phone,
     title: "טלפון",
-    value: contactInfo.phone,
+    value: contactInfo.phone.replace("+972", "0").replace(/^(\d{3})(\d{3})(\d{4})$/, "$1-$2-$3"),
     href: `tel:${contactInfo.phone}`,
     description: "זמין בימי עבודה",
+    ltr: true,
   },
   {
     icon: Mail,
@@ -20,80 +18,63 @@ const contactMethods = [
     value: contactInfo.email,
     href: `mailto:${contactInfo.email}`,
     description: "מענה תוך 24 שעות",
+    ltr: true,
   },
   {
     icon: MapPin,
     title: "כתובת",
     value: contactInfo.address,
     href: "https://waze.com/ul?ll=31.89236134%2C34.81322765&navigate=yes",
-    description: "לחץ לניווט",
+    description: "לחצו לניווט",
     external: true,
   },
 ];
 
 export function ContactSection() {
   return (
-    <section id="contact" className="section-padding bg-[hsl(40,33%,96%)] overflow-hidden">
-      <div className="container-main">
-        {/* Header */}
-        <FadeIn className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
-            צור קשר
+    <section id="contact" className="section-padding bg-background">
+      <div className="container-main grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="flex flex-col gap-5">
+          <p className="text-sm font-bold text-[var(--color-brand-gold-text)]">צור קשר</p>
+          <h2 className="text-3xl font-extrabold leading-tight text-foreground md:text-4xl">
+            נבדוק את המספרים שלכם מול הבנקים
           </h2>
-          <p className="text-slate-600 max-w-xl mx-auto">
-            אשמח לעזור לך בכל שאלה או התייעצות בנושא משכנתאות
+          <p className="text-lg leading-relaxed text-muted-foreground">
+            השאירו שם וטלפון ואחזור אליכם בהקדם, בלי התחייבות. אפשר גם להתקשר או לכתוב בוואטסאפ.
           </p>
-        </FadeIn>
 
-        {/* Contact Cards */}
-        <StaggerContainer 
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
-          staggerDelay={0.1}
-        >
-          {contactMethods.map((method) => (
-            <StaggerItem key={method.title}>
-              <a
-                href={method.href}
-                target={method.external ? "_blank" : undefined}
-                rel={method.external ? "noopener noreferrer" : undefined}
-                className="block h-full"
-              >
-                <Card className="h-full bg-white border border-slate-200 hover:border-[var(--color-brand-gold)]/50 transition-colors">
-                  <CardContent className="flex flex-col items-center gap-3 p-6">
-                    <div className="w-12 h-12 rounded-xl bg-[var(--color-brand-gold)]/10 flex items-center justify-center text-[var(--color-brand-gold)]">
-                      <method.icon className="w-6 h-6" />
-                    </div>
-                    <div className="text-center">
-                      <h3 className="font-medium text-slate-900 mb-1 text-sm">
-                        {method.title}
-                      </h3>
-                      <p className="text-slate-600 font-medium">
-                        {method.value}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </a>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+          <CalcSummary />
 
-        {/* Lead Form Container */}
-        <FadeIn delay={0.4}>
-          <div className="max-w-2xl mx-auto">
-            <Lead />
-          </div>
-        </FadeIn>
+          <ul className="flex flex-col gap-3">
+            {contactMethods.map((method) => (
+              <li key={method.title}>
+                <a
+                  href={method.href}
+                  {...(method.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="flex min-h-16 items-center gap-4 rounded-2xl border border-border bg-card px-5 py-3 transition-colors hover:border-[var(--color-brand-gold)]"
+                >
+                  <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F1E7CF] text-[var(--color-brand-gold-text)] dark:bg-[#273449]">
+                    <method.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span className="flex flex-col">
+                    <strong className="text-base text-foreground">{method.title}</strong>
+                    <span dir={method.ltr ? "ltr" : undefined} className="text-start text-base text-muted-foreground">
+                      {method.value}
+                    </span>
+                    <span className="text-sm text-muted-foreground">{method.description}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
 
-        {/* Working Hours Note */}
-        <FadeIn delay={0.5} className="mt-12">
-          <div className="flex items-center justify-center gap-2 text-slate-100">
-            <Clock className="w-5 h-5 text-[var(--color-brand-gold)]" />
-            <span className="text-body-sm">
-              שעות פעילות: ימים א'-ה' 09:00-18:00 | יום ו' 09:00-13:00
-            </span>
-          </div>
-        </FadeIn>
+          <p className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Clock className="h-4 w-4" aria-hidden="true" />
+            זמין בימי עבודה
+          </p>
+        </div>
+
+        <Lead />
       </div>
     </section>
   );

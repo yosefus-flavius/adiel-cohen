@@ -4,8 +4,6 @@ import { ArrowLeft } from "lucide-react";
 import { unstable_cache } from "next/cache";
 import Link from "next/link";
 import BlogCard from "../blog-card";
-import { Button } from "./button";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
 
 const getBlogs = unstable_cache(
   async () => {
@@ -28,44 +26,28 @@ export async function LatestBlogs() {
   const latestBlogs = await getBlogs();
 
   return (
-    <section className="section-padding bg-white overflow-hidden">
+    <section className="section-padding border-t border-border bg-card">
       <div className="container-main">
-        {/* Header */}
-        <FadeIn className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 gap-4">
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-0.5 bg-[var(--color-brand-gold)]" />
-              <span className="text-sm font-semibold text-[var(--color-brand-gold-text)] uppercase tracking-wider">
-                בלוג
-              </span>
-            </div>
-            <h2 className="text-h2 text-slate-900">
-              כתבות אחרונות
-            </h2>
+        <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div className="flex flex-col gap-2">
+            <p className="text-sm font-bold text-[var(--color-brand-gold-text)]">בלוג</p>
+            <h2 className="text-3xl font-extrabold text-foreground md:text-4xl">כתבות אחרונות</h2>
           </div>
-          
-          <Link href="/blog">
-            <Button 
-              className="text-[var(--color-brand-gold-text)] hover:text-[var(--color-brand-gold-dark)] flex gap-2 items-center font-semibold" 
-              variant="ghost"
-            >
-              לכל הכתבות
-              <ArrowLeft className="w-4 h-4" />
-            </Button>
-          </Link>
-        </FadeIn>
 
-        {/* Blog Grid */}
-        <StaggerContainer 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-          staggerDelay={0.1}
-        >
+          <Link
+            href="/blog"
+            className="inline-flex min-h-11 items-center gap-2 text-base font-bold text-[var(--color-brand-gold-text)] hover:underline"
+          >
+            לכל הכתבות
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {latestBlogs.map((blog) => (
-            <StaggerItem key={blog._id}>
-              <BlogCard blog={blog as unknown as IBlog} />
-            </StaggerItem>
+            <BlogCard key={blog._id} blog={blog as unknown as IBlog} />
           ))}
-        </StaggerContainer>
+        </div>
       </div>
     </section>
   );
