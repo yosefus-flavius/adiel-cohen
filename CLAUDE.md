@@ -63,7 +63,10 @@ Metadata routes: `app/sitemap.ts` (force-dynamic, reads blogs from DB), `app/rob
 - SEO: per-page canonicals (root canonical removed), valid WebSite + FinancialService JSON-LD (address street/city is inferred from `lib/data/contact.ts`, owner should confirm), Article JSON-LD + twitter cards + canonical on blog posts, sitemap uses real `updatedAt`, robots URL fallback, `/login` noindex.
 - Perf: hero is a server component with CSS animations (no framer-motion in hero/navbar), heading renders immediately, hero image has `sizes`.
 - A11y: `--color-brand-gold-text` (#8a6410) for gold text on light backgrounds, `<main>` on /services and /leads, heading order, calc iframe title, jQuery on /calc loads afterInteractive.
-- Baseline Lighthouse (mobile, prod build, localhost): home perf 40, services 46, calc 43, restore 63, blog 43, leads 53, blog post 85; SEO 92-100, A11y 91-98. Not yet re-measured after these changes.
+- `/leads` is indexable with its own metadata and is in the sitemap (owner decision). `next.config.ts` has `htmlLimitedBots: /.*/` so metadata renders in `<head>` on dynamic pages (/blog); `/calc` reserves `min-h-[900px]` to stop CLS.
+- Baseline Lighthouse (mobile, prod build, localhost): home perf 40, services 46, calc 43, restore 63, blog 43, leads 53, blog post 85; SEO 92-100, A11y 91-98.
+- After fixes (same method, noisy +-10): home 64-75, services 87, calc 78-80, restore 87, blog 74, leads 65; SEO 100 everywhere, A11y 96-100, CLS ~0.
+- Nagishli CANNOT be lazy-loaded: with `strategy="lazyOnload"` the widget never initialises (it hooks the window load event). Tested; keep `afterInteractive`. Do not retry without a different approach (e.g. owner-approved load-on-interaction + testing).
 - Not actionable: shared 46 KB chunk is Next's own runtime; the `_DSC89xx.webp` files are not referenced anywhere in code (unused, ~20 MB in repo; owner decides whether to delete).
 - Gotcha: the user's `next dev` shares `.next`; builds need free RAM (~1.5 GB). `tsc --noEmit` needs `NODE_OPTIONS=--max-old-space-size=3072`.
 
