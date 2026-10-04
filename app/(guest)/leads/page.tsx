@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import Testimonials from "@/components/testemonials";
 import Image from "next/image";
 import Script from "next/script";
+import { applyStoredTheme } from "@/lib/theme";
 
 const Index = () => {
    const [name, setName] = useState("");
@@ -28,7 +29,7 @@ const Index = () => {
       
       // Remove it when leaving
       return () => {
-         document.documentElement.classList.remove('dark');
+         applyStoredTheme();
       };
    }, []);
 

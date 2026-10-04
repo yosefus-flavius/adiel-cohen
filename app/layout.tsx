@@ -9,6 +9,7 @@ import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from "next/script";
 import { contactInfo } from "@/lib/data/contact";
+import { themeInitScript } from "@/lib/theme";
 
 const heebo = Heebo({ subsets: ["hebrew", "latin"] });
 
@@ -108,7 +109,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="he" dir="rtl">
+    <html lang="he" dir="rtl" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className={`${heebo.className}  bg-[hsl(var(--background))]`}>
         <div className="h-16" />
         <script
