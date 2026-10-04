@@ -57,7 +57,7 @@ export function MobileMenu({ links = [] }: MobileMenuProps) {
         </nav>
 
         <p className="absolute inset-x-4 bottom-8 text-center text-sm text-muted-foreground">
-          יועץ משכנתאות מוסמך
+          יועץ משכנתאות
         </p>
       </SheetContent>
     </Sheet>
