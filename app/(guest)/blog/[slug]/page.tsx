@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import RelatedPosts from "./related-posts";
+import { Markdown } from "@/components/markdown";
 import Link from "next/link";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://adiel-cohen.co.il";
@@ -71,9 +72,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
           </header>
 
-          <div className="prose prose-lg max-w-none whitespace-pre-line">
-            {blog.content}
-          </div>
+          <Markdown content={blog.content} />
 
           <div className="flex flex-wrap gap-2 mt-8">
             {blog.tags?.map?.((tag: string) => (
